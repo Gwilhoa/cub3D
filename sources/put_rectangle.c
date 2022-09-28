@@ -6,12 +6,14 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:32:40 by gchatain          #+#    #+#             */
-/*   Updated: 2022/08/17 10:57:14 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/09/26 18:03:08 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-void put_rectangle(void *link, void *fen, t_point2D init, t_point2D end, int color)
+
+void	put_rectangle(void *link, void *fen,
+			t_point2D init, t_point2D end, int color)
 {
 	t_point2D	tmp;
 	t_point2D	tmp2;

@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/08/17 11:00:01 by gchatain         ###   ########lyon.fr    #
+#    Updated: 2022/09/28 18:40:09 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ UNDER		=	\033[4m
 SUR			=	\033[7m
 END			=	\033[0m
 
-LST_SRCS =  main.c put_line.c put_rectangle.c
+LST_SRCS =  main.c put_line.c put_rectangle.c parsing/parsing_main.c
 LST_OBJS = ${LST_SRCS:.c=.o}
 LIBRARY = libft/libft.a mlx/libmlx.a
 SRCS = $(addprefix sources/,$(LST_SRCS))
@@ -75,6 +75,7 @@ mlx/libmlx.a:
 
 .objects:
 			mkdir -p .objects
+			mkdir -p .objects/parsing
 .PHONY:	all clean fclean re
 
 .SILENT:
