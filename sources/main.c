@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/09/28 18:44:33 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:18:49 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	main(int argc, char const *argv[])
 {
 	t_cub	cub;
-	(void)argv;
-	parsing_main("test.cub", &cub);
+
+	parsing_main(argv[1], &cub);
 	ft_disp_matrix(cub.map);
 	return (argc);
 }

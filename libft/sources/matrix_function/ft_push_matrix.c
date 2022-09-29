@@ -28,11 +28,13 @@ void	ft_push_matrix(char ***matrix, char *str)
 	}
 	else
 	{
-		tmp2 = malloc((sizeof(char *) * (ft_matrix_size((const char **) tmp) \
-			+ 2)));
+		i = ft_matrix_size((const char **) tmp);
+		tmp2 = malloc((sizeof(char *) * (i + 2)));
 		tmp2[0] = str;
+		i = -1;
 		while (tmp[++i] != 0)
 			tmp2[i + 1] = tmp[i];
+		i++;
 		tmp2[i + 1] = 0;
 	}
 	*matrix = tmp2;
