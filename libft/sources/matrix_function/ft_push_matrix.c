@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:55:05 by gchatain          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:18 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:32:56 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ void	ft_push_matrix(char ***matrix, char *str)
 		tmp2[0] = str;
 		i = -1;
 		while (tmp[++i] != 0)
-			tmp2[i + 1] = tmp[i];
-		i++;
+			tmp2[i + 1] = ft_strdup(tmp[i]);
 		tmp2[i + 1] = 0;
+		ft_free_matrix(tmp);
+		free(tmp);
 	}
 	*matrix = tmp2;
 }
