@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/03 17:49:45 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:20:16 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ int		init_cub(t_cub *cub, int fd);
 int		init_cub(t_cub *cub, int fd);
 void	put_line(void *link, void *fen, t_point2D init, t_point2D end, int color);
 void	put_rectangle(void *link, void *fen, t_point2D init, t_point2D end, int color);
+void	setcub(t_cub *cub);
+int		parsing_texture(t_cub *cub);
+int		istextured(t_cub *cub);
 
 #endif

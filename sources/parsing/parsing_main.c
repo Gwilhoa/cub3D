@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/04 10:03:10 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:56:16 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,34 @@ int	init_cub(t_cub *cub, int fd)
 
 int	parsing_texture(t_cub *cub)
 {
-	while ()
+	char *actual_line;
+	while (istextured(cub))
 	{
-		
+		actual_line = ft_strtrim(cub->map[0], " \n");
+		if (actual_line == 0)
+		{
+			free(cub->map[0]);
+			cub->map = cub->map + 1;
+		}
+		else
+		{
+			if (ft_strncmp(actual_line, "NO", 2) == 0)
+				cub->no_texture = ft_strdup(actual_line + 2);
+			else if (ft_strncmp(actual_line, "SO", 2) == 0)
+				cub->so_texture = ft_strdup(actual_line + 2);
+			else if (ft_strncmp(actual_line, "WE", 2) == 0)
+				cub->we_texture = ft_strdup(actual_line + 2);
+			else if (ft_strncmp(actual_line, "EA", 2) == 0)
+				cub->ea_texture = ft_strdup(actual_line + 2);
+			else if (ft_strncmp(actual_line, "F", 1) == 0 || ft_strncmp(actual_line, "C", 1) == 0)
+				parsing_color(cub, actual_line + 1, actual_line[0]);
+				
+			cub->map = cub->map + 1;
+			if (cub->map[0] == 0)
+				return (1);
+		}
 	}
+	return (0);
 }
 
 void	setcub(t_cub *cub)
@@ -79,4 +103,24 @@ void	setcub(t_cub *cub)
 	cub->ea_texture = 0;
 	cub->ceiling_color = -1;
 	cub->floor_color = -1;
+	return;
 }
+
+int	istextured(t_cub *cub)
+{
+	if (cub->no_texture == 0)
+		return (1);
+	if (cub->so_texture == 0)
+		return (1);
+	if (cub->we_texture == 0)
+		return (1);
+	if (cub->ea_texture == 0)
+		return (1);
+	if (cub->ceiling_color == -1)
+		return (1);
+	if (cub->floor_color == -1)
+		return (1);
+	return (0);
+}
+
+
