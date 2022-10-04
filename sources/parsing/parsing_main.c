@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/04 12:56:16 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/10/04 17:03:33 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int	parsing_main(char *filename, t_cub *cub)
 	if (parsing_fd(filename, cub) == 1)
 		return (1);
 	if (parsing_texture(cub) == 1)
+	{
+		ft_putstr_fd("incorrect file format\n", 2);
 		return (1);
+	}
 	return (0);
 }
 
@@ -64,7 +67,8 @@ int	init_cub(t_cub *cub, int fd)
 
 int	parsing_texture(t_cub *cub)
 {
-	char *actual_line;
+	char	*actual_line;
+
 	while (istextured(cub))
 	{
 		actual_line = ft_strtrim(cub->map[0], " \n");
@@ -76,16 +80,18 @@ int	parsing_texture(t_cub *cub)
 		else
 		{
 			if (ft_strncmp(actual_line, "NO", 2) == 0)
-				cub->no_texture = ft_strdup(actual_line + 2);
+				cub->no_texture = ft_strtrim(actual_line + 2, " ");
 			else if (ft_strncmp(actual_line, "SO", 2) == 0)
-				cub->so_texture = ft_strdup(actual_line + 2);
+				cub->so_texture = ft_strtrim(actual_line + 2, " ");
 			else if (ft_strncmp(actual_line, "WE", 2) == 0)
-				cub->we_texture = ft_strdup(actual_line + 2);
+				cub->we_texture = ft_strtrim(actual_line + 2, " ");
 			else if (ft_strncmp(actual_line, "EA", 2) == 0)
-				cub->ea_texture = ft_strdup(actual_line + 2);
+				cub->ea_texture = ft_strtrim(actual_line + 2, " ");
 			else if (ft_strncmp(actual_line, "F", 1) == 0 || ft_strncmp(actual_line, "C", 1) == 0)
-				parsing_color(cub, actual_line + 1, actual_line[0]);
-				
+			{
+				if (parsing_color(cub, actual_line + 1, actual_line[0]) == 1)
+					return (1);
+			}
 			cub->map = cub->map + 1;
 			if (cub->map[0] == 0)
 				return (1);
@@ -103,7 +109,7 @@ void	setcub(t_cub *cub)
 	cub->ea_texture = 0;
 	cub->ceiling_color = -1;
 	cub->floor_color = -1;
-	return;
+	return ;
 }
 
 int	istextured(t_cub *cub)
@@ -122,5 +128,3 @@ int	istextured(t_cub *cub)
 		return (1);
 	return (0);
 }
-
-

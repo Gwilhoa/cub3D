@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/04 12:20:16 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/10/04 15:32:52 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_cub
 	int			ceiling_color;
 }		t_cub;
 
+int		parsing_color(t_cub *cub, char *actual_line, char type);
 int		parsing_main(char *filename, t_cub *cub);
 int		parsing_fd(char *filename, t_cub *cub);
 int		init_cub(t_cub *cub, int fd);

@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/09/28 18:40:09 by gchatain         ###   ########.fr        #
+#    Updated: 2022/10/04 15:40:44 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ UNDER		=	\033[4m
 SUR			=	\033[7m
 END			=	\033[0m
 
-LST_SRCS =  main.c put_line.c put_rectangle.c parsing/parsing_main.c
+LST_SRCS =  main.c put_line.c put_rectangle.c parsing/parsing_main.c parsing/texture_color.c
 LST_OBJS = ${LST_SRCS:.c=.o}
 LIBRARY = libft/libft.a mlx/libmlx.a
 SRCS = $(addprefix sources/,$(LST_SRCS))
