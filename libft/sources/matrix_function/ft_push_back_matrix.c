@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:15:18 by gchatain          #+#    #+#             */
-/*   Updated: 2022/06/24 10:32:48 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/09/30 17:35:42 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_push_back_matrix(char ***matrix, char *str)
 
 	i = 0;
 	tmp = *matrix;
-	if (matrix == NULL)
+	if (tmp == NULL)
 	{
 		ft_push_matrix(matrix, str);
 		return ;
