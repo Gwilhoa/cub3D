@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/04 15:32:52 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:10:07 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ typedef struct s_cub
 	int			ceiling_color;
 }		t_cub;
 
-int		parsing_color(t_cub *cub, char *actual_line, char type);
+int		is_textured(t_cub *cub);
+int		is_orientedline(char *line);
 int		parsing_main(char *filename, t_cub *cub);
 int		parsing_fd(char *filename, t_cub *cub);
 int		init_cub(t_cub *cub, int fd);
-int		init_cub(t_cub *cub, int fd);
-void	put_line(void *link, void *fen, t_point2D init, t_point2D end, int color);
-void	put_rectangle(void *link, void *fen, t_point2D init, t_point2D end, int color);
-void	setcub(t_cub *cub);
 int		parsing_texture(t_cub *cub);
-int		istextured(t_cub *cub);
+int		parsing_oriented(char *line, char *type, t_cub *cub);
+void	setcub(t_cub *cub);
+int		parsing_color(t_cub *cub, char *actual_line, char type);
+int		rgb_to_hexa(int r, int g, int b);
+int		ft_search_player(t_cub *cub);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:22:16 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/04 17:06:37 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/06 20:17:33 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	{
 		ft_putstr_fd("error parsing color on ", 2);
 		ft_putchar_fd(type, 2);
-		ft_putchar_fd('\n',2);
+		ft_putchar_fd('\n', 2);
 		i = 1;
 	}
 	if (type == 'F')
-		cub->floor_color = rgb_to_hexa(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]));
+		cub->floor_color = rgb_to_hexa(ft_atoi(split[0]),
+				ft_atoi(split[1]), ft_atoi(split[2]));
 	else if (type == 'C')
-		cub->ceiling_color = rgb_to_hexa(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]));
+		cub->ceiling_color = rgb_to_hexa(ft_atoi(split[0]),
+				ft_atoi(split[1]), ft_atoi(split[2]));
 	return (i);
 }

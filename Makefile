@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/10/04 15:40:44 by gchatain         ###   ########.fr        #
+#    Updated: 2022/10/06 21:10:29 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,11 @@ UNDER		=	\033[4m
 SUR			=	\033[7m
 END			=	\033[0m
 
-LST_SRCS =  main.c put_line.c put_rectangle.c parsing/parsing_main.c parsing/texture_color.c
+MAIN_SRCS = main.c put_line.c
+PRSG_SRCS = condition_function.c parsing_main.c initialisation.c texture_color.c player_initialisation.c
+
+LST_SRCS = $(MAIN_SRCS) ${addprefix parsing/,$(PRSG_SRCS)}
+
 LST_OBJS = ${LST_SRCS:.c=.o}
 LIBRARY = libft/libft.a mlx/libmlx.a
 SRCS = $(addprefix sources/,$(LST_SRCS))
@@ -44,13 +48,13 @@ else
 	NORM_RET = "${ERASE}${RED}[NORM]${END} ${NAME}"
 endif
 
-all:        ${NAME}
+all:        compilation ${NAME}
 
 .objects/%.o:		sources/%.c | .objects
 			${CC} ${CFLAGS} -c $< -o $@ $(DIR_INCLUDES)
 			printf "${ERASE}${BLUE}[BUILD]${END} $<"
 
-${NAME}:	${OBJS} ${INCLUDES} Makefile libft/libft.a mlx/libmlx.a
+${NAME}:	${OBJS} ${INCLUDES} Makefile
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBRARY} ${LIBX} $(DIR_INCLUDES)
 			printf $(NORM_RET)
 
@@ -67,11 +71,9 @@ fclean:	clean
 
 re:		fclean all
 
-libft/libft.a:
-	make -s -C libft
-
-mlx/libmlx.a:
+compilation :
 	make -s -C mlx
+	make -s -C libft
 
 .objects:
 			mkdir -p .objects
