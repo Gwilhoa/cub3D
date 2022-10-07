@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/06 20:32:47 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:39:57 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char const *argv[])
 	{
 		if (parsing_main((char *)argv[1], &cub) != 1)
 		{
-			ft_printf("%s", cub.no_texture);
+			//ft_printf("player : %d;%d", cub.perso.x, cub.perso.y);
 			ft_disp_matrix(cub.map);
 			exit(0);
 		}

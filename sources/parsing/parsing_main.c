@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/06 21:12:10 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:51:07 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	parsing_main(char *filename, t_cub *cub)
 		("Error\nwrong Fileformat, extension of file must be'.cub'", 2);
 		return (1);
 	}
-	if (parsing_fd(filename, cub) || parsing_texture
-		(cub) || ft_search_player(cub))
+	if (parsing_fd(filename, cub) == 1 || parsing_texture
+		(cub) == 1 || ft_search_player(cub) == 1)
 		return (1);
 	return (0);
 }
@@ -68,6 +68,12 @@ int	parsing_texture(t_cub *cub)
 		cub->map = cub->map + 1;
 		if (cub->map[0] == 0 || i == 1)
 			return (1);
+	}
+	i = 0;
+	while (ft_strlen(cub->map[0]) <= 1)
+	{
+		free(cub->map[0]);
+		cub->map = cub->map + 1;
 	}
 	return (0);
 }
