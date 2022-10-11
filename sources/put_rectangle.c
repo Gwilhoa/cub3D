@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disp_matrix.c                                   :+:      :+:    :+:   */
+/*   put_rectangle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 09:08:23 by gchatain          #+#    #+#             */
-/*   Updated: 2022/05/24 09:57:34 by gchatain         ###   ########lyon.fr   */
+/*   Created: 2022/08/16 10:32:40 by gchatain          #+#    #+#             */
+/*   Updated: 2022/08/17 10:57:14 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_disp_matrix(char **matrix)
+#include "cub.h"
+void put_rectangle(void *link, void *fen, t_point2D init, t_point2D end, int color)
 {
-	int	i;
+	t_point2D	tmp;
+	t_point2D	tmp2;
 
-	i = 0;
-	if (matrix == 0)
-		ft_printf("(null)");
-	while (matrix[i] != 0)
-	{
-		ft_printf("%s\n", matrix[i]);
-		i++;
-	}
+	tmp.x = init.x;
+	tmp.y = end.y;
+	tmp2.x = end.x;
+	tmp2.y = init.y;
+
+	put_line(link, fen, init, tmp, color);
+	put_line(link, fen, tmp, end, color);
+	put_line(link, fen, end, tmp2, color);
+	put_line(link, fen, tmp2, init, color);
 }

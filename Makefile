@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/10/06 21:10:29 by gchatain         ###   ########.fr        #
+#    Updated: 2022/10/11 16:29:33 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,8 @@ UNDER		=	\033[4m
 SUR			=	\033[7m
 END			=	\033[0m
 
-MAIN_SRCS = main.c put_line.c
-PRSG_SRCS = condition_function.c parsing_main.c initialisation.c texture_color.c player_initialisation.c
-
-LST_SRCS = $(MAIN_SRCS) ${addprefix parsing/,$(PRSG_SRCS)}
-
+LST_PRSG =  condition_function.c initialisation.c parsing_main.c player_initialisation.c texture_color.c
+LST_SRCS =  main.c put_line.c put_rectangle.c sky_and_floor.c minimap.c game.c $(addprefix parsing/,$(LST_PRSG))
 LST_OBJS = ${LST_SRCS:.c=.o}
 LIBRARY = libft/libft.a mlx/libmlx.a
 SRCS = $(addprefix sources/,$(LST_SRCS))
@@ -48,13 +45,13 @@ else
 	NORM_RET = "${ERASE}${RED}[NORM]${END} ${NAME}"
 endif
 
-all:        compilation ${NAME}
+all:        ${NAME}
 
 .objects/%.o:		sources/%.c | .objects
 			${CC} ${CFLAGS} -c $< -o $@ $(DIR_INCLUDES)
 			printf "${ERASE}${BLUE}[BUILD]${END} $<"
 
-${NAME}:	${OBJS} ${INCLUDES} Makefile
+${NAME}:	${OBJS} ${INCLUDES} Makefile libft/libft.a mlx/libmlx.a
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBRARY} ${LIBX} $(DIR_INCLUDES)
 			printf $(NORM_RET)
 
@@ -71,9 +68,11 @@ fclean:	clean
 
 re:		fclean all
 
-compilation :
-	make -s -C mlx
+libft/libft.a:
 	make -s -C libft
+
+mlx/libmlx.a:
+	make -s -C mlx
 
 .objects:
 			mkdir -p .objects

@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/07 14:51:07 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:51:17 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 		return (1);
 	}
 	close(fd);
-	if (ft_strcmp(type, "NO") == 0 && cub->no_texture == NULL)
-		cub->no_texture = path;
-	else if (ft_strcmp(type, "SO") == 0 && cub->so_texture == NULL)
-		cub->so_texture = path;
-	else if (ft_strcmp(type, "WE") == 0 && cub->we_texture == NULL)
-		cub->we_texture = path;
-	else if (ft_strcmp(type, "EA") == 0 && cub->ea_texture == NULL)
-		cub->ea_texture = path;
+	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture == NULL)
+		cub->texture.no_texture = path;
+	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture == NULL)
+		cub->texture.so_texture = path;
+	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture == NULL)
+		cub->texture.we_texture = path;
+	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture == NULL)
+		cub->texture.ea_texture = path;
 	else
 		return (1);
 	return (0);

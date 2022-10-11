@@ -6,32 +6,83 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/07 17:39:57 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:13:33 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	main(int argc, char const *argv[])
-{
-	t_cub	cub;
+// init_map(t_cub *cub)
+// {
 
-	if (argc == 2)
+// }
+
+int	my_close(int keycode, t_cub *cub)
+{
+	(void)keycode;
+	mlx_destroy_window(cub->link, cub->fen);
+	return (0);
+}
+
+// int keypad_hook(int keycode, t_cub *cub);
+// {
+
+// }
+
+int	main(int argc, char const **argv)
+{
+	char		*file;
+	t_cub		cub;
+	t_point2D	s_pos;
+	t_data		s_img;
+	int			x;
+	int			y;
+
+	x = 0;
+	y = 0;
+	(void)s_pos;
+	file = ft_strdup(argv[1]);
+	if (!file || parsing_main(file, &cub) == 1)
 	{
-		if (parsing_main((char *)argv[1], &cub) != 1)
-		{
-			//ft_printf("player : %d;%d", cub.perso.x, cub.perso.y);
-			ft_disp_matrix(cub.map);
-			exit(0);
-		}
-		else
-		{
-			exit(1);
-		}
+		exit(1);
 	}
-	else
-		ft_putstr_fd
-		("Error\nno more or too many argument /cub3d [filename].cub", 2);
-	exit(0);
+	else 
+	{
+		cub.link = mlx_init();
+		cub.height = W_H;
+		cub.width = W_W;
+		cub.s_img = &s_img;
+		mm_findperso(&cub);
+		cub.perso.dirx = -1;
+		cub.perso.diry = 0;
+		cub.perso.planx = 0;
+		cub.perso.plany = 0.66;
+		cub.time = 0;
+		cub.oldtime = 0;
+		cub.fen = mlx_new_window(cub.link, W_W, W_H, "cub3d");
+		parsing_main((char *)argv[1], &cub);
+		// init_map(cub);
+		print_sky_floor(&cub, &s_img);
+		// mlx_loop_hook(cub.link, print_minimap, &cub);
+		mlx_hook(cub.fen, 2, 1L<<0, print_minimap, &cub);
+
+		// mlx_hook(cub.fen, 3, 1L<<0, , &cub); // pitin;
+		// mlx_hook(cub.fen, 2, 1L<<0, print_minimap, &cub);
+		// mlx_key_hook(cub.fen, ft_print_movement, &struc);		// ICI
+		// mlx_key_hook(cub.fen, &print_minimap, &cub);
+		mlx_loop(cub.link);
+
+		// t_point2D init;
+		// t_point2D end;
+		// init.x = 900;
+		// init.y = 250;
+		// end.x = 0;
+		// end.y = 250;
+				
+
+		// put_line(cub.link, cub.fen, init, end, 0x00FF00);
+		//put_rectangle(cub.link, cub.fen, init, end, 0x0000FF);
+	}
+	
 	return (argc);
 }

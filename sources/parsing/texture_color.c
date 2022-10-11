@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:22:16 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/07 14:24:10 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:51:57 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 		i = 1;
 	}
 	if (type == 'F')
-		cub->floor_color = rgb_to_hexa(ft_atoi(split[0]),
+		cub->texture.floor_color = rgb_to_hexa(ft_atoi(split[0]),
 				ft_atoi(split[1]), ft_atoi(split[2]));
 	else if (type == 'C')
-		cub->ceiling_color = rgb_to_hexa(ft_atoi(split[0]),
+		cub->texture.ceiling_color = rgb_to_hexa(ft_atoi(split[0]),
 				ft_atoi(split[1]), ft_atoi(split[2]));
 	return (i);
 }
