@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/11 18:50:32 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:25:25 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct t_point2D
 	float		i;
 	float		j;
 	double		dirx;
-	double 		diry;
+	double		diry;
 	double		planx; 
 	double		plany;
 }	t_point2D;

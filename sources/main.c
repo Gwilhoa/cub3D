@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/11 16:13:33 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:33:36 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,17 @@ int	main(int argc, char const **argv)
 	x = 0;
 	y = 0;
 	(void)s_pos;
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error\ntoo few or not enough argument", 2);
+		exit(1);
+	}
 	file = ft_strdup(argv[1]);
 	if (!file || parsing_main(file, &cub) == 1)
 	{
 		exit(1);
 	}
-	else 
+	else
 	{
 		cub.link = mlx_init();
 		cub.height = W_H;
