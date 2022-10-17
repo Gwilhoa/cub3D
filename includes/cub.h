@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/12 14:25:25 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:08:27 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define MM_END_X 1000
 # define MM_END_Y 100
 # define PI 3.1415926535
+# define RED 0x00009500
 
 typedef struct t_point3D
 {
@@ -34,12 +35,6 @@ typedef struct t_point2D
 {
 	float		x;
 	float		y;
-	float		i;
-	float		j;
-	double		dirx;
-	double		diry;
-	double		planx; 
-	double		plany;
 }	t_point2D;
 
 typedef struct s_data
@@ -81,6 +76,40 @@ typedef struct m_data
 	int		endian;
 }	s_mini;
 
+typedef struct s_ray
+{
+	double camerax;
+	double	raydirx;
+	double	raydiry;
+
+	int 	mapx;		// pos player	x; 
+	int 	mapy;		// pos player	y;
+
+	int		x;
+	double sidedistx;	// distance que le ray doit travel de sa position au premier x/y side;
+	double sidedisty;
+	double deltadistx; //length of ray from one x or y-side to next x or y-side
+	double deltadisty;
+	
+	int stepx; //what direction to tep in x or y direction;
+	int stepy;
+	
+	int hit;	//is there a wall hit;
+	int side;	// was a NS or a EW wall hit;
+
+	float perpwalldist;
+
+	int lineheight;
+
+	int		drawstart;
+	int		drawend;
+
+	double	dirx;
+	double	diry;
+	double	planx;
+	double	plany;
+}	t_ray;
+
 typedef struct s_cub
 {
 	void		*link;
@@ -95,8 +124,31 @@ typedef struct s_cub
 	double		time;
 	double		oldtime;
 	t_texture	texture;
+	t_ray		*s_ray;
 }	t_cub;
 
+int		init_cub(t_cub *cub, int fd);
+void	print_sky_floor(t_cub *cub, t_data *s_img);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int 	print_minimap(int keycode, t_cub *cub);
+int		init_cub(t_cub *cub, int fd);
+int		parsing_main(char *filename, t_cub *cub);
+int		parsing_fd(char *filename, t_cub *cub);
+void	mm_putperso(t_data *s_img, float j, float i, int color);
+void 	mm_findperso(t_cub *cub);
+// void	mm_printwall(t_cub *cub, t_data *s_img, int x, int y);
+void	mm_wall(t_cub *cub, t_data *s_img, int x, int y);
+void	mm_putsquare(t_data *s_img, int x, int y, int color);
+void	mm_putmap(t_cub *cub, t_data *s_img);
+int		next_mvmt(t_cub *cub, char c, int keycode);
+int		loop(int keycode, t_cub *s_cub);
+void calcule_ray(t_cub *cub, t_ray *s_ray);
+void	calcul_step_sidedist(t_cub *s_cub, t_ray *s_ray);
+void do_dda(t_cub *s_cub, t_ray *s_ray);
+void raytodraw(t_cub *s_cub, t_ray *s_ray);
+void draw_line(t_cub *s_cub, t_ray *s_ray);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void initializ_ray(t_cub *s_cub, t_ray *s_ray);
 int		is_textured(t_cub *cub);
 int		is_orientedline(char *line);
 int		parsing_main(char *filename, t_cub *cub);

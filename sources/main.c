@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/12 14:33:36 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:49:46 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,11 @@ int	my_close(int keycode, t_cub *cub)
 
 // }
 
-int	main(int argc, char const **argv)
+int	main(int argc, char const *argv[])
 {
-	char		*file;
-	t_cub		cub;
-	t_point2D	s_pos;
-	t_data		s_img;
-	int			x;
-	int			y;
+	char	*file;
+	t_cub	cub;
 
-	x = 0;
-	y = 0;
-	(void)s_pos;
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\ntoo few or not enough argument", 2);
@@ -56,21 +49,29 @@ int	main(int argc, char const **argv)
 		cub.link = mlx_init();
 		cub.height = W_H;
 		cub.width = W_W;
-		cub.s_img = &s_img;
+		cub.s_img = malloc(sizeof(t_data));
+		cub.s_ray = malloc(sizeof(t_ray));
 		mm_findperso(&cub);
-		cub.perso.dirx = -1;
-		cub.perso.diry = 0;
-		cub.perso.planx = 0;
-		cub.perso.plany = 0.66;
+
+		// init direction of ray;
+		cub.s_ray->dirx = -1; 
+		cub.s_ray->diry = 0;
+		cub.s_ray->planx = 0;
+		cub.s_ray->plany = 0.66;
 		cub.time = 0;
 		cub.oldtime = 0;
-		cub.fen = mlx_new_window(cub.link, W_W, W_H, "cub3d");
-		parsing_main((char *)argv[1], &cub);
-		// init_map(cub);
-		print_sky_floor(&cub, &s_img);
-		// mlx_loop_hook(cub.link, print_minimap, &cub);
-		mlx_hook(cub.fen, 2, 1L<<0, print_minimap, &cub);
 
+
+
+		// ._disp_matrix(cub.map);
+		cub.fen = mlx_new_window(cub.link, W_W, W_H, "cub3d");
+		// parsing_main((char *)argv[1], &cub);
+		// init_map(cub);
+		// print_sky_floor(&cub, &s_img);
+		printf("%f\n", cub.perso.pos.x);
+		mlx_loop_hook(cub.link, loop, &cub);
+		// mlx_hook(cub.fen, 2, 1L<<0, loop, &cub);
+		// il y a mlx_loop_hook qui va looper toutes les fonctions; ->affichage, calcule du ray casting, etc.. tout dedans les touches dedans aussi;
 		// mlx_hook(cub.fen, 3, 1L<<0, , &cub); // pitin;
 		// mlx_hook(cub.fen, 2, 1L<<0, print_minimap, &cub);
 		// mlx_key_hook(cub.fen, ft_print_movement, &struc);		// ICI

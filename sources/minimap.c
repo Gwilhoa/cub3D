@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:47:44 by guyar             #+#    #+#             */
-/*   Updated: 2022/10/11 16:32:51 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:18:31 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,34 +66,34 @@ int print_minimap(int keycode, t_cub *cub)
 		printf(" key == %d\n", keycode);
 		next_mvmt(cub, 'y', keycode);
 	}
-	printf("j = %f\n i = %f\n", cub->perso.j, cub->perso.i);
-	mm_putperso(cub->s_img, cub->perso.j, cub->perso.i, 0x00009500);
+	// printf("j = %f\n i = %f\n", cub->s_pos->j, cub->s_pos->i);
+	mm_putperso(cub->s_img, cub->perso.pos.x, cub->perso.pos.y, 0x00009500);
 	mlx_put_image_to_window(cub, cub->fen, cub->s_img->img, 0, 0);
 	// printf("j = %f\n, i = %f\n", cub->s_pos->j, cub->s_pos->i);
 	return (0);
 }
 
-void mm_findperso(t_cub *cub)
+void	mm_findperso(t_cub *cub)
 {
-	int	i;
-	int	j;
+	int ii;
+	int jj;
 
-	i = 0;
-	j = 0;
-	while (cub->map[i])
+	ii = 0;
+	jj = 0;
+	while (cub->map[ii])
 	{
-		while (cub->map[i][j])
+		while (cub->map[ii][jj])
 		{
-			if (cub->map[i][j] == 'P')
+			if (cub->map[ii][jj] == 'P')
 			{
-				cub->perso.i = i;
-				cub->perso.j = j;
-				cub->map[i][j] = '0';
+				cub->perso.pos.x = ii;
+				cub->perso.pos.y = jj;
+				cub->map[ii][jj] = '0';
 			}
-			j++;
+			jj++;
 		}
-		j = 0;
-		i += 1; 
+		jj = 0;
+		ii += 1; 
 	}
 }
 
@@ -102,7 +102,7 @@ void mm_findperso(t_cub *cub)
 	int	i;
 	int	j;
 
-	j = 0;
+	j = 0;	
 	i = 0;
 	while (cub->map[i])
 	{
@@ -111,7 +111,7 @@ void mm_findperso(t_cub *cub)
 			if (cub->map[i][j] == '1')
 				mm_putsquare(s_img, j, i, 0x00000000);
 			if (cub->map[i][j] == '0')
-				mm_putsquare(s_img, j, i, 0x00FFFFFF);
+				mm_putsquare(s_img, j, i, 0x00FFFFFF);	
 			j++;
 		}
 		j = 0;						// si x depasse la minimap, on arrete de print bruh;
@@ -119,16 +119,16 @@ void mm_findperso(t_cub *cub)
 	}
 }
 
-void mm_putsquare(t_data *s_img, int x, int y, int color)
+void	mm_putsquare(t_data *s_img, int x, int y, int color)
 {	
-	int tmpx;
-	int tmpy; 
+	int	tmpx;
+	int	tmpy; 
 
 	tmpx = 0;
 	tmpy = 0;
 	while (tmpy <= 10)
 	{
-		 while (tmpx <= 10)
+		while (tmpx <= 10)
 		{
 			my_mlx_pixel_put(s_img, (x * 10) + tmpx, (y * 10) + tmpy, color);
 			tmpx++;
@@ -168,16 +168,16 @@ int	next_mvmt(t_cub *cub, char c, int keycode)
 	int tmpi;
 	int tmpj;
 	// mlx_clear_window(cub->link, cub->fen);
-	tmpi = floor(cub->perso.i);
-	tmpj = floor(cub->perso.j);
+	tmpi = floor(cub->perso.pos.y);
+	tmpj = floor(cub->perso.pos.x);
 		printf("keycode == %d\n", keycode);
 	if (keycode == 2)
 	{		
-			tmpj = floor(cub->perso.j + 0.5);
-			tmpi = floor(cub->perso.i);
+			tmpj = floor(cub->perso.pos.x + 0.5);
+			tmpi = floor(cub->perso.pos.y);
 		//	printf("char == %c\n", cub->map[tmpi][tmpj]);
 			if (cub->map[tmpi][tmpj] != '1')
-				cub->perso.j += 0.5; 		
+				cub->perso.pos.x += 0.5;
 		//	{
 				// cub->s_pos->j += cub->s_pos->pdx;
 				// cub->s_pos->i += cub->s_pos->pdy;
@@ -190,18 +190,18 @@ int	next_mvmt(t_cub *cub, char c, int keycode)
 		//printf("char == %c\n", cub->map[tmpi][tmpj]);
 		if (cub->map[tmpi][tmpj] != '1')
 		{
-			cub->perso.j -= 0.50;
+			cub->perso.pos.x -= 0.50;
 			// cub->s_pos->j += cub->s_pos->pdx;
 			// cub->s_pos->i += cub->s_pos->pdy;
 		}
 	}
 	else if (keycode == 13)
 	{
-		tmpj = floor(cub->perso.j);
-		tmpi = floor(cub->perso.i - 0.50);
+		tmpj = floor(cub->perso.pos.x);
+		tmpi = floor(cub->perso.pos.y - 0.50);
 	// //	printf("char == %c\n", cub->map[tmpi][tmpj]);
 		if (cub->map[tmpi][tmpj] != '1')
-		cub->perso.i -= 0.50;
+		cub->perso.pos.x -= 0.50;
 		
 		// cub->s_pos->j += cub->s_pos->pdx;
 		// cub->s_pos->i += cub->s_pos->pdy;
@@ -209,11 +209,11 @@ int	next_mvmt(t_cub *cub, char c, int keycode)
 	}
 	else if (keycode == 1)
 	{
-		tmpj = floor(cub->perso.j);
-		tmpi = floor(cub->perso.i + 0.50);
+		tmpj = floor(cub->perso.pos.x);
+		tmpi = floor(cub->perso.pos.y + 0.50);
 	//	printf("char == %c\n", cub->map[tmpi][tmpj]);
 		if (cub->map[tmpi][tmpj] != '1')
-			cub->perso.i += 0.5;
+			cub->perso.pos.y += 0.5;
 		// cub->s_pos->j += cub->s_pos->pdx;
 		// cub->s_pos->i += cub->s_pos->pdy;
 	}
