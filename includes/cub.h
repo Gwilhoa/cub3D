@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/17 13:08:27 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:20:35 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,47 @@
 # define MM_END_Y 100
 # define PI 3.1415926535
 # define RED 0x00009500
+# define BLUE 0x000067FF
+# define GREY 0x00B8B5B5
+
+typedef struct s_ray
+{
+	double posx;
+	double posy; 
+	double	raydirx;
+	double	raydiry;
+	double	planx;
+	double	plany;
+	double	dirx;
+	double	diry;
+	double camerax;
+	int 	mapx;		// pos player	x; 
+	int 	mapy;		// pos player	y;
+	double sidedistx;	// distance que le ray doit travel de sa position au premier x/y side;
+	double sidedisty;
+	double deltadistx; //length of ray from one x or y-side to next x or y-side
+	double deltadisty;
+	int stepx; //what direction to tep in x or y direction;
+	int stepy;
+	int hit;	//is there a wall hit;
+	int side;	// was a NS or a EW wall hit;
+	float perpwalldist;
+	int lineheight;
+	int		drawstart;
+	int		drawend;
+	int		x;
+	float	speed;
+	float	t_speed;	
+}	t_ray;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct t_point3D
 {
@@ -37,14 +78,6 @@ typedef struct t_point2D
 	float		y;
 }	t_point2D;
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
 
 typedef struct s_texture
 {
@@ -65,50 +98,30 @@ typedef struct t_perso
 	double 		diry;
 	double		planx; 
 	double		plany;
+	// direction;
 }	t_perso;
 
-typedef struct m_data
+typedef struct s_map
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	s_mini;
+	char	**map;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	long	f;
+	long	c;
+	int		height;
+	int		width;
+	double	pos_x;
+	double	pos_y;
+}			t_map;
 
-typedef struct s_ray
+typedef struct s_player
 {
-	double camerax;
-	double	raydirx;
-	double	raydiry;
-
-	int 	mapx;		// pos player	x; 
-	int 	mapy;		// pos player	y;
-
 	int		x;
-	double sidedistx;	// distance que le ray doit travel de sa position au premier x/y side;
-	double sidedisty;
-	double deltadistx; //length of ray from one x or y-side to next x or y-side
-	double deltadisty;
-	
-	int stepx; //what direction to tep in x or y direction;
-	int stepy;
-	
-	int hit;	//is there a wall hit;
-	int side;	// was a NS or a EW wall hit;
-
-	float perpwalldist;
-
-	int lineheight;
-
-	int		drawstart;
-	int		drawend;
-
-	double	dirx;
-	double	diry;
-	double	planx;
-	double	plany;
-}	t_ray;
+	int		y;
+	char	direction;
+}			t_player;
 
 typedef struct s_cub
 {
@@ -116,15 +129,16 @@ typedef struct s_cub
 	void		*fen;
 	int			width;
 	int			height;
-	char		**map;
+	char		**mapsee;
 	void		*img;
 	int			keybol;
-	t_perso		perso;
 	t_data		*s_img;
+	t_map		*map;
+	t_player	*perso;
+	t_ray		*s_ray;
 	double		time;
 	double		oldtime;
 	t_texture	texture;
-	t_ray		*s_ray;
 }	t_cub;
 
 int		init_cub(t_cub *cub, int fd);
@@ -167,12 +181,12 @@ void	print_sky_floor(t_cub *cub, t_data *s_img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int 	print_minimap(int keycode, t_cub *cub);
 int		parsing_main(char *filename, t_cub *cub);
-int		parsing_fd(char *filename, t_cub *cub);
-void	mm_putperso(t_data *s_img, float j, float i, int color);
+// void	mm_putperso(t_data *s_img, float j, float i, int color);
 void 	mm_findperso(t_cub *cub);
 // void	mm_printwall(t_cub *cub, t_data *s_img, int x, int y);
-void	mm_wall(t_cub *cub, t_data *s_img, int x, int y);
-void	mm_putsquare(t_data *s_img, int x, int y, int color);
-void	mm_putmap(t_cub *cub, t_data *s_img);
-int		next_mvmt(t_cub *cub, char c, int keycode);
+// void	mm_wall(t_cub *cub, t_data *s_img, int x, int y);
+// void	mm_putsquare(t_data *s_img, int x, int y, int color);
+// void	mm_putmap(t_cub *cub, t_data *s_img);
+// int		next_mvmt(t_cub *cub, char c, int keycode);
+void ft_dda(t_cub *s_cub, t_ray *s_ray);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/12 14:40:36 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:44:38 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,26 @@ int	parsing_texture(t_cub *cub)
 	i = 0;
 	while (is_textured(cub))
 	{
-		al = ft_strtrim(cub->map[0], " \n\t\v\r\f");
+		al = ft_strtrim(cub->map->map[0], " \n\t\v\r\f");
 		if (is_orientedline(al))
 			i = parsing_oriented(al + 2, ft_substr(al, 0, 2), cub);
 		else if (ft_strncmp(al, "F", 1) == 0 || ft_strncmp(al, "C", 1) == 0)
 			i = parsing_color(cub, al + 1, al[0]);
-		else if (ft_strlen(cub->map[0]) > 1)
+		else if (ft_strlen(cub->map->map[0]) > 1)
 		{
 			ft_putstr_fd("Error\nunexpected line in the map", 2);
 			return (1);
 		}
-		free(cub->map[0]);
-		cub->map = cub->map + 1;
-		if (cub->map[0] == 0 || i == 1)
+		free(cub->map->map[0]);
+		cub->map->map = cub->map->map + 1;
+		if (cub->map->map[0] == 0 || i == 1)
 			return (1);
 	}
 	i = 0;
-	while (ft_strlen(cub->map[0]) <= 1)
+	while (ft_strlen(cub->map->map[0]) <= 1)
 	{
-		free(cub->map[0]);
-		cub->map = cub->map + 1;
+		free(cub->map->map[0]);
+		cub->map->map = cub->map->map + 1;
 	}
 	return (0);
 }

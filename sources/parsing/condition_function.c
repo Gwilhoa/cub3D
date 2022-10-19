@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   condition_function.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:18:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/11 17:14:48 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:38:17 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@ int	is_textured(t_cub *cub)
 {
 	if (cub->texture.no_texture == 0)
 		return (1);
-	if (cub->texture.we_texture == 0)
+	else if (cub->texture.we_texture == 0)
 		return (1);
-	if (cub->texture.so_texture == 0)
+	else if (cub->texture.so_texture == 0)
 		return (1);
-	if (cub->texture.ea_texture == 0)
+	else if (cub->texture.ea_texture == 0)
 		return (1);
-	if (cub->texture.ceiling_color == -1)
+	else if (cub->texture.ceiling_color == -1)
 		return (1);
-	if (cub->texture.floor_color == -1)
+	else if (cub->texture.floor_color == -1)
 		return (1);
-	return (0);
+	else
+		return (0);
 }
 
 int	is_orientedline(char *line)
