@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/20 11:50:01 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/20 13:39:58 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct s_cub
 	t_texture	texture;
 }	t_cub;
 
+int		game(t_cub *cub);
 int		init_cub(t_cub *cub, int fd);
 void	print_sky_floor(t_cub *cub, t_data *s_img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
