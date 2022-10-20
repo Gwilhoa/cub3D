@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/20 11:04:27 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/20 13:02:16 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 int	init_cub(t_cub *cub, int fd)
 {
 	char	*str;
+	char	**map;
 
 	str = get_next_line(fd);
 	while (str != 0)
 	{
-		ft_push_back_matrix(&cub->map.map, ft_strtrim(str, "\n"));
+		ft_push_back_matrix(&map, ft_strtrim(str, "\n"));
 		free(str);
 		str = get_next_line(fd);
 	}
+	cub->map.map = map;
 	return (0);
 }
 
@@ -34,7 +36,5 @@ void	setcub(t_cub *cub)
 	cub->texture.ea_texture = 0;
 	cub->texture.ceiling_color = -1;
 	cub->texture.floor_color = -1;
-	cub->perso.x = -1;
-	cub->perso.y = -1;
 	return ;
 }

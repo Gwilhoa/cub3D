@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:52:47 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/20 11:54:31 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:58:49 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_search_player(t_cub *cub)
 
 	i = 0;
 	j = 0;
+	cub->perso.x = -1;
+	cub->perso.y = -1;
 	while (cub->map.map[i] != 0)
 	{
 		while (cub->map.map[i][j] != 0)
@@ -36,7 +38,6 @@ int	ft_search_player(t_cub *cub)
 			}
 			j++;
 		}
-		ft_printf("\n");
 		j = 0;
 		i++;
 	}
