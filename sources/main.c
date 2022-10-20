@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/19 15:21:37 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/20 11:57:37 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ int	main(int argc, char const *argv[])
 {
 	char	*file;
 	t_cub	*cub;
-	t_map	*map;
-	t_player *perso;
-	
-	cub = malloc(sizeof(cub));
-	cub->perso = &perso;
-	cub->map = &map;
+
+	cub = malloc(sizeof(cub) * 1);
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\ntoo few or not enough argument", 2);
@@ -51,22 +47,20 @@ int	main(int argc, char const *argv[])
 	}
 	else
 	{
-		exit()
+		exit(5);
 		cub->link = mlx_init();
 		cub->height = W_H;
 		cub->width = W_W;
-		cub->s_img = malloc(sizeof(t_data));
-		cub->s_ray = malloc(sizeof(t_ray));
 		// init direction of ray;
-		cub->s_ray->dirx = -1; 
-		cub->s_ray->diry = 0;
-		cub->s_ray->planx = 0;
-		cub->s_ray->plany = 0.66;
+		cub->s_ray.dirx = -1;
+		cub->s_ray.diry = 0;
+		cub->s_ray.planx = 0;
+		cub->s_ray.plany = 0.66;
 		cub->time = 0;
 		cub->oldtime = 0;
-		printf("map pos_y = %d\n map pos_x = %d\n", cub->perso->y, cub->perso->x);
-		cub->map->pos_x = cub->perso->y + 0.2;
-		cub->map->pos_y = cub->perso->x + 0.2;
+		printf("map pos_y = %d\n map pos_x = %d\n", cub->perso.y, cub->perso.x);
+		cub->map.pos_x = cub->perso.y + 0.2;
+		cub->map.pos_y = cub->perso.x + 0.2;
 		// printf("pos_y = %d\npos_x = %d\n", cub.perso->y, cub.perso->x);
 			
 

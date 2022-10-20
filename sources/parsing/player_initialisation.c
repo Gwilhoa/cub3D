@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_initialisation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:52:47 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/19 13:57:34 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/20 11:54:31 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int	ft_search_player(t_cub *cub)
 
 	i = 0;
 	j = 0;
-	while (cub->map->map[i] != 0)
+	while (cub->map.map[i] != 0)
 	{
-		while (cub->map->map[i][j] != 0)
+		while (cub->map.map[i][j] != 0)
 		{
-			if (cub->map->map[i][j] == 'N' && cub->perso->x == -1)
+			if (cub->map.map[i][j] == 'N' && cub->perso.x == -1)
 			{
-				cub->perso->y = i;
-				cub->perso->x = j;
+				cub->perso.y = i;
+				cub->perso.x = j;
 			}
-			else if (cub->map->map[i][j] == 'N' || (cub->map->map[i][j] != '0'
-				&& cub->map->map[i][j] != '1' && cub->map->map[i][j] != ' '))
+			else if (cub->map.map[i][j] == 'N' || (cub->map.map[i][j] != '0'
+				&& cub->map.map[i][j] != '1' && cub->map.map[i][j] != ' '))
 			{
 				ft_putstr_fd("Error\nbad argument at : ", 2);
-				return (ft_putchar_fd(cub->map->map[i][j], 2));
+				return (ft_putchar_fd(cub->map.map[i][j], 2));
 			}
 			j++;
 		}

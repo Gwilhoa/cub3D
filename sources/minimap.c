@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:47:44 by guyar             #+#    #+#             */
-/*   Updated: 2022/10/19 13:50:48 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/20 11:06:15 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,20 @@
 
 void	mm_findperso(t_cub *cub)
 {
-	int ii;
-	int jj;
+	int	ii;
+	int	jj;
 
 	ii = 0;
 	jj = 0;
-	while (cub->map->map[ii])
+	while (cub->map.map[ii])
 	{
-		while (cub->map->map[ii][jj])
+		while (cub->map.map[ii][jj])
 		{
-			if (cub->map->map[ii][jj] == 'P')
+			if (cub->map.map[ii][jj] == 'P')
 			{
-				cub->perso->y = ii;
-				cub->perso->x = jj;
-				cub->map->map[ii][jj] = '0';
+				cub->perso.y = ii;
+				cub->perso.x = jj;
+				cub->map.map[ii][jj] = '0';
 			}
 			jj++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/19 14:20:35 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/20 11:50:01 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,12 @@ typedef struct s_cub
 	void		*fen;
 	int			width;
 	int			height;
-	char		**mapsee;
 	void		*img;
 	int			keybol;
-	t_data		*s_img;
-	t_map		*map;
-	t_player	*perso;
-	t_ray		*s_ray;
+	t_data		s_img;
+	t_map		map;
+	t_player	perso;
+	t_ray		s_ray;
 	double		time;
 	double		oldtime;
 	t_texture	texture;
@@ -144,25 +143,25 @@ typedef struct s_cub
 int		init_cub(t_cub *cub, int fd);
 void	print_sky_floor(t_cub *cub, t_data *s_img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int 	print_minimap(int keycode, t_cub *cub);
+int		print_minimap(int keycode, t_cub *cub);
 int		init_cub(t_cub *cub, int fd);
 int		parsing_main(char *filename, t_cub *cub);
 int		parsing_fd(char *filename, t_cub *cub);
 void	mm_putperso(t_data *s_img, float j, float i, int color);
-void 	mm_findperso(t_cub *cub);
+void	mm_findperso(t_cub *cub);
 // void	mm_printwall(t_cub *cub, t_data *s_img, int x, int y);
 void	mm_wall(t_cub *cub, t_data *s_img, int x, int y);
 void	mm_putsquare(t_data *s_img, int x, int y, int color);
 void	mm_putmap(t_cub *cub, t_data *s_img);
 int		next_mvmt(t_cub *cub, char c, int keycode);
 int		loop(int keycode, t_cub *s_cub);
-void calcule_ray(t_cub *cub, t_ray *s_ray);
-void	calcul_step_sidedist(t_cub *s_cub, t_ray *s_ray);
-void do_dda(t_cub *s_cub, t_ray *s_ray);
-void raytodraw(t_cub *s_cub, t_ray *s_ray);
-void draw_line(t_cub *s_cub, t_ray *s_ray);
+void	calcule_ray(t_cub *cub);
+void	calcul_step_sidedist(t_cub *s_cub);
+void	do_dda(t_cub *s_cub);
+void	raytodraw(t_cub *s_cub);
+void	draw_line(t_cub *s_cub);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void initializ_ray(t_cub *s_cub, t_ray *s_ray);
+void	initializ_ray(t_cub *s_cub);
 int		is_textured(t_cub *cub);
 int		is_orientedline(char *line);
 int		parsing_main(char *filename, t_cub *cub);
@@ -188,5 +187,5 @@ void 	mm_findperso(t_cub *cub);
 // void	mm_putsquare(t_data *s_img, int x, int y, int color);
 // void	mm_putmap(t_cub *cub, t_data *s_img);
 // int		next_mvmt(t_cub *cub, char c, int keycode);
-void ft_dda(t_cub *s_cub, t_ray *s_ray);
+void	ft_dda(t_cub *s_cub);
 #endif

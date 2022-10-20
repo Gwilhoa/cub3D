@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/19 14:30:43 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/20 11:04:27 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_cub(t_cub *cub, int fd)
 	str = get_next_line(fd);
 	while (str != 0)
 	{
-		ft_push_back_matrix(&cub->map->map, ft_strtrim(str, "\n"));
+		ft_push_back_matrix(&cub->map.map, ft_strtrim(str, "\n"));
 		free(str);
 		str = get_next_line(fd);
 	}
@@ -34,7 +34,7 @@ void	setcub(t_cub *cub)
 	cub->texture.ea_texture = 0;
 	cub->texture.ceiling_color = -1;
 	cub->texture.floor_color = -1;
-	cub->perso->x = -1;
-	cub->perso->y = -1;
+	cub->perso.x = -1;
+	cub->perso.y = -1;
 	return ;
 }
