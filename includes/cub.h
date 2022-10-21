@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/20 13:39:58 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:52:41 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_ray
 	double	plany;
 	double	dirx;
 	double	diry;
-	double camerax;
+	double  camerax;
 	int 	mapx;		// pos player	x; 
 	int 	mapy;		// pos player	y;
 	double sidedistx;	// distance que le ray doit travel de sa position au premier x/y side;
@@ -127,11 +127,11 @@ typedef struct s_cub
 {
 	void		*link;
 	void		*fen;
-	int			width;
-	int			height;
 	void		*img;
-	int			keybol;
+	int			height;
+	int			width;
 	t_data		s_img;
+	int			keybol;
 	t_map		map;
 	t_player	perso;
 	t_ray		s_ray;
@@ -189,4 +189,5 @@ void 	mm_findperso(t_cub *cub);
 // void	mm_putmap(t_cub *cub, t_data *s_img);
 // int		next_mvmt(t_cub *cub, char c, int keycode);
 void	ft_dda(t_cub *s_cub);
+void ft_initialize_s(t_cub *cub);
 #endif

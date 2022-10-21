@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: guyar <guyar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/10/20 13:12:48 by gchatain         ###   ########.fr        #
+#    Updated: 2022/10/21 15:25:07 by guyar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SUR			=	\033[7m
 END			=	\033[0m
 
 PRSG_SRCS =  condition_function.c initialisation.c parsing_main.c player_initialisation.c texture_color.c
-MAIN_SRCS =  main.c put_line.c put_rectangle.c sky_and_floor.c minimap.c game.c
+MAIN_SRCS =  main.c put_line.c put_rectangle.c sky_and_floor.c minimap.c game.c initialize.c
 LST_SRCS = $(MAIN_SRCS) ${addprefix parsing/,$(PRSG_SRCS)}
 
 LST_OBJS = ${LST_SRCS:.c=.o}
@@ -35,7 +35,7 @@ OBJS = $(addprefix .objects/,$(LST_OBJS))
 INCLUDES    = mlx/mlx.h includes/ libft/includes/
 DIR_INCLUDES = $(sort $(addprefix -I, $(dir $(INCLUDES))))
 CC          = gcc
-CFLAGS      = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS      = -Wall -Wextra -Werror #-g3 -fsanitize=address
 NAME        = cub3d
 RM          = rm -f
 LIBX        = -I /usr/X11/include -g -L ./mlx -l mlx -framework OpenGL -framework AppKit
@@ -55,6 +55,11 @@ all:        compilation ${NAME}
 
 ${NAME}:	${OBJS} ${INCLUDES} Makefile
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBRARY} ${LIBX} $(DIR_INCLUDES)
+			echo $(NORM_RET)
+			
+debug:	${OBJS} ${INCLUDES} Makefile
+			echo DEBUG
+			${CC} ${CFLAGS} -o Dcub ${OBJS} ${LIBRARY} ${LIBX} $(DIR_INCLUDES) -g -fdiagnostics-color=always
 			echo $(NORM_RET)
 
 clean:

@@ -3,57 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/20 11:48:06 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:16:13 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	loop(int keycode, t_cub *s_cub)
+int	loop(int keycode, t_cub *cub)
 {
-	initializ_ray(s_cub);
-	s_cub->s_ray.x = 0;
-	while (s_cub->s_ray.x < W_W)
-	{
-		calcule_ray(s_cub);
-		s_cub->s_ray.x += 1;
-	}
+	initializ_ray(cub);
 
-	mlx_put_image_to_window(s_cub, s_cub->fen, s_cub->s_img.img, 0, 0);
+	while (cub->s_ray.x < W_W)
+	{
+		calcule_ray(cub);
+		cub->s_ray.x += 1;
+	}
+	exit(EXIT_FAILURE);
+	// mlx_put_image_to_window(cub, cub->fen, cub->s_img.img, 0, 0);
 	return (keycode);
 }
 
-void initializ_ray(t_cub *s_cub)
+void initializ_ray(t_cub *cub)
 {
-	s_cub->s_img.img = NULL;
-	s_cub->s_img.addr = NULL;
-	s_cub->s_img.bits_per_pixel = 0;
-	s_cub->s_img.line_length = 0;
-	s_cub->s_img.endian = 0;
-	s_cub->s_img.img = mlx_new_image(s_cub->link, W_W, W_H);
-	s_cub->s_img.addr = mlx_get_data_addr(s_cub->s_img.img, &s_cub->s_img.bits_per_pixel, &s_cub->s_img.line_length,
-							&s_cub->s_img.endian);
-	exit(EXIT_SUCCESS);
-	printf("pos_x = %f, pos_y = %f\n", s_cub->map.pos_x, s_cub->map.pos_y);
-	s_cub->s_ray.posx = s_cub->map.pos_x;
-	s_cub->s_ray.posy = s_cub->map.pos_y;
-	//game->ray.posx = (double)game->map.pos_x;
-	//game->ray.posy = (double)game->map.pos_y;
-
-	s_cub->s_ray.camerax = 0;
-	s_cub->s_ray.stepx = 0;
-	s_cub->s_ray.stepy = 0;
-	s_cub->s_ray.hit = 0;
-	s_cub->s_ray.side = 0;
-	s_cub->s_ray.perpwalldist = 0;
-	s_cub->s_ray.lineheight = 0;
-	s_cub->s_ray.drawstart = 0;
-	s_cub->s_ray.drawend = 0;
-	s_cub->s_ray.speed = 0.09;
-	s_cub->s_ray.t_speed = 0.09;
+	cub->link = mlx_init();
+	cub->s_img.img = NULL;
+	cub->s_img.addr = NULL;
+	cub->s_img.bits_per_pixel = 0;
+	cub->s_img.line_length = 0;
+	cub->s_img.endian = 0;
+	cub->s_img.img = mlx_new_image(cub->link, W_W, W_H);
+	cub->s_img.addr = mlx_get_data_addr(cub->s_img.img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length,
+							&cub->s_img.endian);
+	
+	cub->s_ray.posx = 0;
+	cub->s_ray.posy = 0;
+	cub->s_ray.raydirx = 0;
+	cub->s_ray.raydiry = 0;
+	cub->s_ray.planx = 0;
+	cub->s_ray.plany = 0.66; 
+	cub->s_ray.dirx = -1;
+	cub->s_ray.diry = 0;
+	cub->s_ray.camerax = 0;
+	cub->s_ray.mapx = 0;
+	cub->s_ray.mapy = 0;	
+	cub->s_ray.sidedistx = 0;
+	cub->s_ray.sidedisty = 0;
+	cub->s_ray.deltadistx = 0;
+	cub->s_ray.deltadisty = 0;
+	cub->s_ray.stepx = 0;
+	cub->s_ray.stepy = 0;
+	cub->s_ray.hit = 0;
+	cub->s_ray.side = 0;
+	cub->s_ray.perpwalldist = 0;
+	cub->s_ray.lineheight = 0;
+	cub->s_ray.drawstart = 0;
+	cub->s_ray.drawend = 0;
+	cub->s_ray.x = 0;
+	cub->s_ray.speed = 0.09;
+	cub->s_ray.t_speed = 0.09;
+	cub->s_ray.posx = cub->map.pos_x;
+	cub->s_ray.posy = cub->map.pos_y;
 }
 
 // ------- debut du rail casting ---- //
@@ -64,12 +76,15 @@ void calcule_ray(t_cub *s_cub)
 	s_cub->s_ray.raydiry = s_cub->s_ray.diry + s_cub->s_ray.plany * s_cub->s_ray.camerax;
 	s_cub->s_ray.mapx = s_cub->map.pos_x;
 	s_cub->s_ray.mapy = s_cub->map.pos_y;
+	
 	s_cub->s_ray.deltadistx = fabs(1 / s_cub->s_ray.raydirx);
 	s_cub->s_ray.deltadisty = fabs(1 / s_cub->s_ray.raydiry);
 	s_cub->s_ray.hit = 0;
 	calcul_step_sidedist(s_cub);
 	ft_dda(s_cub);
-	draw_line(s_cub);
+
+	exit(EXIT_SUCCESS);
+	// draw_line(s_cub);
 }
 
 void	calcul_step_sidedist(t_cub *s_cub) //raystep
@@ -121,6 +136,7 @@ void ft_dda(t_cub *s_cub)
 		if (s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] == '1')
 			s_cub->s_ray.hit = 1;
 	}
+		// exit(EXIT_SUCCESS);
 	raytodraw(s_cub);
 }
 
