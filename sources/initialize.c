@@ -2,6 +2,12 @@
 
 void ft_initialize_s(t_cub *cub)
 {
+	cub->s_img.img = NULL;
+	cub->s_img.addr = NULL;
+	cub->s_img.bits_per_pixel = 0;
+	cub->s_img.line_length = 0;
+	cub->s_img.endian = 0;
+
 	cub->height = W_H;
 	cub->width = W_W;
 
@@ -21,33 +27,6 @@ void ft_initialize_s(t_cub *cub)
 	cub->perso.x = 0;
 	cub->perso.y = 0;
 	cub->perso.direction = 0;
-	
-	cub->s_ray.posx = 0;
-	cub->s_ray.posy = 0;
-	cub->s_ray.raydirx = 0;
-	cub->s_ray.raydiry = 0;
-	cub->s_ray.planx = 0;
-	cub->s_ray.plany = 0.66; 
-	cub->s_ray.dirx = -1;
-	cub->s_ray.diry = 0;
-	cub->s_ray.camerax = 0;
-	cub->s_ray.mapx = 0;
-	cub->s_ray.mapy = 0;	
-	cub->s_ray.sidedistx = 0;
-	cub->s_ray.sidedisty = 0;
-	cub->s_ray.deltadistx = 0;
-	cub->s_ray.deltadisty = 0;
-	cub->s_ray.stepx = 0;
-	cub->s_ray.stepy = 0;
-	cub->s_ray.hit = 0;
-	cub->s_ray.side = 0;
-	cub->s_ray.perpwalldist = 0;
-	cub->s_ray.lineheight = 0;
-	cub->s_ray.drawstart = 0;
-	cub->s_ray.drawend = 0;
-	cub->s_ray.x = 0;
-	cub->s_ray.speed = 0.09;
-	cub->s_ray.t_speed = 0.09;
 
 	cub->time = 0;
 	cub->oldtime = 0;

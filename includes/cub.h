@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/21 13:52:41 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/24 14:51:32 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # define MM_END_X 1000
 # define MM_END_Y 100
 # define PI 3.1415926535
-# define RED 0x00009500
+# define WHITE 0x00FFFFFF
 # define BLUE 0x000067FF
 # define GREY 0x00B8B5B5
-
+# define GREEN 0x0000FF00
 typedef struct s_ray
 {
 	double posx;
@@ -155,7 +155,7 @@ void	mm_wall(t_cub *cub, t_data *s_img, int x, int y);
 void	mm_putsquare(t_data *s_img, int x, int y, int color);
 void	mm_putmap(t_cub *cub, t_data *s_img);
 int		next_mvmt(t_cub *cub, char c, int keycode);
-int		loop(int keycode, t_cub *s_cub);
+int		loop(t_cub *s_cub);
 void	calcule_ray(t_cub *cub);
 void	calcul_step_sidedist(t_cub *s_cub);
 void	do_dda(t_cub *s_cub);
@@ -189,5 +189,5 @@ void 	mm_findperso(t_cub *cub);
 // void	mm_putmap(t_cub *cub, t_data *s_img);
 // int		next_mvmt(t_cub *cub, char c, int keycode);
 void	ft_dda(t_cub *s_cub);
-void ft_initialize_s(t_cub *cub);
+void 	ft_initialize_s(t_cub *cub);
 #endif

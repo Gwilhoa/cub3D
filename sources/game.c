@@ -6,34 +6,34 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/21 15:16:13 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/24 15:08:29 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	loop(int keycode, t_cub *cub)
+int	loop(t_cub *cub)
 {
-	initializ_ray(cub);
+	// ft_disp_matrix(cub->map.map);
+	int i;
 
+	i = 50;
 	while (cub->s_ray.x < W_W)
 	{
+		// my_mlx_pixel_put(&cub->s_img, i, cub->s_ray.x, GREEN);
 		calcule_ray(cub);
 		cub->s_ray.x += 1;
+		// dprintf(2, "X = %d\n", cub->s_ray.x);
 	}
-	exit(EXIT_FAILURE);
-	// mlx_put_image_to_window(cub, cub->fen, cub->s_img.img, 0, 0);
-	return (keycode);
+	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
+	return (0);
 }
 
 void initializ_ray(t_cub *cub)
 {
+
 	cub->link = mlx_init();
-	cub->s_img.img = NULL;
-	cub->s_img.addr = NULL;
-	cub->s_img.bits_per_pixel = 0;
-	cub->s_img.line_length = 0;
-	cub->s_img.endian = 0;
+	cub->fen = mlx_new_window(cub->link, W_W, W_H, "cub3d");
 	cub->s_img.img = mlx_new_image(cub->link, W_W, W_H);
 	cub->s_img.addr = mlx_get_data_addr(cub->s_img.img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length,
 							&cub->s_img.endian);
@@ -64,27 +64,25 @@ void initializ_ray(t_cub *cub)
 	cub->s_ray.x = 0;
 	cub->s_ray.speed = 0.09;
 	cub->s_ray.t_speed = 0.09;
-	cub->s_ray.posx = cub->map.pos_x;
-	cub->s_ray.posy = cub->map.pos_y;
+	cub->s_ray.posx = cub->perso.x;
+	cub->s_ray.posy = cub->perso.y;
 }
 
 // ------- debut du rail casting ---- //
 void calcule_ray(t_cub *s_cub)
 {
-	s_cub->s_ray.camerax = (2 * s_cub->s_ray.x) / (W_W - 1);
+	s_cub->s_ray.camerax = 2 * s_cub->s_ray.x / (double) W_W - 1;
 	s_cub->s_ray.raydirx = s_cub->s_ray.dirx + s_cub->s_ray.planx * s_cub->s_ray.camerax;
 	s_cub->s_ray.raydiry = s_cub->s_ray.diry + s_cub->s_ray.plany * s_cub->s_ray.camerax;
+
 	s_cub->s_ray.mapx = s_cub->map.pos_x;
 	s_cub->s_ray.mapy = s_cub->map.pos_y;
-	
 	s_cub->s_ray.deltadistx = fabs(1 / s_cub->s_ray.raydirx);
 	s_cub->s_ray.deltadisty = fabs(1 / s_cub->s_ray.raydiry);
 	s_cub->s_ray.hit = 0;
 	calcul_step_sidedist(s_cub);
 	ft_dda(s_cub);
-
-	exit(EXIT_SUCCESS);
-	// draw_line(s_cub);
+	draw_line(s_cub);
 }
 
 void	calcul_step_sidedist(t_cub *s_cub) //raystep
@@ -119,7 +117,7 @@ void ft_dda(t_cub *s_cub)
 {
 	while (s_cub->s_ray.hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-direction
+		//jump to next map square, either in x-direction, or in y-direction	
 		if (s_cub->s_ray.sidedistx < s_cub->s_ray.sidedisty)
 		{
 			s_cub->s_ray.sidedistx += s_cub->s_ray.deltadistx;
@@ -132,22 +130,27 @@ void ft_dda(t_cub *s_cub)
 			s_cub->s_ray.mapy += s_cub->s_ray.stepy;
 			s_cub->s_ray.side = 1;
 		}
-		//Check if ray has hit a wall
-		if (s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] == '1')
-			s_cub->s_ray.hit = 1;
+		if (s_cub->map.map[s_cub->s_ray.mapy][s_cub->s_ray.mapx] == '1')
+			s_cub->s_ray.hit = 1;;
+		
 	}
-		// exit(EXIT_SUCCESS);
+	// dprintf(2, "side distx = %lf, side disty = %lf ray.mapx = %d s_ray stepx = %d s_ray side = %d", 
+	// s_cub->s_ray.sidedistx, s_cub->s_ray.sidedisty, s_cub->s_ray.mapx, s_cub->s_ray.stepx, s_cub->s_ray.side);
 	raytodraw(s_cub);
 }
 
 void raytodraw(t_cub *s_cub)
 {
 	if (s_cub->s_ray.side == 0)
-		s_cub->s_ray.perpwalldist
+	{	s_cub->s_ray.perpwalldist
 			= s_cub->s_ray.sidedistx - s_cub->s_ray.deltadistx;
+		
+	}
 	else
+	{
 		s_cub->s_ray.perpwalldist
 			= s_cub->s_ray.sidedisty - s_cub->s_ray.deltadisty;
+	}
 	s_cub->s_ray.lineheight = (int)W_H / s_cub->s_ray.perpwalldist;
 	s_cub->s_ray.drawstart = -s_cub->s_ray.lineheight / 2 + W_H / 2;
 	if (s_cub->s_ray.drawstart < 0)
@@ -164,21 +167,31 @@ void draw_line(t_cub *s_cub)
 	i = 0;
 	(void)s_cub;
 
-	while (i <= s_cub->s_ray.drawstart)
+	// printf("X  = %d\n", s_cub->s_ray.x);
+	// while (i <= W_H)
+	// {
+	// 	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, 0x000067FF);
+	// 	i++;
+	// }
+	dprintf(2, "drawstart %d\n", s_cub->s_ray.drawstart);
+	dprintf(2, "drawstend %d\n", s_cub->s_ray.drawend);
+	// exit(1);
+	// while (i <= s_cub->s_ray.drawstart)
+	// {
+	// 	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, BLUE);
+	// 	i++;
+	// }
+	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
 	{
-		my_mlx_pixel_put(s_cub->s_img.img, s_cub->s_ray.x, i, BLUE);
-		i++;
-	}
-	while (s_cub->s_ray.drawstart >= s_cub->s_ray.drawend)
-	{
-		my_mlx_pixel_put(s_cub->s_img.img, s_cub->s_ray.x, s_cub->s_ray.drawstart, RED);
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, GREEN);
 		s_cub->s_ray.drawstart++;
 	}
 	i = s_cub->s_ray.drawend;
 	while (i <= W_H)
 	{
-		my_mlx_pixel_put(s_cub->s_img.img, s_cub->s_ray.x, i, GREY);
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, GREY);
 		i++;
 	}
+	dprintf(2, "SORTI DRAW\n");
 }
 // ------- fin du rail casting ---- //
