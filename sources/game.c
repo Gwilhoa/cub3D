@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/24 15:08:29 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/25 13:39:59 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ void raytodraw(t_cub *s_cub)
 	if (s_cub->s_ray.side == 0)
 	{	s_cub->s_ray.perpwalldist
 			= s_cub->s_ray.sidedistx - s_cub->s_ray.deltadistx;
-		
 	}
 	else
 	{
@@ -165,31 +164,22 @@ void draw_line(t_cub *s_cub)
 	int	i;
 
 	i = 0;
-	(void)s_cub;
-
-	// printf("X  = %d\n", s_cub->s_ray.x);
-	// while (i <= W_H)
-	// {
-	// 	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, 0x000067FF);
-	// 	i++;
-	// }
 	dprintf(2, "drawstart %d\n", s_cub->s_ray.drawstart);
 	dprintf(2, "drawstend %d\n", s_cub->s_ray.drawend);
-	// exit(1);
-	// while (i <= s_cub->s_ray.drawstart)
-	// {
-	// 	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, BLUE);
-	// 	i++;
-	// }
+	while (i <= s_cub->s_ray.drawstart)
+	{
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.ceiling_color);
+		i++;
+	}
 	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
 	{
-		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, GREEN);
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(220,220,220));
 		s_cub->s_ray.drawstart++;
 	}
 	i = s_cub->s_ray.drawend;
 	while (i <= W_H)
 	{
-		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, GREY);
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.floor_color);
 		i++;
 	}
 	dprintf(2, "SORTI DRAW\n");

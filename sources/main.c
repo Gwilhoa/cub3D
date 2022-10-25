@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/24 15:20:25 by guyar            ###   ########.fr       */
+/*   Updated: 2022/10/25 12:34:04 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ int	main(int argc, char const *argv[])
 	}
 	else
 	{
-		ft_disp_matrix(cub.map.map);
-		exit(86);
-		// ft_init(cub);
 		//faire une fonction avec comme adresse (suite(&cub))
 		// ->it direction of ray;
 		// ->_disp_matrix(cub.map);
@@ -65,7 +62,7 @@ int	main(int argc, char const *argv[])
 		// init_map(cub);
 		// print_sky_floor(&cub, &s_img);
 		// loop n'est pas appele dans loop;
-		//loop(10, &cub);+
+		//loop(10, &cub);
 		cub.map.pos_x = cub.perso.x;
 		cub.map.pos_y = cub.perso.y;
 		// dprintf(2, "cub[][] = %c", cub.map.map[5][5]);
