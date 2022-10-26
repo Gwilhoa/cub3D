@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/25 13:39:59 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:40:12 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,11 @@ void initializ_ray(t_cub *cub)
 }
 
 // ------- debut du rail casting ---- //
-void calcule_ray(t_cub *s_cub)
+void	calcule_ray(t_cub *s_cub)
 {
 	s_cub->s_ray.camerax = 2 * s_cub->s_ray.x / (double) W_W - 1;
-	s_cub->s_ray.raydirx = s_cub->s_ray.dirx + s_cub->s_ray.planx * s_cub->s_ray.camerax;
-	s_cub->s_ray.raydiry = s_cub->s_ray.diry + s_cub->s_ray.plany * s_cub->s_ray.camerax;
-
+	s_cub->s_ray.raydirx = s_cub->s_ray.diry + s_cub->s_ray.plany * s_cub->s_ray.camerax;
+	s_cub->s_ray.raydiry = s_cub->s_ray.dirx + s_cub->s_ray.planx * s_cub->s_ray.camerax;
 	s_cub->s_ray.mapx = s_cub->map.pos_x;
 	s_cub->s_ray.mapy = s_cub->map.pos_y;
 	s_cub->s_ray.deltadistx = fabs(1 / s_cub->s_ray.raydirx);
@@ -131,11 +130,8 @@ void ft_dda(t_cub *s_cub)
 			s_cub->s_ray.side = 1;
 		}
 		if (s_cub->map.map[s_cub->s_ray.mapy][s_cub->s_ray.mapx] == '1')
-			s_cub->s_ray.hit = 1;;
-		
+			s_cub->s_ray.hit = 1;
 	}
-	// dprintf(2, "side distx = %lf, side disty = %lf ray.mapx = %d s_ray stepx = %d s_ray side = %d", 
-	// s_cub->s_ray.sidedistx, s_cub->s_ray.sidedisty, s_cub->s_ray.mapx, s_cub->s_ray.stepx, s_cub->s_ray.side);
 	raytodraw(s_cub);
 }
 
@@ -155,7 +151,7 @@ void raytodraw(t_cub *s_cub)
 	if (s_cub->s_ray.drawstart < 0)
 		s_cub->s_ray.drawstart = 0;
 	s_cub->s_ray.drawend = s_cub->s_ray.lineheight / 2 + W_H / 2;
-	if (s_cub->s_ray.drawend >= W_H)
+	if (s_cub->s_ray.drawend >= W_H || s_cub->s_ray.drawend < 0)
 		s_cub->s_ray.drawend = W_H - 1;
 }
 
