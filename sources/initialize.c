@@ -37,4 +37,10 @@ void ft_initialize_s(t_cub *cub)
 	cub->texture.ea_texture = NULL; 
 	cub->texture.floor_color = 0; 
 	cub->texture.ceiling_color = 0;
+
+	cub->key.keyw = 0;		
+	cub->key.keys = 0;
+	cub->key.rotr = 0;
+	cub->key.rotl = 0;
+
 }

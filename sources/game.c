@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/29 10:35:18 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/10/29 19:35:51 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int	loop(t_cub *cub)
 {
-	// ft_disp_matrix(cub->map.map);
+	//initializ_ray(cub); l'initialisation des ray devrait commencer ici; mais seg car la mlx est dedant;
 	while (cub->s_ray.x < W_W)
 	{
-		// my_mlx_pixel_put(&cub->s_img, i, cub->s_ray.x, GREEN);
 		calcule_ray(cub);
 		cub->s_ray.x += 1;
-		// dprintf(2, "X = %d\n", cub->s_ray.x);
 	}
 	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
 	return (0);
@@ -59,10 +57,13 @@ void initializ_ray(t_cub *cub)
 	cub->s_ray.drawstart = 0;
 	cub->s_ray.drawend = 0;
 	cub->s_ray.x = 0;
-	cub->s_ray.speed = 5;
+	cub->s_ray.speed = 0.09;
 	cub->s_ray.t_speed = 0.09;
 	cub->s_ray.posx = cub->perso.x;
 	cub->s_ray.posy = cub->perso.y;
+
+	cub->s_ray.time = 0;
+	cub->s_ray.oldtime = 0;
 }
 
 // ------- debut du rail casting ---- //
@@ -157,8 +158,6 @@ void draw_line(t_cub *s_cub)
 	int	i;
 
 	i = 0;
-	dprintf(2, "drawstart %d\n", s_cub->s_ray.drawstart);
-	dprintf(2, "drawstend %d\n", s_cub->s_ray.drawend);
 	while (i <= s_cub->s_ray.drawstart)
 	{
 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.ceiling_color);
@@ -175,6 +174,5 @@ void draw_line(t_cub *s_cub)
 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.floor_color);
 		i++;
 	}
-	dprintf(2, "SORTI DRAW\n");
 }
 // ------- fin du rail casting ---- //

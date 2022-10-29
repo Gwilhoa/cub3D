@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/29 10:31:48 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/10/29 19:22:33 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_ray
 	int		x;
 	float	speed;
 	float	t_speed;	
+	double	time;
+	double	oldtime;
 }	t_ray;
 
 typedef struct s_data
@@ -126,6 +128,15 @@ typedef struct s_player
 	char	direction;
 }			t_player;
 
+typedef struct s_key
+{
+	int keyw;
+	int keys;
+	int rotr;
+	int rotl;
+	
+}	t_key;
+
 typedef struct s_cub
 {
 	void		*link;
@@ -138,6 +149,7 @@ typedef struct s_cub
 	t_map		map;
 	t_player	perso;
 	t_ray		s_ray;
+	t_key		key;
 	double		time;
 	double		oldtime;
 	t_texture	texture;

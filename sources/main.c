@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/29 10:38:56 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/10/29 19:38:41 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,19 @@ int	my_close(t_cub *cub)
 
 int	keypad_hook(int keycode, t_cub *cub)
 {
-	ft_printf("keycode = %d\n", keycode);
+	// why segfault?
+	dprintf(2,"HELLO \n");
 	if (keycode == EVENT_ESC)
 		my_close(cub);
 	if (keycode == EVENT_W)
 	{
-		ft_printf("W\n");
+		// ft_printf("W\n");
+		cub->key.keyw = 1;
 	}
 	if (keycode == EVENT_S)
 	{
 		ft_printf("S\n");
+		cub->key.keys = 1;
 	}
 	if (keycode == EVENT_A)
 	{
@@ -92,7 +95,7 @@ int	main(int argc, char const *argv[])
 		
 		// printf("entree cub_map = pos_y = %f pos_x = %f\n", cub.map.pos_y, cub.map.pos_x);
 		initializ_ray(&cub);
-		mlx_hook(cub.fen, 02, 1L << 0, keypad_hook, &cub);
+		mlx_hook(cub.fen, 2, 1L<<0, keypad_hook, &cub);
 		mlx_loop_hook(cub.link, loop, &cub);
 		mlx_loop(cub.link);
 		// mlx_hook(cub.fen, 2, 1L<<0, loop, &cub);
