@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:12 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/29 10:35:18 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	loop(t_cub *cub)
 {
 	// ft_disp_matrix(cub->map.map);
-	int i;
-
-	i = 50;
 	while (cub->s_ray.x < W_W)
 	{
 		// my_mlx_pixel_put(&cub->s_img, i, cub->s_ray.x, GREEN);
@@ -62,7 +59,7 @@ void initializ_ray(t_cub *cub)
 	cub->s_ray.drawstart = 0;
 	cub->s_ray.drawend = 0;
 	cub->s_ray.x = 0;
-	cub->s_ray.speed = 0.09;
+	cub->s_ray.speed = 5;
 	cub->s_ray.t_speed = 0.09;
 	cub->s_ray.posx = cub->perso.x;
 	cub->s_ray.posy = cub->perso.y;

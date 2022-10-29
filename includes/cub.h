@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/26 16:04:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/29 10:31:48 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@
 # define MM_START_Y 0
 # define MM_END_X 1000
 # define MM_END_Y 100
-# define PI 3.1415926535
-# define WHITE 0x00FFFFFF
-# define BLUE 0x000067FF
-# define GREY 0x00B8B5B5
-# define GREEN 0x0000FF00
+# define PI 3.14159265358979323846
+# define EVENT_W 6
+# define EVENT_A 0
+# define EVENT_S 1
+# define EVENT_D 2
+# define EVENT_SPACE 49
+# define EVENT_SHIFT 257
+# define EVENT_ESC 53
 typedef struct s_ray
 {
 	double posx;

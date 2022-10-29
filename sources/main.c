@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/25 12:34:04 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/10/29 10:38:56 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,41 @@
 
 // }
 
-int	my_close(int keycode, t_cub *cub)
+
+
+int	my_close(t_cub *cub)
 {
-	(void)keycode;
 	mlx_destroy_window(cub->link, cub->fen);
-	return (0);
+	exit(EXIT_SUCCESS);
+	return (1);
+}
+
+int	keypad_hook(int keycode, t_cub *cub)
+{
+	ft_printf("keycode = %d\n", keycode);
+	if (keycode == EVENT_ESC)
+		my_close(cub);
+	if (keycode == EVENT_W)
+	{
+		ft_printf("W\n");
+	}
+	if (keycode == EVENT_S)
+	{
+		ft_printf("S\n");
+	}
+	if (keycode == EVENT_A)
+	{
+		ft_printf("A\n");
+	}
+	if (keycode == EVENT_D)
+	{
+		ft_printf("D\n");
+	}
+	loop(cub);
+	return (1);
 }
 
 
-
-// int keypad_hook(int keycode, t_cub *cub);
-// {
-
-// }
 void ft_initialise_mlx(t_cub *cub)
 {
 	cub->link = mlx_init();
@@ -56,7 +78,7 @@ int	main(int argc, char const *argv[])
 	else
 	{
 		//faire une fonction avec comme adresse (suite(&cub))
-		// ->it direction of ray;
+		// ->it direction of s_ray;
 		// ->_disp_matrix(cub.map);
 		// parsing_main((char *)argv[1], &cub);
 		// init_map(cub);
@@ -70,10 +92,11 @@ int	main(int argc, char const *argv[])
 		
 		// printf("entree cub_map = pos_y = %f pos_x = %f\n", cub.map.pos_y, cub.map.pos_x);
 		initializ_ray(&cub);
+		mlx_hook(cub.fen, 02, 1L << 0, keypad_hook, &cub);
 		mlx_loop_hook(cub.link, loop, &cub);
 		mlx_loop(cub.link);
 		// mlx_hook(cub.fen, 2, 1L<<0, loop, &cub);
-		// il y a mlx_loop_hook qui va looper toutes les fonctions; ->affichage, calcule du ray casting, etc.. tout dedans les touches dedans aussi;
+		// il y a mlx_loop_hook qui va looper toutes les fonctions; ->affichage, calcule du s_ray casting, etc.. tout dedans les touches dedans aussi;
 		// mlx_hook(cub.fen, 3, 1L<<0, , &cub); // pitin;
 		// mlx_hook(cub.fen, 2, 1L<<0, print_minimap, &cub);
 		// mlx_key_hook(cub.fen, ft_print_movement, &struc);		// ICI
