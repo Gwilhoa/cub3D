@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/29 19:22:33 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/01 16:32:15 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 # define MM_END_X 1000
 # define MM_END_Y 100
 # define PI 3.14159265358979323846
-# define EVENT_W 6
+# define EVENT_W 13	// c'etait 6 (why?) moi jai 13
 # define EVENT_A 0
 # define EVENT_S 1
 # define EVENT_D 2
 # define EVENT_SPACE 49
-# define EVENT_SHIFT 257
 # define EVENT_ESC 53
+# define EVENT_SHIFT 257
+# define EVENT_ROTR 124
+# define EVENT_ROTL 123
 typedef struct s_ray
 {
 	double posx;
@@ -130,11 +132,11 @@ typedef struct s_player
 
 typedef struct s_key
 {
-	int keyw;
-	int keys;
+	int keyW;
+	int keyS;
 	int rotr;
 	int rotl;
-	
+
 }	t_key;
 
 typedef struct s_cub
@@ -205,4 +207,10 @@ void 	mm_findperso(t_cub *cub);
 // int		next_mvmt(t_cub *cub, char c, int keycode);
 void	ft_dda(t_cub *s_cub);
 void 	ft_initialize_s(t_cub *cub);
+void	start_game(t_cub *cub);
+void 	init_mlx(t_cub *cub);
+int		keypad_press(int keycode, t_cub *cub);
+int		keypad_release(int keycode, t_cub *cub);
+int		ft_move(t_cub *cub);
+
 #endif

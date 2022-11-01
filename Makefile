@@ -6,7 +6,7 @@
 #    By: guyar <guyar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/10/21 15:25:07 by guyar            ###   ########.fr        #
+#    Updated: 2022/11/01 16:45:17 by guyar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SUR			=	\033[7m
 END			=	\033[0m
 
 PRSG_SRCS =  condition_function.c initialisation.c parsing_main.c player_initialisation.c texture_color.c
-MAIN_SRCS =  main.c put_line.c put_rectangle.c sky_and_floor.c minimap.c game.c initialize.c
+MAIN_SRCS =  main.c put_line.c put_rectangle.c sky_and_floor.c minimap.c game.c game2.c initialize.c move.c 
 LST_SRCS = $(MAIN_SRCS) ${addprefix parsing/,$(PRSG_SRCS)}
 
 LST_OBJS = ${LST_SRCS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/29 19:38:41 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/01 19:02:00 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,55 @@
 
 int	my_close(t_cub *cub)
 {
-	mlx_destroy_window(cub->link, cub->fen);
+	(void)cub;
+	// mlx_destroy_window(cub->link, cub->fen); // segfault;
 	exit(EXIT_SUCCESS);
 	return (1);
 }
 
-int	keypad_hook(int keycode, t_cub *cub)
+int	keypad_press(int keycode, t_cub *cub)
 {
-	// why segfault?
-	dprintf(2,"HELLO \n");
+
+	// (void)cub;
 	if (keycode == EVENT_ESC)
 		my_close(cub);
+	else if (keycode == EVENT_W)
+	{
+		cub->key.keyW = 1;
+		// dprintf(2, "keyw = %d\n", cub->key.keyW = 1);
+	}
+	else if (keycode == EVENT_S)
+	{
+		ft_printf("PRESS S\n");
+		cub->key.keyS = 1;
+	}
+	else
+		return (0);
+	return (1);
+	// if (keycode == EVENT_A)
+	// {
+	// 	ft_printf("A\n");
+	// }
+	// if (keycode == EVENT_D)
+	// {
+	// 	ft_printf("D\n");
+	// }
+	// loop(cub);
+}
+
+int keypad_release(int keycode, t_cub *cub)
+{
 	if (keycode == EVENT_W)
 	{
-		// ft_printf("W\n");
-		cub->key.keyw = 1;
+		dprintf(2, "RELEASE W\n");
+		cub->key.keyW = 0;
 	}
 	if (keycode == EVENT_S)
 	{
-		ft_printf("S\n");
-		cub->key.keys = 1;
+		dprintf(2, "RELEASE S\n");
+		cub->key.keyS = 0;
 	}
-	if (keycode == EVENT_A)
-	{
-		ft_printf("A\n");
-	}
-	if (keycode == EVENT_D)
-	{
-		ft_printf("D\n");
-	}
-	loop(cub);
-	return (1);
+	return (0);
 }
 
 
@@ -94,14 +112,13 @@ int	main(int argc, char const *argv[])
 		// exit(EXIT_SUCCESS);
 		
 		// printf("entree cub_map = pos_y = %f pos_x = %f\n", cub.map.pos_y, cub.map.pos_x);
-		initializ_ray(&cub);
-		mlx_hook(cub.fen, 2, 1L<<0, keypad_hook, &cub);
-		mlx_loop_hook(cub.link, loop, &cub);
-		mlx_loop(cub.link);
+		// mlx_hook(cub.fen, 2, 1L<<0, keypad_hook, &cub);
+		start_game(&cub);
+		// mlx_loop_hook(cub.link, loop, &cub);
+		// mlx_loop(cub.link);
 		// mlx_hook(cub.fen, 2, 1L<<0, loop, &cub);
 		// il y a mlx_loop_hook qui va looper toutes les fonctions; ->affichage, calcule du s_ray casting, etc.. tout dedans les touches dedans aussi;
 		// mlx_hook(cub.fen, 3, 1L<<0, , &cub); // pitin;
-		// mlx_hook(cub.fen, 2, 1L<<0, print_minimap, &cub);
 		// mlx_key_hook(cub.fen, ft_print_movement, &struc);		// ICI
 		// mlx_key_hook(cub.fen, &print_minimap, &cub);
 
