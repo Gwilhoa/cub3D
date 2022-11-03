@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/01 19:02:00 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/03 14:31:07 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,37 @@ int	keypad_press(int keycode, t_cub *cub)
 	}
 	else if (keycode == EVENT_S)
 	{
-		ft_printf("PRESS S\n");
 		cub->key.keyS = 1;
 	}
-	else
-		return (0);
+	else if (keycode == EVENT_ROTR)
+	{
+		cub->key.rotr = 1;
+	}
+	else if (keycode == EVENT_ROTL)
+	{
+		cub->key.rotl = 1;
+	}
 	return (1);
-	// if (keycode == EVENT_A)
-	// {
-	// 	ft_printf("A\n");
-	// }
-	// if (keycode == EVENT_D)
-	// {
-	// 	ft_printf("D\n");
-	// }
-	// loop(cub);
+
 }
 
 int keypad_release(int keycode, t_cub *cub)
 {
 	if (keycode == EVENT_W)
 	{
-		dprintf(2, "RELEASE W\n");
 		cub->key.keyW = 0;
 	}
 	if (keycode == EVENT_S)
 	{
-		dprintf(2, "RELEASE S\n");
 		cub->key.keyS = 0;
+	}
+	else if (keycode == EVENT_ROTR)
+	{
+		cub->key.rotr = 0;
+	}
+	else if (keycode == EVENT_ROTL)
+	{
+		cub->key.rotl = 0;
 	}
 	return (0);
 }
@@ -106,8 +109,8 @@ int	main(int argc, char const *argv[])
 		// print_sky_floor(&cub, &s_img);
 		// loop n'est pas appele dans loop;
 		//loop(10, &cub);
-		cub.map.pos_x = cub.perso.x;
-		cub.map.pos_y = cub.perso.y;
+		cub.map.pos_x = cub.perso.y;
+		cub.map.pos_y = cub.perso.x;
 		// dprintf(2, "cub[][] = %c", cub.map.map[5][5]);
 		// exit(EXIT_SUCCESS);
 		

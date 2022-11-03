@@ -23,9 +23,8 @@ void ft_initialize_s(t_cub *cub)
 	cub->map.width = 0;
 	cub->map.pos_x = cub->perso.y + 0.2;
 	cub->map.pos_y = cub->perso.x + 0.2;
-	
-	cub->perso.x = 0;
-	cub->perso.y = 0;
+	// cub->perso.x = 0;
+	// cub->perso.y = 0;
 	cub->perso.direction = 0;
 
 	cub->time = 0;
@@ -38,8 +37,8 @@ void ft_initialize_s(t_cub *cub)
 	cub->texture.floor_color = 0; 
 	cub->texture.ceiling_color = 0;
 
-	cub->key.keyw = 0;		
-	cub->key.keys = 0;
+	cub->key.keyW = 0;		
+	cub->key.keyS = 0;
 	cub->key.rotr = 0;
 	cub->key.rotl = 0;
 

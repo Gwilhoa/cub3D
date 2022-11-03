@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/01 16:32:15 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/03 12:22:22 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,6 @@ void 	init_mlx(t_cub *cub);
 int		keypad_press(int keycode, t_cub *cub);
 int		keypad_release(int keycode, t_cub *cub);
 int		ft_move(t_cub *cub);
+void	init_display(t_cub *cub);
 
 #endif

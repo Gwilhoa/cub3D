@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:47:44 by guyar             #+#    #+#             */
-/*   Updated: 2022/10/20 11:06:15 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:24:33 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,26 +75,28 @@
 
 void	mm_findperso(t_cub *cub)
 {
-	int	ii;
-	int	jj;
+	// int	ii;
+	// int	jj;
 
-	ii = 0;
-	jj = 0;
-	while (cub->map.map[ii])
-	{
-		while (cub->map.map[ii][jj])
-		{
-			if (cub->map.map[ii][jj] == 'P')
-			{
-				cub->perso.y = ii;
-				cub->perso.x = jj;
-				cub->map.map[ii][jj] = '0';
-			}
-			jj++;
-		}
-		jj = 0;
-		ii += 1; 
-	}
+	// ii = 0;
+	// jj = 0;
+	// while (cub->map.map[ii])
+	// {
+	// 	while (cub->map.map[ii][jj])
+	// 	{
+	// 		if (cub->map.map[ii][jj] == 'P')
+	// 		{
+	// 			cub->perso.y = ii;
+	// 			cub->perso.x = jj;
+	// 			cub->map.map[ii][jj] = '0';
+	// 		}
+	// 		jj++;
+	// 	}
+	// 	jj = 0;
+	// 	ii += 1; 
+	// }
+	(void)cub;
+	return;
 }
 
 // //  void mm_putmap(t_cub *cub, t_data *s_img)
