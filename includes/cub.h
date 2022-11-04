@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/03 12:22:22 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:08:28 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,25 @@
 # define EVENT_ROTL 123
 typedef struct s_ray
 {
-	double posx;
-	double posy; 
+	double	posx;
+	double	posy;
 	double	raydirx;
 	double	raydiry;
 	double	planx;
 	double	plany;
 	double	dirx;
 	double	diry;
-	double  camerax;
-	int 	mapx;		// pos player	x; 
-	int 	mapy;		// pos player	y;
-	double sidedistx;	// distance que le ray doit travel de sa position au premier x/y side;
-	double sidedisty;
-	double deltadistx; //length of ray from one x or y-side to next x or y-side
-	double deltadisty;
-	int stepx; //what direction to tep in x or y direction;
-	int stepy;
-	int hit;	//is there a wall hit;
-	int side;	// was a NS or a EW wall hit;
+	double	camerax;
+	int		mapx;
+	int		mapy;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx; //length of ray from one x or y-side to next x or y-side
+	double	deltadisty;
+	int		stepx; //what direction to tep in x or y direction;
+	int		stepy;
+	int		hit;//is there a wall hit;
+	int		side;	// was a NS or a EW wall hit;
 	float perpwalldist;
 	int lineheight;
 	int		drawstart;
@@ -88,10 +88,10 @@ typedef struct t_point2D
 
 typedef struct s_texture
 {
-	void		*no_texture;
-	void		*so_texture;
-	void		*we_texture;
-	void		*ea_texture;
+	t_data		no_texture;
+	t_data		so_texture;
+	t_data		we_texture;
+	t_data		ea_texture;
 	int			floor_color;
 	int			ceiling_color;
 }	t_texture;
@@ -132,10 +132,10 @@ typedef struct s_player
 
 typedef struct s_key
 {
-	int keyW;
-	int keyS;
-	int rotr;
-	int rotl;
+	int	key_w;
+	int	key_s;
+	int	rotr;
+	int	rotl;
 
 }	t_key;
 

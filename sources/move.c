@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:32:45 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/03 14:32:16 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:53:13 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int ft_move(t_cub *cub)
 		cub->s_ray.planx = cub->s_ray.planx * cos(cub->s_ray.t_speed) - cub->s_ray.plany * sin(cub->s_ray.t_speed);
 		cub->s_ray.plany = tmpplnx * sin(cub->s_ray.t_speed) + cub->s_ray.plany * cos(cub->s_ray.t_speed);
 	}
-	if (cub->key.keyW == 1)
+	if (cub->key.key_w == 1)
 	{
 
 		if (cub->map.map[(int)(cub->map.pos_x + (cub->s_ray.dirx * cub->s_ray.speed * 2))][(int)cub->map.pos_y] == '0')
@@ -49,7 +49,7 @@ int ft_move(t_cub *cub)
 			// dprintf(2, "pos y = %f", cub->map.pos_y);
 		}
 	}
-	if (cub->key.keyS == 1)
+	if (cub->key.key_s == 1)
 	{
 		if (cub->map.map[(int)(cub->map.pos_x - (cub->s_ray.dirx * cub->s_ray.speed * 2))][(int)cub->map.pos_y] == '0')
 		{

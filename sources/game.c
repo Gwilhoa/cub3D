@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 12:01:51 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:34:40 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,10 @@ void draw_line(t_cub *s_cub)
 	}
 	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
 	{
-		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(220,220,220));
+		if (s_cub->s_ray.side == 1)
+			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(220,220,220));
+		else
+			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(0,0,0));
 		s_cub->s_ray.drawstart++;
 	}
 	i = s_cub->s_ray.drawend;

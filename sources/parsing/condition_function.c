@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   condition_function.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:18:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/19 14:38:17 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:54:21 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	is_textured(t_cub *cub)
 {
-	if (cub->texture.no_texture == 0)
+	if (cub->texture.no_texture.img == 0)
 		return (1);
-	else if (cub->texture.we_texture == 0)
+	else if (cub->texture.we_texture.img == 0)
 		return (1);
-	else if (cub->texture.so_texture == 0)
+	else if (cub->texture.so_texture.img == 0)
 		return (1);
-	else if (cub->texture.ea_texture == 0)
+	else if (cub->texture.ea_texture.img == 0)
 		return (1);
 	else if (cub->texture.ceiling_color == -1)
 		return (1);

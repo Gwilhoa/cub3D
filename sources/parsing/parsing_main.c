@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 13:12:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:02:47 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	parsing_texture(t_cub *cub)
 		if (is_orientedline(al))
 			i = parsing_oriented(al + 2, ft_substr(al, 0, 2), cub);
 		else if (ft_strncmp(al, "F", 1) == 0 || ft_strncmp(al, "C", 1) == 0)
-			i = parsing_color(cub, ft_strtrim(al + 1," "), al[0]);
+			i = parsing_color(cub, ft_strtrim(al + 1, " "), al[0]);
 		else if (ft_strlen(cub->map.map[0]) > 1)
 		{
 			ft_putstr_fd("Error\nunexpected line in the map", 2);
@@ -85,7 +85,9 @@ int	parsing_texture(t_cub *cub)
 int	parsing_oriented(char *line, char *type, t_cub *cub)
 {
 	char	*path;
+	void	*img;
 	int		fd;
+	int		s;
 
 	path = ft_strtrim(line, " \n\t\v\r\f");
 	fd = open(path, O_RDONLY);
@@ -97,15 +99,17 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 		return (1);
 	}
 	close(fd);
-	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture == NULL)
-		cub->texture.no_texture = path;
-	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture == NULL)
-		cub->texture.so_texture = path;
-	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture == NULL)
-		cub->texture.we_texture = path;
-	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture == NULL)
-		cub->texture.ea_texture = path;
+	img = mlx_xpm_file_to_image(cub->link, path, &s, &s);
+	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.img == NULL)
+		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture.img == NULL)
+		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture.img == NULL)
+		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture.img == NULL)
+		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
 	else
 		return (1);
+	free(type);
 	return (0);
 }
