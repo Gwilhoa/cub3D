@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/26 16:11:26 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:12:40 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ int	parsing_texture(t_cub *cub)
 		if (is_orientedline(al))
 			i = parsing_oriented(al + 2, ft_substr(al, 0, 2), cub);
 		else if (ft_strncmp(al, "F", 1) == 0 || ft_strncmp(al, "C", 1) == 0)
-			i = parsing_color(cub, al + 1, al[0]);
+			i = parsing_color(cub, ft_strtrim(al + 1," "), al[0]);
 		else if (ft_strlen(cub->map.map[0]) > 1)
 		{
 			ft_putstr_fd("Error\nunexpected line in the map", 2);
 			return (1);
 		}
+		free(al);
 		free(cub->map.map[0]);
 		cub->map.map = cub->map.map + 1;
 		if (cub->map.map[0] == 0 || i == 1)

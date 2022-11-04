@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:55:05 by gchatain          #+#    #+#             */
-/*   Updated: 2022/06/23 14:21:10 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/11/04 11:58:36 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_push_matrix(char ***matrix, char *str)
 	{
 		tmp2 = malloc((sizeof(char *) * (ft_matrix_size((const char **) tmp) \
 			+ 2)));
-		tmp2[0] = str;
+		tmp2[0] = ft_strdup(str);
 		while (tmp[++i] != 0)
 			tmp2[i + 1] = tmp[i];
 		tmp2[i + 1] = 0;

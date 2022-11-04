@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/03 14:31:07 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/04 12:51:32 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,20 @@
 
 // }
 
-
-
 int	my_close(t_cub *cub)
 {
-	(void)cub;
-	// mlx_destroy_window(cub->link, cub->fen); // segfault;
+	(void) cub;
 	exit(EXIT_SUCCESS);
 	return (1);
 }
 
 int	keypad_press(int keycode, t_cub *cub)
 {
-
-	// (void)cub;
 	if (keycode == EVENT_ESC)
 		my_close(cub);
 	else if (keycode == EVENT_W)
 	{
 		cub->key.keyW = 1;
-		// dprintf(2, "keyw = %d\n", cub->key.keyW = 1);
 	}
 	else if (keycode == EVENT_S)
 	{
@@ -51,10 +45,9 @@ int	keypad_press(int keycode, t_cub *cub)
 		cub->key.rotl = 1;
 	}
 	return (1);
-
 }
 
-int keypad_release(int keycode, t_cub *cub)
+int	keypad_release(int keycode, t_cub *cub)
 {
 	if (keycode == EVENT_W)
 	{
@@ -75,8 +68,7 @@ int keypad_release(int keycode, t_cub *cub)
 	return (0);
 }
 
-
-void ft_initialise_mlx(t_cub *cub)
+void	ft_initialise_mlx(t_cub *cub)
 {
 	cub->link = mlx_init();
 	cub->fen = mlx_new_window(cub->link, W_W, W_H, "cub3d");
@@ -87,7 +79,6 @@ int	main(int argc, char const *argv[])
 	char	*file;
 	t_cub	cub;
 
-	
 	ft_initialize_s(&cub);
 	if (argc != 2)
 	{

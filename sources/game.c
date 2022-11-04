@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/03 12:42:24 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/04 12:01:51 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	loop(t_cub *cub)
 {
 	ft_move(cub);
-	// initializ display;
 	init_display(cub);
 	cub->s_ray.x = 0;
 	while (cub->s_ray.x < W_W)
@@ -24,7 +23,6 @@ int	loop(t_cub *cub)
 		cub->s_ray.x += 1;
 	}
 	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
-	// mlx_destroy_image(cub->link, &cub->s_img.img);
 	return (0);
 }
 
@@ -51,20 +49,19 @@ void init_display(t_cub *cub)
 	cub->s_ray.posy = (double)(cub->map.pos_y);
 }
 
-void initializ_ray(t_cub *cub)
+void	initializ_ray(t_cub *cub)
 {
-
 	cub->s_ray.posx = 0;
 	cub->s_ray.posy = 0;
-	cub->s_ray.raydirx = -1;	// car N;
+	cub->s_ray.raydirx = -1;
 	cub->s_ray.raydiry = 0;
 	cub->s_ray.planx = 0;
-	cub->s_ray.plany = 0.66; 	// car N;
+	cub->s_ray.plany = 0.66;
 	cub->s_ray.dirx = -1;
 	cub->s_ray.diry = 0;
 	cub->s_ray.camerax = 0;
 	cub->s_ray.mapx = 0;
-	cub->s_ray.mapy = 0;	
+	cub->s_ray.mapy = 0;
 	cub->s_ray.sidedistx = 0;
 	cub->s_ray.sidedisty = 0;
 	cub->s_ray.deltadistx = 0;
@@ -80,9 +77,8 @@ void initializ_ray(t_cub *cub)
 	cub->s_ray.x = 0;
 	cub->s_ray.speed = 0.09;
 	cub->s_ray.t_speed = 0.09;
-	cub->s_ray.posx = (double)cub->map.pos_x; //cub->perso.x; // pb ici ?
-	cub->s_ray.posy = (double)cub->map.pos_y; //cub->perso.y;	// pb ici ?
-
+	cub->s_ray.posx = (double)cub->map.pos_x;
+	cub->s_ray.posy = (double)cub->map.pos_y;
 	cub->s_ray.time = 0;
 	cub->s_ray.oldtime = 0;
 }
@@ -91,9 +87,9 @@ void initializ_ray(t_cub *cub)
 void	calcule_ray(t_cub *s_cub)
 {
 	s_cub->s_ray.camerax = 2 * s_cub->s_ray.x / (double) W_W - 1;
-	s_cub->s_ray.raydirx = s_cub->s_ray.dirx + s_cub->s_ray.planx * s_cub->s_ray.camerax;		// avant modfif x = y , y , y
+	s_cub->s_ray.raydirx = s_cub->s_ray.dirx + s_cub->s_ray.planx * s_cub->s_ray.camerax;
 	s_cub->s_ray.raydiry = s_cub->s_ray.diry + s_cub->s_ray.plany * s_cub->s_ray.camerax;
-	s_cub->s_ray.mapx = s_cub->map.pos_x;		
+	s_cub->s_ray.mapx = s_cub->map.pos_x;
 	s_cub->s_ray.mapy = s_cub->map.pos_y;
 	s_cub->s_ray.deltadistx = fabs(1 / s_cub->s_ray.raydirx);
 	s_cub->s_ray.deltadisty = fabs(1 / s_cub->s_ray.raydiry);
@@ -131,11 +127,10 @@ void	calcul_step_sidedist(t_cub *s_cub) //raystep
 	}
 }
 
-void ft_dda(t_cub *s_cub)
+void	ft_dda(t_cub *s_cub)
 {
 	while (s_cub->s_ray.hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-direction	
 		if (s_cub->s_ray.sidedistx < s_cub->s_ray.sidedisty)
 		{
 			s_cub->s_ray.sidedistx += s_cub->s_ray.deltadistx;
@@ -148,13 +143,13 @@ void ft_dda(t_cub *s_cub)
 			s_cub->s_ray.mapy += s_cub->s_ray.stepy;
 			s_cub->s_ray.side = 1;
 		}
-		if (s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] == '1') //-- inversion mapx map ywtf.
+		if (s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] == '1')
 			s_cub->s_ray.hit = 1;
 	}
 	raytodraw(s_cub);
 }
 
-void raytodraw(t_cub *s_cub)
+void	raytodraw(t_cub *s_cub)
 {
 	if (s_cub->s_ray.side == 0)
 	{
