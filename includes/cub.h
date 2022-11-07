@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 15:08:28 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:13:40 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ void 	mm_findperso(t_cub *cub);
 // void	mm_putsquare(t_data *s_img, int x, int y, int color);
 // void	mm_putmap(t_cub *cub, t_data *s_img);
 // int		next_mvmt(t_cub *cub, char c, int keycode);
+int	get_pixel(t_data data, int x, int y);
 void	ft_dda(t_cub *s_cub);
 void 	ft_initialize_s(t_cub *cub);
 void	start_game(t_cub *cub);

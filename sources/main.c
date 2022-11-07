@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 15:52:44 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:26:04 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ int	keypad_release(int keycode, t_cub *cub)
 	return (0);
 }
 
-void	ft_initialise_mlx(t_cub *cub)
-{
-	cub->link = mlx_init();
-	cub->fen = mlx_new_window(cub->link, W_W, W_H, "cub3d");
-}
 
 int	main(int argc, char const *argv[])
 {
@@ -80,6 +75,7 @@ int	main(int argc, char const *argv[])
 	t_cub	cub;
 
 	ft_initialize_s(&cub);
+	cub.link = mlx_init();
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\ntoo few or not enough argument", 2);

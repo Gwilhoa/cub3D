@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 13:34:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:23:47 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void init_display(t_cub *cub)
 	// cub->s_img.img = mlx_new_image(cub->link, W_W, W_H);
 	// cub->s_img.addr = mlx_get_data_addr(cub->s_img.img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length,
 	// 						&cub->s_img.endian);
-							
 	cub->s_ray.camerax = 0;
 	cub->s_ray.stepx = 0;
 	cub->s_ray.stepy = 0;
@@ -180,10 +179,14 @@ void draw_line(t_cub *s_cub)
 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.ceiling_color);
 		i++;
 	}
+	i = 0;
 	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
 	{
+		i++;
 		if (s_cub->s_ray.side == 1)
-			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(220,220,220));
+		{
+			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, get_pixel(s_cub->texture.no_texture, i, s_cub->s_ray.x));
+		}
 		else
 			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(0,0,0));
 		s_cub->s_ray.drawstart++;

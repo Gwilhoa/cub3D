@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 16:02:47 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:29:03 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 	close(fd);
 	img = mlx_xpm_file_to_image(cub->link, path, &s, &s);
 	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.img == NULL)
-		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+		cub->texture.no_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
 	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture.img == NULL)
-		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+		cub->texture.so_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
 	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture.img == NULL)
-		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+		cub->texture.we_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
 	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture.img == NULL)
-		mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+		cub->texture.ea_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
 	else
 		return (1);
 	free(type);
