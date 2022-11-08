@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 15:16:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:51:48 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	init_cub(t_cub *cub, int fd)
 
 void	setcub(t_cub *cub)
 {
-	cub->texture.no_texture.img = 0;
-	cub->texture.so_texture.img = 0;
-	cub->texture.we_texture.img = 0;
-	cub->texture.ea_texture.img = 0;
+	cub->texture.no_texture.data.img = 0;
+	cub->texture.so_texture.data.img = 0;
+	cub->texture.we_texture.data.img = 0;
+	cub->texture.ea_texture.data.img = 0;
 	cub->texture.ceiling_color = -1;
 	cub->texture.floor_color = -1;
 	return ;

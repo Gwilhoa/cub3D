@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/07 15:23:47 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:50:30 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,12 @@ void	raytodraw(t_cub *s_cub)
 
 void draw_line(t_cub *s_cub)
 {
-	int	i;
-
+	int		i;
+	double	step;
+	double	texpos;
+	step = 1 * 32 / s_cub->s_ray.lineheight;
 	i = 0;
+	texpos = (s_cub->s_ray.drawstart - W_H / 2 + s_cub->s_ray.lineheight / 2) * step;
 	while (i <= s_cub->s_ray.drawstart)
 	{
 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.ceiling_color);
@@ -182,13 +185,9 @@ void draw_line(t_cub *s_cub)
 	i = 0;
 	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
 	{
+		texpos += step;
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, get_pixel(s_cub->texture.no_texture.data, get_textural_x(find_wall_pos(s_cub), s_cub->texture.no_texture, s_cub), texpos));
 		i++;
-		if (s_cub->s_ray.side == 1)
-		{
-			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, get_pixel(s_cub->texture.no_texture, i, s_cub->s_ray.x));
-		}
-		else
-			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, rgb_to_hexa(0,0,0));
 		s_cub->s_ray.drawstart++;
 	}
 	i = s_cub->s_ray.drawend;
@@ -199,3 +198,34 @@ void draw_line(t_cub *s_cub)
 	}
 }
 // ------- fin du rail casting ---- //
+
+
+int find_wall_pos(t_cub *cub)
+{
+	double wallx;
+	if (cub->s_ray.side == 0)
+	{
+		wallx = cub->s_ray.posy + cub->s_ray.perpwalldist * cub->s_ray.raydiry;
+	}
+	else
+	{
+		wallx = cub->s_ray.posx + cub->s_ray.perpwalldist * cub->s_ray.raydirx;
+	}
+	wallx = wallx - floor(wallx);
+	return (wallx);
+}
+
+int	get_textural_x(int wallx, t_texture_img img, t_cub *cub)
+{
+	int	tex_x;
+	tex_x = wallx * img.width;
+	if (cub->s_ray.side == 0 && cub->s_ray.raydirx > 0)
+	{
+		tex_x = img.width - tex_x - 1;
+	}
+	if (cub->s_ray.side == 1 && cub->s_ray.raydiry < 0)
+	{
+		tex_x = img.width - tex_x - 1;
+	}
+	return (tex_x);
+}

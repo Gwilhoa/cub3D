@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:18:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/07 13:28:07 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:51:16 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	is_textured(t_cub *cub)
 {
-	if (cub->texture.no_texture.addr == 0)
+	if (cub->texture.no_texture.data.addr == 0)
 		return (1);
-	else if (cub->texture.we_texture.addr == 0)
+	else if (cub->texture.we_texture.data.addr == 0)
 		return (1);
-	else if (cub->texture.so_texture.addr == 0)
+	else if (cub->texture.so_texture.data.addr == 0)
 		return (1);
-	else if (cub->texture.ea_texture.addr == 0)
+	else if (cub->texture.ea_texture.data.addr == 0)
 		return (1);
 	else if (cub->texture.ceiling_color == -1)
 		return (1);

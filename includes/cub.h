@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/07 15:13:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:48:32 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,21 @@ typedef struct t_point2D
 	float		y;
 }	t_point2D;
 
+typedef struct s_texture_img
+{
+	t_data	data;
+	int		width;
+	int		heigth;
+}	t_texture_img;
 
 typedef struct s_texture
 {
-	t_data		no_texture;
-	t_data		so_texture;
-	t_data		we_texture;
-	t_data		ea_texture;
-	int			floor_color;
-	int			ceiling_color;
+	t_texture_img		no_texture;
+	t_texture_img		so_texture;
+	t_texture_img		we_texture;
+	t_texture_img		ea_texture;
+	int					floor_color;
+	int					ceiling_color;
 }	t_texture;
 
 typedef struct t_perso
@@ -214,5 +220,7 @@ int		keypad_press(int keycode, t_cub *cub);
 int		keypad_release(int keycode, t_cub *cub);
 int		ft_move(t_cub *cub);
 void	init_display(t_cub *cub);
+int		find_wall_pos(t_cub *cub);
+int		get_textural_x(int wallx, t_texture_img img, t_cub *cub);
 
 #endif

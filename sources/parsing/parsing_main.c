@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/07 13:29:03 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:20:54 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 	char	*path;
 	void	*img;
 	int		fd;
-	int		s;
+	int		w;
+	int		h;
 
 	path = ft_strtrim(line, " \n\t\v\r\f");
 	fd = open(path, O_RDONLY);
@@ -99,15 +100,31 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 		return (1);
 	}
 	close(fd);
-	img = mlx_xpm_file_to_image(cub->link, path, &s, &s);
-	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.img == NULL)
-		cub->texture.no_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
-	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture.img == NULL)
-		cub->texture.so_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
-	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture.img == NULL)
-		cub->texture.we_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
-	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture.img == NULL)
-		cub->texture.ea_texture.addr = mlx_get_data_addr(img, &cub->texture.no_texture.bits_per_pixel, &cub->texture.no_texture.line_length, &cub->texture.no_texture.endian);
+	img = mlx_xpm_file_to_image(cub->link, path, &h, &w);
+	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.data.img == NULL)
+	{
+		cub->texture.no_texture.data.addr = mlx_get_data_addr(img, &cub->texture.no_texture.data.bits_per_pixel, &cub->texture.no_texture.data.line_length, &cub->texture.no_texture.data.endian);
+		cub->texture.no_texture.heigth = h;
+		cub->texture.no_texture.width = w;
+	}
+	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture.data.img == NULL)
+	{
+		cub->texture.so_texture.data.addr = mlx_get_data_addr(img, &cub->texture.so_texture.data.bits_per_pixel, &cub->texture.so_texture.data.line_length, &cub->texture.so_texture.data.endian);
+		cub->texture.so_texture.heigth = h;
+		cub->texture.so_texture.width = w;
+	}
+	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture.data.img == NULL)
+		{
+		cub->texture.we_texture.data.addr = mlx_get_data_addr(img, &cub->texture.we_texture.data.bits_per_pixel, &cub->texture.we_texture.data.line_length, &cub->texture.we_texture.data.endian);
+		cub->texture.we_texture.heigth = h;
+		cub->texture.we_texture.width = w;
+	}
+	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture.data.img == NULL)
+		{
+		cub->texture.ea_texture.data.addr = mlx_get_data_addr(img, &cub->texture.ea_texture.data.bits_per_pixel, &cub->texture.ea_texture.data.line_length, &cub->texture.ea_texture.data.endian);
+		cub->texture.ea_texture.heigth = h;
+		cub->texture.ea_texture.width = w;
+	}
 	else
 		return (1);
 	free(type);
