@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/08 14:48:32 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:29:49 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,5 +222,7 @@ int		ft_move(t_cub *cub);
 void	init_display(t_cub *cub);
 int		find_wall_pos(t_cub *cub);
 int		get_textural_x(int wallx, t_texture_img img, t_cub *cub);
+int		isvalid(t_cub *cub);
+int		verif(int x, int y, char **map);
 
 #endif

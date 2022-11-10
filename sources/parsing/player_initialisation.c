@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_initialisation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:52:47 by gchatain          #+#    #+#             */
-/*   Updated: 2022/10/22 18:01:02 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/09 13:27:33 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int	ft_search_player(t_cub *cub)
 		}
 		j = 0;
 		i++;
+	}
+	if (isvalid(cub))
+	{
+		ft_putstr_fd("Error\nthe map is open", 2);
+		return (1);
 	}
 	return (0);
 }

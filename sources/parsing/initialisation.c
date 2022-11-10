@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/08 14:51:48 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:04:43 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int	init_cub(t_cub *cub, int fd)
 	char	*str;
 	char	**map;
 
+	map = 0;
 	str = get_next_line(fd);
 	while (str != 0)
 	{
+		ft_printf("gnl = %s\n", str);
 		ft_push_back_matrix(&map, str);
+		ft_printf(map[0]);
 		free(str);
 		str = ft_strtrim2(get_next_line(fd), "\n");
 	}

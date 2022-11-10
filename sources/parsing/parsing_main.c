@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/08 14:20:54 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:56:40 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	parsing_texture(t_cub *cub)
 	while (is_textured(cub))
 	{
 		al = ft_strtrim(cub->map.map[0], " \n\t\v\r\f");
+		ft_printf("al = %s\n", al);
 		if (is_orientedline(al))
 			i = parsing_oriented(al + 2, ft_substr(al, 0, 2), cub);
 		else if (ft_strncmp(al, "F", 1) == 0 || ft_strncmp(al, "C", 1) == 0)

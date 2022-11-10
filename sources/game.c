@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/08 14:50:30 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:06:56 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,8 @@ void draw_line(t_cub *s_cub)
 	int		i;
 	double	step;
 	double	texpos;
-	step = 1 * 32 / s_cub->s_ray.lineheight;
 	i = 0;
+	step = 1 / s_cub->s_ray.lineheight;
 	texpos = (s_cub->s_ray.drawstart - W_H / 2 + s_cub->s_ray.lineheight / 2) * step;
 	while (i <= s_cub->s_ray.drawstart)
 	{
@@ -198,7 +198,6 @@ void draw_line(t_cub *s_cub)
 	}
 }
 // ------- fin du rail casting ---- //
-
 
 int find_wall_pos(t_cub *cub)
 {
