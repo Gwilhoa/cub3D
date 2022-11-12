@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/09 10:06:56 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:13:01 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	initializ_ray(t_cub *cub)
 {
 	cub->s_ray.posx = 0;
 	cub->s_ray.posy = 0;
-	cub->s_ray.raydirx = -1;
+	cub->s_ray.raydirx = 0;
 	cub->s_ray.raydiry = 0;
 	cub->s_ray.planx = 0;
 	cub->s_ray.plany = 0.66;
@@ -90,8 +90,8 @@ void	calcule_ray(t_cub *s_cub)
 	s_cub->s_ray.raydiry = s_cub->s_ray.diry + s_cub->s_ray.plany * s_cub->s_ray.camerax;
 	s_cub->s_ray.mapx = s_cub->map.pos_x;
 	s_cub->s_ray.mapy = s_cub->map.pos_y;
-	s_cub->s_ray.deltadistx = fabs(1 / s_cub->s_ray.raydirx);
-	s_cub->s_ray.deltadisty = fabs(1 / s_cub->s_ray.raydiry);
+	s_cub->s_ray.deltadistx = fabs(1 / s_cub->s_ray.raydirx);	// si == 0 ? 
+	s_cub->s_ray.deltadisty = fabs(1 / s_cub->s_ray.raydiry); // si == 0 ?
 	s_cub->s_ray.hit = 0;
 	calcul_step_sidedist(s_cub);
 	ft_dda(s_cub);
@@ -142,6 +142,11 @@ void	ft_dda(t_cub *s_cub)
 			s_cub->s_ray.mapy += s_cub->s_ray.stepy;
 			s_cub->s_ray.side = 1;
 		}
+		if (s_cub->s_ray.mapy < 0)
+			s_cub->s_ray.mapy = 0;
+		if (s_cub->s_ray.mapx < 0)
+			s_cub->s_ray.mapx = 0;
+		// dprintf(2, "mapx == %d\nmapy == %d\n)", s_cub->s_ray.mapx, s_cub->s_ray.mapy);
 		if (s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] == '1')
 			s_cub->s_ray.hit = 1;
 	}
@@ -175,7 +180,7 @@ void draw_line(t_cub *s_cub)
 	double	step;
 	double	texpos;
 	i = 0;
-	step = 1 / s_cub->s_ray.lineheight;
+	step = 1 * 32 / s_cub->s_ray.lineheight;
 	texpos = (s_cub->s_ray.drawstart - W_H / 2 + s_cub->s_ray.lineheight / 2) * step;
 	while (i <= s_cub->s_ray.drawstart)
 	{
@@ -185,13 +190,13 @@ void draw_line(t_cub *s_cub)
 	i = 0;
 	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
 	{
+		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, get_pixel(s_cub->texture.no_texture.data, get_textural_x(find_wall_pos(s_cub), s_cub->texture.no_texture, s_cub), (int)texpos & (32 - 1)));										
 		texpos += step;
-		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, get_pixel(s_cub->texture.no_texture.data, get_textural_x(find_wall_pos(s_cub), s_cub->texture.no_texture, s_cub), texpos));
 		i++;
 		s_cub->s_ray.drawstart++;
 	}
 	i = s_cub->s_ray.drawend;
-	while (i <= W_H)
+	while (i < W_H)
 	{
 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.floor_color);
 		i++;
@@ -199,6 +204,7 @@ void draw_line(t_cub *s_cub)
 }
 // ------- fin du rail casting ---- //
 
+// calcule de wallX;
 int find_wall_pos(t_cub *cub)
 {
 	double wallx;
@@ -216,8 +222,9 @@ int find_wall_pos(t_cub *cub)
 
 int	get_textural_x(int wallx, t_texture_img img, t_cub *cub)
 {
+	// x coordinate of the texture;
 	int	tex_x;
-	tex_x = wallx * img.width;
+	tex_x = (int)(wallx * (img.width * 2));
 	if (cub->s_ray.side == 0 && cub->s_ray.raydirx > 0)
 	{
 		tex_x = img.width - tex_x - 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/09 13:56:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:50:22 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
  * return 0 ok
  * return 1 error parsing
  **/
+
 int	parsing_main(char *filename, t_cub *cub)
 {
 	setcub(cub);
@@ -92,6 +93,7 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 	int		h;
 
 	path = ft_strtrim(line, " \n\t\v\r\f");
+	dprintf(2, "path = %s\n", path);
 	fd = open(path, O_RDONLY);
 	if (fd <= 0)
 	{
@@ -104,6 +106,7 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 	img = mlx_xpm_file_to_image(cub->link, path, &h, &w);
 	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.data.img == NULL)
 	{
+		//cub->texture.no_text = mlx_get_data_addr(img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length, &cub->s_img.endian);
 		cub->texture.no_texture.data.addr = mlx_get_data_addr(img, &cub->texture.no_texture.data.bits_per_pixel, &cub->texture.no_texture.data.line_length, &cub->texture.no_texture.data.endian);
 		cub->texture.no_texture.heigth = h;
 		cub->texture.no_texture.width = w;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/09 14:04:43 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/11 20:28:25 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	init_cub(t_cub *cub, int fd)
 void	setcub(t_cub *cub)
 {
 	cub->texture.no_texture.data.img = 0;
+	cub->texture.no_text = 0;
 	cub->texture.so_texture.data.img = 0;
 	cub->texture.we_texture.data.img = 0;
 	cub->texture.ea_texture.data.img = 0;

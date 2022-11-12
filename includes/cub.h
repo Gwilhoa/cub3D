@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/09 13:29:49 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/11 20:08:03 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ typedef struct s_texture
 	t_texture_img		ea_texture;
 	int					floor_color;
 	int					ceiling_color;
+	void				*no_text;
+	// void				*no_text;
+	// void				*no_text;
+	// void				*no_text;
+
 }	t_texture;
 
 typedef struct t_perso

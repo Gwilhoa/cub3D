@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:32:45 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/04 15:53:13 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:46:04 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,23 @@ int ft_move(t_cub *cub)
 {
 	double tmpdirx;
 	double tmpplnx;
-	
+	tmpdirx = cub->s_ray.dirx;
+	tmpplnx = cub->s_ray.planx;
 	if (cub->key.rotr == 1)
 	{
-		tmpdirx = cub->s_ray.dirx;
+		// tmpdirx = cub->s_ray.dirx;
 		cub->s_ray.dirx = cub->s_ray.dirx * cos(-cub->s_ray.t_speed) - cub->s_ray.diry * sin(-cub->s_ray.t_speed);
 		cub->s_ray.diry = tmpdirx * sin(-cub->s_ray.t_speed) + cub->s_ray.diry * cos(-cub->s_ray.t_speed);
-		tmpplnx = cub->s_ray.planx;
+		// tmpplnx = cub->s_ray.planx;
 		cub->s_ray.planx = cub->s_ray.planx * cos(-cub->s_ray.t_speed) - cub->s_ray.plany * sin(-cub->s_ray.t_speed);
 		cub->s_ray.plany = tmpplnx * sin(-cub->s_ray.t_speed) + cub->s_ray.plany * cos(-cub->s_ray.t_speed);
 	}
 	if (cub->key.rotl == 1)
 	{
-		tmpdirx = cub->s_ray.dirx;
+		// tmpdirx = cub->s_ray.dirx;
 		cub->s_ray.dirx = cub->s_ray.dirx * cos(cub->s_ray.t_speed) - cub->s_ray.diry * sin(cub->s_ray.t_speed);
 		cub->s_ray.diry = tmpdirx * sin(cub->s_ray.t_speed) + cub->s_ray.diry * cos(cub->s_ray.t_speed);
-		tmpplnx = cub->s_ray.planx;
+		// tmpplnx = cub->s_ray.planx;
 		cub->s_ray.planx = cub->s_ray.planx * cos(cub->s_ray.t_speed) - cub->s_ray.plany * sin(cub->s_ray.t_speed);
 		cub->s_ray.plany = tmpplnx * sin(cub->s_ray.t_speed) + cub->s_ray.plany * cos(cub->s_ray.t_speed);
 	}
