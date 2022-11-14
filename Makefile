@@ -6,7 +6,7 @@
 #    By: guyar <guyar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/12 18:05:09 by guyar            ###   ########.fr        #
+#    Updated: 2022/11/14 15:39:16 by guyar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ else
 	NORM_RET = "${ERASE}${RED}[NORM]${END} ${NAME}"
 endif
 
-all:        compilation ${NAME}
+all:        compilation
+	$(MAKE) $(NAME)
 
 .objects/%.o:		sources/%.c | .objects
 			${CC} ${CFLAGS} -c $< -o $@ $(DIR_INCLUDES)
@@ -73,7 +74,8 @@ fclean:	clean
 			${RM} -r ${NAME} .objects
 			printf "${ERASE}${RED}[DELETE]${END} ${NAME}\n"
 
-re:		fclean all
+re:		fclean
+	$(MAKE) all
 
 compilation :
 	make -s -C mlx
