@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sky_and_floor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:30:52 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/07 15:14:00 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:22:14 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || y < 0 || x > W_W - 1 || y > W_H - 1)
+		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
-int	get_pixel(t_data data, int x, int y)
+int	get_pixel(t_data *data, int x, int y)
 {
-	return (*(unsigned int*) data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8)));
+	int		color;
+	char	*dst;
+
+	if (x < 0)
+		x = 0;
+	if (y < 0)
+		y = 0;
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	color = *(unsigned int *)dst;
+	return (color);
+	// return (*(unsigned int*) data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8)));
 }
 
 void print_sky_floor(t_cub *cub, t_data *s_img)

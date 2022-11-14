@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/12 17:50:22 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/12 21:07:23 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,23 @@ int	parsing_texture(t_cub *cub)
 	return (0);
 }
 
+void	create_textures(t_cub *d, t_texture_img *tex, char *path)
+{
+	tex->data.img = mlx_xpm_file_to_image(d->link, path, &tex->width, &tex->heigth);
+	if (!tex->data.img)
+		return ;
+	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_per_pixel, &tex->data.line_length, \
+	&tex->data.endian);
+	tex->size = tex->data.bits_per_pixel * tex->data.line_length * tex->data.endian;
+}
+
 int	parsing_oriented(char *line, char *type, t_cub *cub)
 {
 	char	*path;
-	void	*img;
+	// void	*img;
 	int		fd;
-	int		w;
-	int		h;
+	// int		w;
+	// int		h;
 
 	path = ft_strtrim(line, " \n\t\v\r\f");
 	dprintf(2, "path = %s\n", path);
@@ -103,31 +113,35 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 		return (1);
 	}
 	close(fd);
-	img = mlx_xpm_file_to_image(cub->link, path, &h, &w);
+	// img = mlx_xpm_file_to_image(cub->link, path, &h, &w);
 	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.data.img == NULL)
 	{
+		create_textures(cub, &cub->texture.no_texture, path);
 		//cub->texture.no_text = mlx_get_data_addr(img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length, &cub->s_img.endian);
-		cub->texture.no_texture.data.addr = mlx_get_data_addr(img, &cub->texture.no_texture.data.bits_per_pixel, &cub->texture.no_texture.data.line_length, &cub->texture.no_texture.data.endian);
-		cub->texture.no_texture.heigth = h;
-		cub->texture.no_texture.width = w;
+		// cub->texture.no_texture.data.addr = mlx_get_data_addr(img, &cub->texture.no_texture.data.bits_per_pixel, &cub->texture.no_texture.data.line_length, &cub->texture.no_texture.data.endian);
+		// cub->texture.no_texture.heigth = h;
+		// cub->texture.no_texture.width = w;
 	}
 	else if (ft_strcmp(type, "SO") == 0 && cub->texture.so_texture.data.img == NULL)
 	{
-		cub->texture.so_texture.data.addr = mlx_get_data_addr(img, &cub->texture.so_texture.data.bits_per_pixel, &cub->texture.so_texture.data.line_length, &cub->texture.so_texture.data.endian);
-		cub->texture.so_texture.heigth = h;
-		cub->texture.so_texture.width = w;
+		create_textures(cub, &cub->texture.so_texture, path);
+		// cub->texture.so_texture.data.addr = mlx_get_data_addr(img, &cub->texture.so_texture.data.bits_per_pixel, &cub->texture.so_texture.data.line_length, &cub->texture.so_texture.data.endian);
+		// cub->texture.so_texture.heigth = h;
+		// cub->texture.so_texture.width = w;
 	}
 	else if (ft_strcmp(type, "WE") == 0 && cub->texture.we_texture.data.img == NULL)
-		{
-		cub->texture.we_texture.data.addr = mlx_get_data_addr(img, &cub->texture.we_texture.data.bits_per_pixel, &cub->texture.we_texture.data.line_length, &cub->texture.we_texture.data.endian);
-		cub->texture.we_texture.heigth = h;
-		cub->texture.we_texture.width = w;
+	{
+		create_textures(cub, &cub->texture.we_texture, path);
+		// cub->texture.we_texture.data.addr = mlx_get_data_addr(img, &cub->texture.we_texture.data.bits_per_pixel, &cub->texture.we_texture.data.line_length, &cub->texture.we_texture.data.endian);
+		// cub->texture.we_texture.heigth = h;
+		// cub->texture.we_texture.width = w;
 	}
 	else if (ft_strcmp(type, "EA") == 0 && cub->texture.ea_texture.data.img == NULL)
-		{
-		cub->texture.ea_texture.data.addr = mlx_get_data_addr(img, &cub->texture.ea_texture.data.bits_per_pixel, &cub->texture.ea_texture.data.line_length, &cub->texture.ea_texture.data.endian);
-		cub->texture.ea_texture.heigth = h;
-		cub->texture.ea_texture.width = w;
+	{
+		create_textures(cub, &cub->texture.ea_texture, path);
+		// cub->texture.ea_texture.data.addr = mlx_get_data_addr(img, &cub->texture.ea_texture.data.bits_per_pixel, &cub->texture.ea_texture.data.line_length, &cub->texture.ea_texture.data.endian);
+		// cub->texture.ea_texture.heigth = h;
+		// cub->texture.ea_texture.width = w;
 	}
 	else
 		return (1);

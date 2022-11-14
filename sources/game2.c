@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:04:13 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/07 14:33:02 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/12 20:38:49 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void start_game(t_cub *cub)
 
 void init_mlx(t_cub *cub)
 {
-	cub->link = mlx_init();
+	// cub->link = mlx_init();
 	cub->fen = mlx_new_window(cub->link, W_W, W_H, "cub3d");
 	cub->s_img.img = mlx_new_image(cub->link, W_W, W_H);
 	cub->s_img.addr = mlx_get_data_addr(cub->s_img.img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length,
