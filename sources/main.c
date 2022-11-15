@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/12 20:37:30 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/15 12:52:06 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	keypad_release(int keycode, t_cub *cub)
 	{
 		cub->key.key_w = 0;
 	}
-	if (keycode == EVENT_S)
+	else if (keycode == EVENT_S)
 	{
 		cub->key.key_s = 0;
 	}

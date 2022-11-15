@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:04:13 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/12 20:38:49 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/15 12:38:33 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void start_game(t_cub *cub)
 {
 	init_mlx(cub);
+	// ici, init la direction NSEW;
 	initializ_ray(cub);
 	mlx_hook(cub->fen, 2, 1L<<0, keypad_press, cub);
 	mlx_hook(cub->fen, 3, 1L<<1, keypad_release, cub);

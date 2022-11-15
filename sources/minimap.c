@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:47:44 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/02 14:24:33 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/15 13:25:02 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,34 @@
 // int print_minimap(int keycode, t_cub *cub)
 // {
 // 	s_mini minimap;
-// 	// int i; 
-// 	// int	j;
+// 	int i; 
+// 	int	j;
 	
 // 	mlx_clear_window(cub->link, cub->fen);
 // 	minimap.img = mlx_new_image(cub->link, W_W, W_H);
 // 	minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bits_per_pixel, &minimap.line_length,
 // 							&minimap.endian);
-// 	// while (y < 100)
-// 	// {
-// 	// 	while (x < W_W)
-// 	// 	{
-// 	// 		my_mlx_pixel_put(cub->s_img, x, y, 0x00FFFFFF);
-// 	// 		x++;
-// 	// 	}
-// 	// 	x = MM_START_X;
-// 	// 	y++;
-// 	// }
-// 	// y = 0;
-// 	// x = MM_START_X + 20;
+// 	while (y < 100)
+// 	{
+// 		while (x < W_W)
+// 		{
+// 			my_mlx_pixel_put(&cub->s_img, x, y, 0x00FFFFFF);
+// 			x++;
+// 		}
+// 		x = MM_START_X;
+// 		y++;
+// 	}
+// 	y = 0;
+// 	x = MM_START_X + 20;
 	
-// 	// i = 0;
-// 	// j = 0;
+// 	i = 0;
+// 	j = 0;
 
-// 	// x = MM_START_X + 20;
-// 	// y = 0;
+// 	x = MM_START_X + 20;
+// 	y = 0;
 
-// 	// i = 0;
-// 	// i = 0;
+// 	i = 0;
+// 	i = 0;
 // 	mm_putmap(cub, cub->s_img);
 // 	printf("key == %d\n", keycode);
 // 	if (keycode == 2)
@@ -67,37 +67,37 @@
 // 		next_mvmt(cub, 'y', keycode);
 // 	}
 // 	// printf("j = %f\n i = %f\n", cub->s_pos->j, cub->s_pos->i);
-// 	// mm_putperso(cub->s_img, cub->perso.pos.x, cub->perso.pos.y, 0x00009500);
-// 	// mlx_put_image_to_window(cub, cub->fen, cub->s_img->img, 0, 0);
+// 	mm_putperso(cub->s_img, cub->perso.pos.x, cub->perso.pos.y, 0x00009500);
+// 	mlx_put_image_to_window(cub, cub->fen, cub->s_img->img, 0, 0);
 // 	// printf("j = %f\n, i = %f\n", cub->s_pos->j, cub->s_pos->i);
 // 	return (0);
 // }
 
-void	mm_findperso(t_cub *cub)
-{
-	// int	ii;
-	// int	jj;
+// void	mm_findperso(t_cub *cub)
+// {
+// 	// int	ii;
+// 	// int	jj;
 
-	// ii = 0;
-	// jj = 0;
-	// while (cub->map.map[ii])
-	// {
-	// 	while (cub->map.map[ii][jj])
-	// 	{
-	// 		if (cub->map.map[ii][jj] == 'P')
-	// 		{
-	// 			cub->perso.y = ii;
-	// 			cub->perso.x = jj;
-	// 			cub->map.map[ii][jj] = '0';
-	// 		}
-	// 		jj++;
-	// 	}
-	// 	jj = 0;
-	// 	ii += 1; 
-	// }
-	(void)cub;
-	return;
-}
+// 	// ii = 0;
+// 	// jj = 0;
+// 	// while (cub->map.map[ii])
+// 	// {
+// 	// 	while (cub->map.map[ii][jj])
+// 	// 	{
+// 	// 		if (cub->map.map[ii][jj] == 'P')
+// 	// 		{
+// 	// 			cub->perso.y = ii;
+// 	// 			cub->perso.x = jj;
+// 	// 			cub->map.map[ii][jj] = '0';
+// 	// 		}
+// 	// 		jj++;
+// 	// 	}
+// 	// 	jj = 0;
+// 	// 	ii += 1; 
+// 	// }
+// 	(void)cub;
+// 	return;
+// }
 
 // //  void mm_putmap(t_cub *cub, t_data *s_img)
 // // {

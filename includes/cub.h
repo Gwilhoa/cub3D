@@ -6,7 +6,7 @@
 /*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/12 21:22:41 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:34:10 by guyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define MM_END_X 1000
 # define MM_END_Y 100
 # define PI 3.14159265358979323846
-# define EVENT_W 13	// c'etait 6 (why?) moi jai 13
+# define EVENT_W 13
 # define EVENT_A 0
 # define EVENT_S 1
 # define EVENT_D 2
@@ -102,8 +102,6 @@ typedef struct s_texture
 	int					floor_color;
 	int					ceiling_color;
 	void				*no_text;
-	// void				*no_text;
-	// void				*no_text;
 	// void				*no_text;
 
 }	t_texture;
