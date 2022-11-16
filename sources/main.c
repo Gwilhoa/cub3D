@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 12:52:06 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/15 19:44:50 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,14 @@ int	main(int argc, char const *argv[])
 	char	*file;
 	t_cub	cub;
 
-	ft_initialize_s(&cub);
-	cub.link = mlx_init();
+
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\ntoo few or not enough argument", 2);
 		exit(1);
 	}
 	file = ft_strdup(argv[1]);
-	if (!file || parsing_main(file, &cub) == 1)
+	if (!file || parsing_main(file, &cub) == false)
 	{
 		exit(1);
 	}
@@ -91,8 +90,8 @@ int	main(int argc, char const *argv[])
 		// print_sky_floor(&cub, &s_img);
 		// loop n'est pas appele dans loop;
 		//loop(10, &cub);
-		cub.map.pos_x = cub.perso.y;
-		cub.map.pos_y = cub.perso.x;
+		cub.map.pos_x = cub.perso.pos.y;
+		cub.map.pos_y = cub.perso.pos.x;
 		// dprintf(2, "cub[][] = %c", cub.map.map[5][5]);
 		// exit(EXIT_SUCCESS);
 		

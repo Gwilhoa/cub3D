@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 14:34:10 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/15 19:52:22 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define MM_END_X 1000
 # define MM_END_Y 100
 # define PI 3.14159265358979323846
-# define EVENT_W 13
+# define EVENT_W 13	// c'etait 6 (why?) moi jai 13
 # define EVENT_A 0
 # define EVENT_S 1
 # define EVENT_D 2
@@ -31,6 +31,7 @@
 # define EVENT_SHIFT 257
 # define EVENT_ROTR 124
 # define EVENT_ROTL 123
+
 typedef struct s_ray
 {
 	double	posx;
@@ -42,25 +43,25 @@ typedef struct s_ray
 	double	dirx;
 	double	diry;
 	double	camerax;
-	int		mapx;
-	int		mapy;
 	double	sidedistx;
 	double	sidedisty;
-	double	deltadistx; //length of ray from one x or y-side to next x or y-side
+	double	deltadistx;
 	double	deltadisty;
-	int		stepx; //what direction to tep in x or y direction;
+	double	time;
+	double	oldtime;
+	float	speed;
+	float	t_speed;
+	float	perpwalldist;
+	int		mapx;
+	int		mapy;
+	int		stepx;
 	int		stepy;
-	int		hit;//is there a wall hit;
-	int		side;	// was a NS or a EW wall hit;
-	float perpwalldist;
-	int lineheight;
+	int		hit;
+	int		side;
+	int		lineheight;
 	int		drawstart;
 	int		drawend;
 	int		x;
-	float	speed;
-	float	t_speed;	
-	double	time;
-	double	oldtime;
 }	t_ray;
 
 typedef struct s_data
@@ -85,38 +86,35 @@ typedef struct t_point2D
 	float		y;
 }	t_point2D;
 
-typedef struct s_texture_img
+typedef struct s_img
 {
 	t_data	data;
 	int		size;
 	int		width;
 	int		heigth;
-}	t_texture_img;
+}	t_img;
 
 typedef struct s_texture
 {
-	t_texture_img		no_texture;
-	t_texture_img		so_texture;
-	t_texture_img		we_texture;
-	t_texture_img		ea_texture;
-	int					floor_color;
-	int					ceiling_color;
-	void				*no_text;
-	// void				*no_text;
-
+	t_img	no_texture;
+	t_img	so_texture;
+	t_img	we_texture;
+	t_img	ea_texture;
+	int		floor_color;
+	int		ceiling_color;
 }	t_texture;
 
-typedef struct t_perso
+typedef struct s_player
 {
 	t_point2D	pos;
 	float		i;
 	float		j;
 	double		dirx;
-	double 		diry;
-	double		planx; 
+	double		diry;
+	double		planx;
 	double		plany;
-	// direction;
-}	t_perso;
+	char		direction;
+}	t_player;
 
 typedef struct s_map
 {
@@ -132,13 +130,6 @@ typedef struct s_map
 	double	pos_x;
 	double	pos_y;
 }			t_map;
-
-typedef struct s_player
-{
-	int		x;
-	int		y;
-	char	direction;
-}			t_player;
 
 typedef struct s_key
 {
@@ -167,12 +158,95 @@ typedef struct s_cub
 	t_texture	texture;
 }	t_cub;
 
+//--------conditions-----------//
+
+/**
+ * @param cub global instance
+ * @category conditions
+ * @brief if any texture value is set
+ **/
+int		is_textured(t_cub *cub);
+
+/**
+ * @param line char * to examinate 
+ * @category conditions
+ * @brief if any texture value is set
+ **/
+int		is_orientedline(char *line);
+
+/**
+ * @param c char to verify
+ * @category conditions
+ * @brief if the char is a direction
+ **/
+int		is_direction(char c);
+
+//-----------parsing----------//
+
+/**
+ * @param filename map's path
+ * @param cub global instance
+ * @brief function to mange a program's parsing
+ **/
+int		parsing_main(char *filename, t_cub *cub);
+
+/**
+ * @param cub global instance
+ * @param fd file descriptor of map
+ * @brief setup map
+ **/
+int		init_map(t_cub *cub, int fd);
+
+/**
+ * @param cub global instance
+ * @brief setup the textures
+ **/
+int		init_texture(t_cub *cub);
+
+/**
+ * @param cub global instance
+ * @brief setup raycasting to default memory
+ **/
+void	init_ray(t_cub *cub);
+/**
+ * @param cub global instance
+ * @brief setup raycasting to default memory
+ **/
+void	init_ray2(t_cub *cub);
+void	init_minimap(t_cub *cub);
+void	init_key(t_cub *cub);
+/**
+ * @param cub global instance
+ * @brief setup screen to default memory
+ **/
+void	init_display(t_cub *cub);
+
+/**
+ * @param cub global instance
+ * @brief launcher recursivity to a verify map
+ **/
+int		map_validation(t_cub *cub);
+int		square_verify(int x, int y, char **map);
+
+//------error------//
+
+int		map_badargument(char c);
+int		parse_nameformat(void);
+int		parse_nameformat(void);
+int		fd_unvailable(char	*filename);
+int		map_isopen(void);
+int		color_badargument(char type);
+int		color_numberformat(char c);
+int		color_unexpectedline(char *line);
+
+int		search_player(t_cub *cub);
+void	init_screen(t_cub *cub);
+
+//----------------//
+
 int		game(t_cub *cub);
-int		init_cub(t_cub *cub, int fd);
-void	print_sky_floor(t_cub *cub, t_data *s_img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		print_minimap(int keycode, t_cub *cub);
-int		init_cub(t_cub *cub, int fd);
 int		parsing_main(char *filename, t_cub *cub);
 int		parsing_fd(char *filename, t_cub *cub);
 void	mm_putperso(t_data *s_img, float j, float i, int color);
@@ -188,11 +262,6 @@ void	calcul_step_sidedist(t_cub *s_cub);
 void	do_dda(t_cub *s_cub);
 void	raytodraw(t_cub *s_cub);
 void	draw_line(t_cub *s_cub);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	initializ_ray(t_cub *s_cub);
-int		is_textured(t_cub *cub);
-int		is_orientedline(char *line);
-int		parsing_main(char *filename, t_cub *cub);
 int		parsing_fd(char *filename, t_cub *cub);
 int		init_cub(t_cub *cub, int fd);
 int		parsing_texture(t_cub *cub);
@@ -200,7 +269,6 @@ int		parsing_oriented(char *line, char *type, t_cub *cub);
 void	setcub(t_cub *cub);
 int		parsing_color(t_cub *cub, char *actual_line, char type);
 int		rgb_to_hexa(int r, int g, int b);
-int		ft_search_player(t_cub *cub);
 int		init_cub(t_cub *cub, int fd);
 void	put_line(void *link, void *fen, t_point2D init, t_point2D end, int color);
 void	put_rectangle(void *link, void *fen, t_point2D init, t_point2D end, int color);
@@ -215,18 +283,14 @@ void 	mm_findperso(t_cub *cub);
 // void	mm_putsquare(t_data *s_img, int x, int y, int color);
 // void	mm_putmap(t_cub *cub, t_data *s_img);
 // int		next_mvmt(t_cub *cub, char c, int keycode);
-int	get_pixel(t_data *data, int x, int y);
+int		get_pixel(t_data *data, int x, int y);
 void	ft_dda(t_cub *s_cub);
-void 	ft_initialize_s(t_cub *cub);
 void	start_game(t_cub *cub);
 void 	init_mlx(t_cub *cub);
 int		keypad_press(int keycode, t_cub *cub);
 int		keypad_release(int keycode, t_cub *cub);
 int		ft_move(t_cub *cub);
-void	init_display(t_cub *cub);
 int		find_wall_pos(t_cub *cub);
-int		get_textural_x(int wallx, t_texture_img img, t_cub *cub);
-int		isvalid(t_cub *cub);
-int		verif(int x, int y, char **map);
+int		get_textural_x(int wallx, t_img img, t_cub *cub);
 
 #endif

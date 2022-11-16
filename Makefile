@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: guyar <guyar@student.42.fr>                +#+  +:+       +#+         #
+#    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/14 15:39:16 by guyar            ###   ########.fr        #
+#    Updated: 2022/11/15 19:36:30 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ UNDER		=	\033[4m
 SUR			=	\033[7m
 END			=	\033[0m
 
-PRSG_SRCS =  condition_function.c initialisation.c parsing_main.c player_initialisation.c texture_color.c verif_map.c
-MAIN_SRCS =  main.c put_line.c put_rectangle.c sky_and_floor.c minimap.c game.c game2.c initialize.c move.c 
+PRSG_SRCS =  condition_function.c initialization.c initialization2.c parsing_main.c error.c texture_color.c verif_map.c
+MAIN_SRCS =  game.c game2.c main.c minimap.c move.c sky_and_floor.c
 LST_SRCS = $(MAIN_SRCS) ${addprefix parsing/,$(PRSG_SRCS)}
 
 LST_OBJS = ${LST_SRCS:.c=.o}

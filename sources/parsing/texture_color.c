@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:22:16 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/04 13:15:01 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:21:05 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,18 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	int		r;
 	int		s;
 
-	i = 0;
+	i = true;
 	r = 0;
 	split = ft_split(actual_line, ',');
 	if (ft_matrix_size((const char **)split) != 3)
-	{
-		ft_putstr_fd("error parsing color on ", 2);
-		ft_putchar_fd(type, 2);
-		ft_putchar_fd('\n', 2);
-		i = 1;
-	}
-	while (i != 1 && split[r] != 0)
+		i = color_badargument(type);
+	while (i != false && split[r] != 0)
 	{
 		s = 0;
 		while (split[r][s])
 		{
-			if (i != 1 && ft_isdigit(split[r][s]) == 0)
-			{
-				ft_putstr_fd("error number format exception '", 2);
-				ft_putchar_fd(split[r][s], 2);
-				ft_putstr_fd("' is not a number", 2);
-				ft_putchar_fd('\n', 2);
-				i = 1;
-			}
+			if (i != false && ft_isdigit(split[r][s]) == 0)
+				i = color_numberformat(split[r][s]);
 			s++;
 		}
 		r++;

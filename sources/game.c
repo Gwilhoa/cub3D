@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guyar <guyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 12:48:27 by guyar            ###   ########.fr       */
+/*   Updated: 2022/11/16 13:46:14 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,6 @@ int	loop(t_cub *cub)
 	}
 	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
 	return (0);
-}
-
-void init_display(t_cub *cub)
-{
-	// cub->s_img.img = NULL;
-	// cub->s_img.addr = NULL;
-	// cub->s_img.line_length = 0;
-	// cub->s_img.endian = 0;
-	// cub->s_img.img = mlx_new_image(cub->link, W_W, W_H);
-	// cub->s_img.addr = mlx_get_data_addr(cub->s_img.img, &cub->s_img.bits_per_pixel, &cub->s_img.line_length,
-	// 						&cub->s_img.endian);
-	cub->s_ray.camerax = 0;
-	cub->s_ray.stepx = 0;
-	cub->s_ray.stepy = 0;
-	cub->s_ray.hit = 0;
-	cub->s_ray.side = 0;
-	cub->s_ray.perpwalldist = 0;
-	cub->s_ray.lineheight = 0;
-	cub->s_ray.drawstart = 0;
-	cub->s_ray.drawend = 0;
-	cub->s_ray.posx = (double)(cub->map.pos_x);
-	cub->s_ray.posy = (double)(cub->map.pos_y);
 }
 
 void	initializ_ray(t_cub *cub)
@@ -197,33 +175,6 @@ void	raytodraw(t_cub *s_cub)
 		s_cub->s_ray.drawend = W_H - 1;
 }
 
-// void draw_line(t_cub *s_cub)
-// {
-// 	int		i;
-// 	double	step;
-// 	double	texpos;
-// 	i = 0;
-// 	step = 1 * 32 / s_cub->s_ray.lineheight;
-// 	texpos = (s_cub->s_ray.drawstart - W_H * 0.5 + s_cub->s_ray.lineheight * 0.5) * step;
-// 	while (i <= s_cub->s_ray.drawstart)
-// 	{
-// 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.ceiling_color);
-// 		i++;
-// 	}
-// 	while (s_cub->s_ray.drawstart <= s_cub->s_ray.drawend)
-// 	{
-// 		texpos += step;
-// 		s_cub->s_ray.drawstart++;
-// 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, s_cub->s_ray.drawstart, get_pixel(s_cub->texture.no_texture.data, get_textural_x(find_wall_pos(s_cub), s_cub->texture.no_texture, s_cub), (int)texpos & (32 - 1)));										
-// 	}
-// 	i = s_cub->s_ray.drawend;
-// 	while (i < W_H)
-// 	{
-// 		my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, i, s_cub->texture.floor_color);
-// 		i++;
-// 	}
-// }
-
 void draw_line(t_cub *s_cub)		// draw wall / put text on wall;
 {
     //int    texNum = s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] - 1;
@@ -239,51 +190,43 @@ void draw_line(t_cub *s_cub)		// draw wall / put text on wall;
         wall_x = s_cub->s_ray.posy + s_cub->s_ray.perpwalldist * s_cub->s_ray.raydiry; // pb ici;
     else
         wall_x = s_cub->s_ray.posx + s_cub->s_ray.perpwalldist * s_cub->s_ray.raydirx;
-    wall_x -= floor(wall_x);
-    tex_x = (int)(wall_x * (double)s_cub->texture.no_texture.width);
+	wall_x -= floor(wall_x);
+	tex_x = (int)(wall_x * (double)s_cub->texture.no_texture.width);
     if (s_cub->s_ray.side == 0 && s_cub->s_ray.raydirx > 0)
-        tex_x = s_cub->texture.no_texture.width - tex_x - 1;
-    if (s_cub->s_ray.side == 1 && s_cub->s_ray.raydiry < 0)
-        tex_x = s_cub->texture.no_texture.width - tex_x - 1;
-    step = 1.0 * s_cub->texture.no_texture.width / s_cub->s_ray.lineheight;
-    texpos = ((s_cub->s_ray.drawstart - W_H * 0.5 + s_cub->s_ray.lineheight * 0.5) * step);
-    y = s_cub->s_ray.drawstart;
-	
-    // while (y < s_cub->s_ray.drawstart)
-    // {
-    //     my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, s_cub->texture.ceiling_color);
-    //     y++;
-    // }
+		tex_x = s_cub->texture.no_texture.width - tex_x - 1;
+	if (s_cub->s_ray.side == 1 && s_cub->s_ray.raydiry < 0)
+		tex_x = s_cub->texture.no_texture.width - tex_x - 1;
+	step	=	1.0 * s_cub->texture.no_texture.width / s_cub->s_ray.lineheight;
+    texpos	= ((s_cub->s_ray.drawstart - W_H * 0.5 + s_cub->s_ray.lineheight * 0.5) * step);
+	y = s_cub->s_ray.drawstart;
     while (y < s_cub->s_ray.drawend)
-    {
-        tex_y = (int) texpos & (s_cub->texture.no_texture.width - 1);
-        texpos += step;
+	{
+		tex_y = (int) texpos & (s_cub->texture.no_texture.width - 1);
+		texpos += step;
 		if (s_cub->s_ray.side == 0 && (s_cub->s_ray.mapx < s_cub->s_ray.posx))
 		{
 			color = get_pixel(&s_cub->texture.no_texture.data, tex_x, tex_y);
+			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, color);
+		}
+		else if (s_cub->s_ray.side == 0 && (s_cub->s_ray.mapx > s_cub->s_ray.posx))
+		{
+			color = get_pixel(&s_cub->texture.so_texture.data, tex_x, tex_y);
+        	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, color);
+		}
+		else if (s_cub->s_ray.side == 1 && (s_cub->s_ray.mapx > s_cub->s_ray.posx))
+		{
+			color = get_pixel(&s_cub->texture.we_texture.data, tex_x, tex_y);
+        	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, color);
+		}
+		else if (s_cub->s_ray.side == 1 && (s_cub->s_ray.mapx < s_cub->s_ray.posx))
+		{
+			color = get_pixel(&s_cub->texture.ea_texture.data, tex_x, tex_y);
         	my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, color);
 		}
 		else
 			my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, 0xFFFFFF);
 		y++;
-    }
-	// int i = 0;
-    // int j = 0;
-    // while (i <= 32)
-    // {
-    //     j = 0;
-    //     while (j <= 32)
-    //     {
-    //         my_mlx_pixel_put(&s_cub->s_img, i+64, j+64, get_pixel(&s_cub->texture.no_texture.data, i, j));
-    //         j++;
-    //     }
-    //     i++;
-    // }
-    // while (y < W_H)
-    // {
-    //     my_mlx_pixel_put(&s_cub->s_img, s_cub->s_ray.x, y, s_cub->texture.floor_color);
-    //     y++;
-    // }
+	}
 }
 
 // ------- fin du rail casting ---- //
@@ -304,10 +247,10 @@ int find_wall_pos(t_cub *cub)
 	return (wallx);
 }
 
-int	get_textural_x(int wallx, t_texture_img img, t_cub *cub)
+int	get_textural_x(int wallx, t_img img, t_cub *cub)
 {
-	// x coordinate of the texture;
 	int	tex_x;
+
 	tex_x = (int)(wallx * (img.width * 2));
 	if (cub->s_ray.side == 0 && cub->s_ray.raydirx > 0)
 	{

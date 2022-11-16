@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:01:49 by gchatain          #+#    #+#             */
-/*   Updated: 2022/09/13 15:13:32 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/11/15 19:35:06 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ typedef struct s_list
 	int				content;
 	struct s_list	*next;
 }	t_list;
+
+typedef enum s_bool
+{
+	false = 0,
+	true = 1
+}	t_bool;
+
 # define STRING char *
 
 void	ft_delchar(char **str, int index);
