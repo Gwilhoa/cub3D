@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 19:52:22 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:54:48 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,8 @@ typedef struct s_key
 	int	key_s;
 	int	rotr;
 	int	rotl;
-
+	int	key_a;
+	int	key_d;
 }	t_key;
 
 typedef struct s_cub

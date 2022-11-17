@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:52:47 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 19:51:34 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:48:11 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	init_key(t_cub *cub)
 	cub->oldtime = 0;
 	cub->key.key_w = 0;
 	cub->key.key_s = 0;
+	cub->key.key_a = 0;
+	cub->key.key_d = 0;
 	cub->key.rotr = 0;
 	cub->key.rotl = 0;
 }
