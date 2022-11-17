@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 18:45:28 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:32:09 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	parsing_main(char *filename, t_cub *cub)
 	if (fd <= 0)
 		return (fd_unvailable(filename));
 	init_mlx(cub);
+	cub->perso.pos.x = -1;
 	if (init_map(cub, fd) == false || init_texture(cub) == false
 		|| search_player(cub) == false)
 		return (false);
@@ -67,7 +68,7 @@ int	create_textures(t_cub *d, t_img *tex, char *path)
 	tex->data.img = mlx_xpm_file_to_image
 		(d->link, path, &tex->width, &tex->heigth);
 	if (!tex->data.img)
-		return (false);
+		return (corrupt_texture(path));
 	tex->data.addr = mlx_get_data_addr
 		(tex->data.img, &tex->data.bits_per_pixel, &tex->data.line_length, \
 	&tex->data.endian);

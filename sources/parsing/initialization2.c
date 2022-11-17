@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:52:47 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 11:48:11 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:27:25 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	search_player(t_cub *cub)
 	int	j;
 
 	i = 0;
-	cub->perso.pos.x = -1;
 	while (cub->map.map[i] != 0)
 	{
 		j = 0;

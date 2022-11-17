@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:37 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/16 16:00:55 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:53:22 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	loop(t_cub *cub)
 		calcule_ray(cub);
 		cub->s_ray.x += 1;
 	}
+	putminimap(cub);
 	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
 	return (0);
 }
@@ -64,7 +65,7 @@ void	calcule_ray(t_cub *s_cub)
 	draw_line(s_cub);
 }
 
-void	calcul_step_sidedist(t_cub *s_cub) //raystep
+void	calcul_step_sidedist(t_cub *s_cub)
 {
 	if (s_cub->s_ray.raydirx < 0)
 	{
@@ -112,7 +113,6 @@ void	ft_dda(t_cub *s_cub)
 			s_cub->s_ray.mapy = 0;
 		if (s_cub->s_ray.mapx < 0)
 			s_cub->s_ray.mapx = 0;
-		// dprintf(2, "mapx == %d\nmapy == %d\n)", s_cub->s_ray.mapx, s_cub->s_ray.mapy);
 		if (s_cub->map.map[s_cub->s_ray.mapx][s_cub->s_ray.mapy] == '1')
 			s_cub->s_ray.hit = 1;
 	}

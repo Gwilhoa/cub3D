@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 11:49:57 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:19:50 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	square_verify(int x, int y, char **map)
 	{
 		return (0);
 	}
-	if (map[x][y] == '0' || map[x][y] == 'N')
+	if (map[x][y] == '0' || is_direction(map[x][y]) == true)
 	{
 		map[x][y] = '-';
 		return (square_verify(x + 1, y, map) + square_verify(x - 1, y, map)

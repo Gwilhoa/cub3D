@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/16 17:56:16 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 19:42:54 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	keypad_press(int keycode, t_cub *cub)
 	}
 	else if (keycode == EVENT_D)
 	{
-		cub->key.key_s = 1;
+		cub->key.key_d = 1;
 	}
 	else if (keycode == EVENT_A)
 	{
-		cub->key.key_s = 1;
+		cub->key.key_a = 1;
 	}
 	else if (keycode == EVENT_ROTR)
 	{
@@ -70,11 +70,11 @@ int	keypad_release(int keycode, t_cub *cub)
 	}
 	else if (keycode == EVENT_D)
 	{
-		cub->key.key_s = 0;
+		cub->key.key_d = 0;
 	}
 	else if (keycode == EVENT_A)
 	{
-		cub->key.key_s = 0;
+		cub->key.key_a = 0;
 	}
 	return (0);
 }
@@ -98,50 +98,9 @@ int	main(int argc, char const *argv[])
 	}
 	else
 	{
-		//faire une fonction avec comme adresse (suite(&cub))
-		// ->it direction of s_ray;
-		// ->_disp_matrix(cub.map);
-		// parsing_main((char *)argv[1], &cub);
-		// init_map(cub);
-		// print_sky_floor(&cub, &s_img);
-		// loop n'est pas appele dans loop;
-		//loop(10, &cub);
 		cub.map.pos_x = cub.perso.pos.y;
 		cub.map.pos_y = cub.perso.pos.x;
-		// dprintf(2, "cub[][] = %c", cub.map.map[5][5]);
-		// exit(EXIT_SUCCESS);
-		
-		// printf("entree cub_map = pos_y = %f pos_x = %f\n", cub.map.pos_y, cub.map.pos_x);
-		// mlx_hook(cub.fen, 2, 1L<<0, keypad_hook, &cub);
 		start_game(&cub);
-		// mlx_loop_hook(cub.link, loop, &cub);
-		// mlx_loop(cub.link);
-		// mlx_hook(cub.fen, 2, 1L<<0, loop, &cub);
-		// il y a mlx_loop_hook qui va looper toutes les fonctions; ->affichage, calcule du s_ray casting, etc.. tout dedans les touches dedans aussi;
-		// mlx_hook(cub.fen, 3, 1L<<0, , &cub); // pitin;
-		// mlx_key_hook(cub.fen, ft_print_movement, &struc);		// ICI
-		// mlx_key_hook(cub.fen, &print_minimap, &cub);
-
-		// t_point2D init;
-		// t_point2D end;
-		// init.x = 900;
-		// init.y = 250;
-		// end.x = 0;
-		// end.y = 250;
-		
-		// cub.link = mlx_init();
-		// cub.fen = mlx_new_window(cub.link, W_W, W_H, "cub3d");
-		// cub.s_img.img = mlx_new_image(cub.link, W_W, W_H);
-		// cub.s_img.addr = mlx_get_data_addr(cub.s_img.img, &cub.s_img.bits_per_pixel, &cub.s_img.line_length,
-		// 					&cub.s_img.endian);
-		
-		// my_mlx_pixel_put(&cub.s_img, 50, 50, GREEN);
-		// mlx_put_image_to_window(cub.link, cub.fen, cub.s_img.img, 0, 0);
-		// mlx_loop(cub.link);
-
-		// put_line(cub.link, cub.fen, init, end, 0x00FF00);
-		//put_rectangle(cub.link, cub.fen, init, end, 0x0000FF);
 	}
-	
 	return (argc);
 }

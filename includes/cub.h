@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/16 17:54:48 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:58:35 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,10 +239,16 @@ int		map_isopen(void);
 int		color_badargument(char type);
 int		color_numberformat(char c);
 int		color_unexpectedline(char *line);
-
+int		empty_map(void);
+int		corrupt_texture(char *path);
+//--------------------//
 int		search_player(t_cub *cub);
 void	init_screen(t_cub *cub);
-
+void	init_posplayer(t_cub *cub);
+void	putminimap(t_cub *cub);
+void	putperso(t_cub *cub);
+void printminimap(t_cub *cub);
+void    putsquare(t_data *s_img, int x, int y, int color);
 //----------------//
 
 int		game(t_cub *cub);
