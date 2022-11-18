@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 15:06:27 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:24:11 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,78 +159,13 @@ typedef struct s_cub
 	t_texture	texture;
 }	t_cub;
 
-//--------conditions-----------//
-
-/**
- * @param cub global instance
- * @category conditions
- * @brief if any texture value is set
- **/
 int		is_textured(t_cub *cub);
-
-/**
- * @param line char * to examinate 
- * @category conditions
- * @brief if any texture value is set
- **/
 int		is_orientedline(char *line);
-
-/**
- * @param c char to verify
- * @category conditions
- * @brief if the char is a direction
- **/
 int		is_direction(char c);
-
-//-----------parsing----------//
-
-/**
- * @param filename map's path
- * @param cub global instance
- * @brief function to mange a program's parsing
- **/
 int		parsing_main(char *filename, t_cub *cub);
-
-/**
- * @param cub global instance
- * @param fd file descriptor of map
- * @brief setup map
- **/
 int		init_map(t_cub *cub, int fd);
-
-/**
- * @param cub global instance
- * @brief setup the textures
- **/
-int		init_texture(t_cub *cub);
-
-/**
- * @param cub global instance
- * @brief setup raycasting to default memory
- **/
-void	init_ray(t_cub *cub);
-/**
- * @param cub global instance
- * @brief setup raycasting to default memory
- **/
-void	init_ray2(t_cub *cub);
-void	init_minimap(t_cub *cub);
-void	init_key(t_cub *cub);
-/**
- * @param cub global instance
- * @brief setup screen to default memory
- **/
-void	init_display(t_cub *cub);
-
-/**
- * @param cub global instance
- * @brief launcher recursivity to a verify map
- **/
 int		map_validation(t_cub *cub);
 int		square_verify(int x, int y, char **map);
-
-//------error------//
-
 int		map_badargument(char c);
 int		parse_nameformat(void);
 int		parse_nameformat(void);
@@ -241,54 +176,64 @@ int		color_numberformat(char c);
 int		color_unexpectedline(char *line);
 int		empty_map(void);
 int		corrupt_texture(char *path);
-//--------------------//
-int		search_player(t_cub *cub);
-void	init_screen(t_cub *cub);
-void	init_posplayer(t_cub *cub);
-void	putminimap(t_cub *cub);
-void	putperso(t_cub *cub);
-void printminimap(t_cub *cub);
-void    putsquare(t_data *s_img, int x, int y, int color);
-//----------------//
-
 int		game(t_cub *cub);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		print_minimap(int keycode, t_cub *cub);
 int		parsing_main(char *filename, t_cub *cub);
 int		parsing_fd(char *filename, t_cub *cub);
 int		next_mvmt(t_cub *cub, char c, int keycode);
-int		loop(t_cub *s_cub);
-void	calcule_ray(t_cub *cub);
-void	calcul_step_sidedist(t_cub *s_cub);
-void	do_dda(t_cub *s_cub);
-void	raytodraw(t_cub *s_cub);
-void	draw_line(t_cub *s_cub);
 int		parsing_fd(char *filename, t_cub *cub);
 int		init_cub(t_cub *cub, int fd);
 int		parsing_texture(t_cub *cub);
 int		parsing_oriented(char *line, char *type, t_cub *cub);
-void	setcub(t_cub *cub);
 int		parsing_color(t_cub *cub, char *actual_line, char type);
 int		rgb_to_hexa(int r, int g, int b);
 int		init_cub(t_cub *cub, int fd);
-void	print_sky_floor(t_cub *cub, t_data *s_img);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		print_minimap(int keycode, t_cub *cub);
 int		parsing_main(char *filename, t_cub *cub);
-int		get_pixel(t_data *data, int x, int y);
-void	ft_dda(t_cub *s_cub);
-void	start_game(t_cub *cub);
-void	init_mlx(t_cub *cub);
 int		keypad_press(int keycode, t_cub *cub);
 int		keypad_release(int keycode, t_cub *cub);
 int		ft_move(t_cub *cub);
 int		find_wall_pos(t_cub *cub);
 int		get_textural_x(int wallx, t_img img, t_cub *cub);
 int		isvalid_color(char *color);
+int		my_close(t_cub *cub);
+int		get_pixel(t_data *data, int x, int y);
+int		loop(t_cub *s_cub);
+int		search_player(t_cub *cub);
+int		init_texture(t_cub *cub);
+void	init_ray(t_cub *cub);
+void	init_ray2(t_cub *cub);
+void	init_minimap(t_cub *cub);
+void	init_key(t_cub *cub);
+void	init_display(t_cub *cub);
+void	init_screen(t_cub *cub);
+void	init_posplayer(t_cub *cub);
+void	putminimap(t_cub *cub);
+void	putperso(t_cub *cub);
+void	printminimap(t_cub *cub);
+void	putsquare(t_data *s_img, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	calcule_ray(t_cub *cub);
+void	calcul_step_sidedist(t_cub *s_cub);
+void	do_dda(t_cub *s_cub);
+void	raytodraw(t_cub *s_cub);
+void	draw_line(t_cub *s_cub);
+void	setcub(t_cub *cub);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	print_sky_floor(t_cub *cub, t_data *s_img);
+void	ft_dda(t_cub *s_cub);
+void	start_game(t_cub *cub);
+void	init_mlx(t_cub *cub);
 void	ray_manager(t_cub *cub);
 void	draw_vline(t_cub *cub);
 void	movement_key(t_cub *cub);
 void	rotate_key(double tmpdirx, double tmpplnx, t_cub *cub);
-int		my_close(t_cub *cub);
+void	key_hook_w(t_cub *cub);
+void	key_hook_a(t_cub *cub);
+void	key_hook_s(t_cub *cub);
+void	key_hook_d(t_cub *cub);
+void	draw_line(t_cub *cub);
+double	get_wallx(t_cub *cub);
+t_img	getside_img(t_cub *cub);
 
 #endif

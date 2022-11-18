@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:32:45 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/18 15:06:37 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:26:38 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,13 @@ int	ft_move(t_cub *cub)
 void	movement_key(t_cub *cub)
 {
 	if (cub->key.key_w == 1)
-	{
-		if (cub->map.map[(int)(cub->map.pos_x + (cub->ray.dirx * cub->ray.speed * 2))][(int)cub->map.pos_y] == '0')
-			cub->map.pos_x += cub->ray.dirx * cub->ray.speed;
-		if(cub->map.map[(int)(cub->map.pos_x)][(int)(cub->map.pos_y + (cub->ray.raydiry * cub->ray.speed * 2))] == '0')
-			cub->map.pos_y += cub->ray.diry * cub->ray.speed;
-	}
+		key_hook_w(cub);
 	if (cub->key.key_s == 1)
-	{
-		if (cub->map.map[(int)(cub->map.pos_x - (cub->ray.dirx * cub->ray.speed * 2))][(int)cub->map.pos_y] == '0')
-			cub->map.pos_x -= cub->ray.dirx * cub->ray.speed;
-		if(cub->map.map[(int)(cub->map.pos_x)][(int)(cub->map.pos_y - (cub->ray.raydiry * cub->ray.speed * 2))] == '0')
-			cub->map.pos_y -= cub->ray.diry * cub->ray.speed;
-	}
+		key_hook_s(cub);
 	if (cub->key.key_d == 1)
-	{
-		if (cub->map.map[(int)(cub->map.pos_x + cub->ray.diry
-				* (cub->ray.speed * 2))][(int)cub->map.pos_y] == '0')
-			cub->map.pos_x += cub->ray.diry * cub->ray.speed;
-		if (cub->map.map[(int)cub->ray.posx][(int)(cub->ray.posy
-			- cub->ray.dirx * (cub->ray.speed * 2))] == '0')
-			cub->map.pos_y -= cub->ray.dirx * cub->ray.speed;
-	}
+		key_hook_d(cub);
 	if (cub->key.key_a == 1)
-	{
-		if (cub->map.map[(int)(cub->map.pos_x - cub->ray.diry
-				* (cub->ray.speed * 2))][(int)cub->map.pos_y] == '0')
-			cub->map.pos_x -= cub->ray.diry * cub->ray.speed;
-		if (cub->map.map[(int)cub->map.pos_x][(int)(cub->map.pos_y
-			+ cub->ray.dirx * (cub->ray.speed * 2))] == '0')
-			cub->map.pos_y += cub->ray.dirx * cub->ray.speed;
-	}
+		key_hook_a(cub);
 }
 
 void	rotate_key(double tmpdirx, double tmpplnx, t_cub *cub)

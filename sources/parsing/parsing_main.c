@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 14:52:58 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:18:17 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 	else
 		r = false;
 	free(type);
+	free(path);
 	return (r);
 }
 

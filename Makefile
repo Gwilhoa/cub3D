@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/18 14:53:18 by gchatain         ###   ########.fr        #
+#    Updated: 2022/11/18 16:32:44 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ SUR			=	\033[7m
 END			=	\033[0m
 
 PRSG_SRCS =  condition_function.c initialization.c initialization2.c parsing_main.c error.c texture_color.c verif_map.c error2.c
-MAIN_SRCS =   main.c minimap.c move.c pixel_manager.c raycasting.c display_rendered.c
-LST_SRCS = $(MAIN_SRCS) ${addprefix parsing/,$(PRSG_SRCS)}
+MAIN_SRCS =   main.c minimap.c move.c pixel_manager.c raycasting.c display_rendered.c keyhook.c
+LST_SRCS = ${addprefix game/,$(MAIN_SRCS)} ${addprefix parsing/,$(PRSG_SRCS)}
 
 LST_OBJS = ${LST_SRCS:.c=.o}
 LIBRARY = libft/libft.a mlx/libmlx.a
@@ -83,6 +83,7 @@ compilation :
 
 .objects:
 			mkdir -p .objects
+			mkdir -p .objects/game
 			mkdir -p .objects/parsing
 .PHONY:	all clean fclean re
 
