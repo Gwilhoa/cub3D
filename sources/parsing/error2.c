@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:32:19 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 21:22:41 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:50:52 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	corrupt_texture(char *path)
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(" Corrupted", 2);
 	return (false);
-
 }
 
 int	color_numberformat(char c)

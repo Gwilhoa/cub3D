@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:32:45 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/18 02:08:47 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:06:37 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	ft_move(t_cub *cub)
 	tmpdirx = cub->ray.dirx;
 	tmpplnx = cub->ray.planx;
 	rotate_key(tmpdirx, tmpplnx, cub);
-	movement_key(tmpdirx, tmpplnx, cub);
+	movement_key(cub);
 	return (0);
 }
 
-void	movement_key(double tmpdirx, double tmpplnx, t_cub *cub)
+void	movement_key(t_cub *cub)
 {
 	if (cub->key.key_w == 1)
 	{
@@ -59,7 +59,6 @@ void	movement_key(double tmpdirx, double tmpplnx, t_cub *cub)
 			cub->map.pos_y += cub->ray.dirx * cub->ray.speed;
 	}
 }
-
 
 void	rotate_key(double tmpdirx, double tmpplnx, t_cub *cub)
 {

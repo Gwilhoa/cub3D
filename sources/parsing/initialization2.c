@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:52:47 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 20:27:25 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:51:40 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,17 @@ void	init_minimap(t_cub *cub)
 	cub->map.pos_y = cub->perso.pos.x + 0.2;
 }
 
-int	search_player(t_cub *cub)
+void	init_display(t_cub *cub)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (cub->map.map[i] != 0)
-	{
-		j = 0;
-		while (cub->map.map[i][j] != 0)
-		{
-			if (is_direction(cub->map.map[i][j]) && cub->perso.pos.x == -1)
-			{
-				cub->perso.direction = cub->map.map[i][j];
-				cub->perso.pos.y = i;
-				cub->perso.pos.x = j;
-			}
-			else if (is_direction(cub->map.map[i][j]) || (cub->map.map[i][j]
-			!= '0' && cub->map.map[i][j] != '1' && cub->map.map[i][j] != ' '))
-				return (map_badargument(cub->map.map[i][j]));
-			j++;
-		}
-		i++;
-	}
-	if (map_validation(cub) == false)
-		return (map_isopen());
-	return (true);
+	cub->ray.camerax = 0;
+	cub->ray.stepx = 0;
+	cub->ray.stepy = 0;
+	cub->ray.hit = 0;
+	cub->ray.side = 0;
+	cub->ray.perpwalldist = 0;
+	cub->ray.lineheight = 0;
+	cub->ray.drawstart = 0;
+	cub->ray.drawend = 0;
+	cub->ray.posx = (double)(cub->map.pos_x);
+	cub->ray.posy = (double)(cub->map.pos_y);
 }

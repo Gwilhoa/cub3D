@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 01:36:14 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:51:20 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,19 +101,4 @@ void	init_posplayer(t_cub *cub)
 		cub->ray.diry = 1;
 		cub->ray.planx = 0.66;
 	}
-}
-
-void	init_display(t_cub *cub)
-{
-	cub->ray.camerax = 0;
-	cub->ray.stepx = 0;
-	cub->ray.stepy = 0;
-	cub->ray.hit = 0;
-	cub->ray.side = 0;
-	cub->ray.perpwalldist = 0;
-	cub->ray.lineheight = 0;
-	cub->ray.drawstart = 0;
-	cub->ray.drawend = 0;
-	cub->ray.posx = (double)(cub->map.pos_x);
-	cub->ray.posy = (double)(cub->map.pos_y);
 }
