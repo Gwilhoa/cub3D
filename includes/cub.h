@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 16:24:11 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:41:12 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,6 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }	t_data;
-
-typedef struct t_point3D
-{
-	float	x;
-	float	y;
-	float	z;
-}	t_point3D;
 
 typedef struct t_point2D
 {

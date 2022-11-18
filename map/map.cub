@@ -1,7 +1,7 @@
 NO ./sprites/obsidian.xpm
 SO ./sprites/quartz.xpm
 WE ./sprites/endstone.xpm
-EA ./sprites/emerald.xpm
+EA ./sprites/test.xpm
 
 
 C 65,200,250
