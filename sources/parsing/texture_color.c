@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:22:16 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/15 18:21:05 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:20:01 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	char	**split;
 	int		i;
 	int		r;
-	int		s;
 
 	i = true;
 	r = 0;
@@ -34,13 +33,7 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 		i = color_badargument(type);
 	while (i != false && split[r] != 0)
 	{
-		s = 0;
-		while (split[r][s])
-		{
-			if (i != false && ft_isdigit(split[r][s]) == 0)
-				i = color_numberformat(split[r][s]);
-			s++;
-		}
+		i = isvalid_color(split[r]);
 		r++;
 	}
 	if (type == 'F')
@@ -53,4 +46,18 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	ft_free_matrix(split);
 	free(split);
 	return (i);
+}
+
+int	isvalid_color(char *color)
+{
+	char	*temp;
+	int		ret;
+
+	ret = false;
+	temp = ft_itoa(ft_atoi(color));
+	if (ft_strcmp(color, temp) == 0 && ft_atoi(color) >= 0
+		&& ft_atoi(color) <= 255)
+		ret = true;
+	free(temp);
+	return (ret);
 }

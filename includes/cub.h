@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 21:58:35 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:36:14 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef struct s_cub
 	int			keybol;
 	t_map		map;
 	t_player	perso;
-	t_ray		s_ray;
+	t_ray		ray;
 	t_key		key;
 	double		time;
 	double		oldtime;
@@ -293,11 +293,14 @@ void 	mm_findperso(t_cub *cub);
 int		get_pixel(t_data *data, int x, int y);
 void	ft_dda(t_cub *s_cub);
 void	start_game(t_cub *cub);
-void 	init_mlx(t_cub *cub);
+void	init_mlx(t_cub *cub);
 int		keypad_press(int keycode, t_cub *cub);
 int		keypad_release(int keycode, t_cub *cub);
 int		ft_move(t_cub *cub);
 int		find_wall_pos(t_cub *cub);
 int		get_textural_x(int wallx, t_img img, t_cub *cub);
+int		isvalid_color(char *color);
+void	ray_manager(t_cub *cub);
+void	draw_vline(t_cub *cub);
 
 #endif

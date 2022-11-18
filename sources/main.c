@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 19:42:54 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:38:21 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,72 +19,25 @@ int	my_close(t_cub *cub)
 	return (1);
 }
 
-int	keypad_press(int keycode, t_cub *cub)
+int	loop(t_cub *cub)
 {
-	if (keycode == EVENT_ESC)
-		my_close(cub);
-	else if (keycode == EVENT_W)
+	ft_move(cub);
+	init_display(cub);
+	cub->ray.x = 0;
+	while (cub->ray.x < W_W)
 	{
-		cub->key.key_w = 1;
+		ray_manager(cub);
+		cub->ray.x += 1;
 	}
-	else if (keycode == EVENT_S)
-	{
-		cub->key.key_s = 1;
-	}
-	else if (keycode == EVENT_D)
-	{
-		cub->key.key_d = 1;
-	}
-	else if (keycode == EVENT_A)
-	{
-		cub->key.key_a = 1;
-	}
-	else if (keycode == EVENT_ROTR)
-	{
-		cub->key.rotr = 1;
-	}
-	else if (keycode == EVENT_ROTL)
-	{
-		cub->key.rotl = 1;
-	}
-	return (1);
-}
-
-int	keypad_release(int keycode, t_cub *cub)
-{
-	if (keycode == EVENT_W)
-	{
-		cub->key.key_w = 0;
-	}
-	else if (keycode == EVENT_S)
-	{
-		cub->key.key_s = 0;
-	}
-	else if (keycode == EVENT_ROTR)
-	{
-		cub->key.rotr = 0;
-	}
-	else if (keycode == EVENT_ROTL)
-	{
-		cub->key.rotl = 0;
-	}
-	else if (keycode == EVENT_D)
-	{
-		cub->key.key_d = 0;
-	}
-	else if (keycode == EVENT_A)
-	{
-		cub->key.key_a = 0;
-	}
+	putminimap(cub);
+	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
 	return (0);
 }
-
 
 int	main(int argc, char const *argv[])
 {
 	char	*file;
 	t_cub	cub;
-
 
 	if (argc != 2)
 	{
@@ -103,4 +56,12 @@ int	main(int argc, char const *argv[])
 		start_game(&cub);
 	}
 	return (argc);
+}
+
+void	start_game(t_cub *cub)
+{
+	mlx_hook(cub->fen, 2, 1L << 0, keypad_press, cub);
+	mlx_hook(cub->fen, 3, 1L << 1, keypad_release, cub);
+	mlx_loop_hook(cub->link, loop, cub);
+	mlx_loop(cub->link);
 }
