@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:50:46 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 01:36:14 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 12:27:19 by gchatain         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	ft_dda(t_cub *s_cub)
 			s_cub->ray.mapy = 0;
 		if (s_cub->ray.mapx < 0)
 			s_cub->ray.mapx = 0;
-		if (s_cub->map.map[s_cub->ray.mapx][s_cub->ray.mapy] == '1')
+		if (s_cub->map.map[s_cub->ray.mapx][s_cub->ray.mapy] == '1'
+			|| s_cub->map.map[s_cub->ray.mapx][s_cub->ray.mapy] == 0)
 			s_cub->ray.hit = 1;
 	}
 }
@@ -97,7 +98,7 @@ void	raytodraw(t_cub *s_cub)
 {
 	if (s_cub->ray.side == 0)
 	{
-			s_cub->ray.perpwalldist
+		s_cub->ray.perpwalldist
 			= s_cub->ray.sidedistx - s_cub->ray.deltadistx;
 	}
 	else
