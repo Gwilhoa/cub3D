@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 14:51:20 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:40:08 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	init_ray2(t_cub *cub)
 	cub->ray.drawstart = 0;
 	cub->ray.drawend = 0;
 	cub->ray.x = 0;
-	cub->ray.speed = 0.09;
-	cub->ray.t_speed = 0.09;
+	cub->ray.speed = 0.08;
+	cub->ray.t_speed = 0.08;
 	cub->ray.posx = (double)cub->map.pos_x;
 	cub->ray.posy = (double)cub->map.pos_y;
 	cub->ray.time = 0;
