@@ -1,7 +1,8 @@
-NO ./sprites/obsidian.xpm
-SO ./sprites/quartz.xpm
-WE ./sprites/endstone.xpm
-EA ./sprites/emerald.xpm
+NO ./sprites/test.xpm
+SO ./sprites/test.xpm
+WE ./sprites/test.xpm
+EA ./sprites/test.xpm
+
 F 220,100,0
 C 225,30,0
 1111111111111111111111111

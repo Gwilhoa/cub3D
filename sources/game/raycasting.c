@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:50:46 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 16:25:55 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:34:32 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	ray_manager(t_cub *cub)
 void	calcule_ray(t_cub *s_cub)
 {
 	s_cub->ray.camerax = 2 * s_cub->ray.x / (float) W_W - 1;
-	s_cub->ray.raydirx = s_cub->ray.dirx + s_cub->ray.planx
+	s_cub->ray.raydirx = s_cub->perso.dirx + s_cub->ray.planx
 		* s_cub->ray.camerax;
-	s_cub->ray.raydiry = s_cub->ray.diry + s_cub->ray.plany
+	s_cub->ray.raydiry = s_cub->perso.diry + s_cub->ray.plany
 		* s_cub->ray.camerax;
 	if (s_cub->ray.raydirx == 0)
 		s_cub->ray.raydirx = 1e-30;

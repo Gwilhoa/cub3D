@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 14:50:16 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:44:34 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	start_game(t_cub *cub)
 {
 	mlx_hook(cub->fen, 2, 1L << 0, keypad_press, cub);
 	mlx_hook(cub->fen, 3, 1L << 1, keypad_release, cub);
+	mlx_hook(cub->fen, 17, 1L << 2, my_close, cub);
 	mlx_loop_hook(cub->link, loop, cub);
 	mlx_loop(cub->link);
 }

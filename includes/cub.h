@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 12:05:50 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/11/19 17:35:00 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define MM_END_X 1000
 # define MM_END_Y 100
 # define PI 3.14159265358979323846
-# define EVENT_W 13	// c'etait 6 (why?) moi jai 13
+# define EVENT_W 13
 # define EVENT_A 0
 # define EVENT_S 1
 # define EVENT_D 2
@@ -40,8 +40,6 @@ typedef struct s_ray
 	double	raydiry;
 	double	planx;
 	double	plany;
-	double	dirx;
-	double	diry;
 	double	camerax;
 	double	sidedistx;
 	double	sidedisty;
