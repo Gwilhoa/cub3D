@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:10:09 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/17 20:54:06 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 22:25:26 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ int	map_badargument(char c)
 	if (is_direction(c))
 		ft_putstr_fd("Error\nPlayer already defined", 2);
 	else
+	{
 		ft_putstr_fd("Error\nUnrecognized charactere : ", 2);
+		ft_putchar_fd(c, 2);
+		ft_putchar_fd('\n', 2);
+	}
+	ft_putchar_fd('\n', 2);
 	return (false);
 }
 
@@ -37,14 +42,14 @@ int	fd_unvailable(char	*filename)
 
 int	map_isopen(void)
 {
-	ft_putstr_fd("Error\nUndefined map : map is open", 2);
+	ft_putstr_fd("Error\nUndefined map : map is open or player absent", 2);
 	return (false);
 }
 
-int	color_badargument(char type)
+int	color_badargument(char *type)
 {
 	ft_putstr_fd("error parsing color on ", 2);
-	ft_putchar_fd(type, 2);
+	ft_putstr_fd(type, 2);
 	ft_putchar_fd('\n', 2);
 	return (false);
 }

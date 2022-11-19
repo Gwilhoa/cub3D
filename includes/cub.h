@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 17:35:00 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 22:20:05 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ typedef struct s_cub
 	t_texture	texture;
 }	t_cub;
 
+int		size_map(char **map);
 int		is_textured(t_cub *cub);
 int		is_orientedline(char *line);
 int		is_direction(char c);
@@ -162,7 +163,7 @@ int		parse_nameformat(void);
 int		parse_nameformat(void);
 int		fd_unvailable(char	*filename);
 int		map_isopen(void);
-int		color_badargument(char type);
+int		color_badargument(char *type);
 int		color_numberformat(char c);
 int		color_unexpectedline(char *line);
 int		empty_map(void);

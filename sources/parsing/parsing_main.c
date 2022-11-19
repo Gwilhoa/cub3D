@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/18 15:18:17 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 22:29:26 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	parsing_texture(t_cub *cub)
 		free(al);
 		free(cub->map.map[0]);
 		cub->map.map = cub->map.map + 1;
-		if (cub->map.map[0] == 0 || i == false)
+		if (cub->map.map[0] == 0 || i == 0 || size_map(cub->map.map) == 0)
 			return (false);
 	}
-	while (ft_strlen(cub->map.map[0]) <= 1)
+	while (cub->map.map[0] != 0 && ft_strlen(cub->map.map[0]) <= 1)
 	{
 		free(cub->map.map[0]);
 		cub->map.map = cub->map.map + 1;
