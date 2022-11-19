@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:22:16 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 21:20:07 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:55:22 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	r = 0;
 	split = ft_split(actual_line, ',');
 	if (ft_matrix_size((const char **)split) != 3)
-		i = color_badargument(&type);
+		i = color_badargument(type);
 	while (i != false && split[r] != 0)
 	{
-		i = isvalid_color(split[r]);
+		i = isvalid_color(split[r], type);
 		r++;
 	}
 	if (type == 'F')
@@ -48,18 +48,21 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	return (i);
 }
 
-int	isvalid_color(char *color)
+int	isvalid_color(char *color, char type)
 {
 	char	*temp;
+	char	*temp2;
 	int		ret;
 
 	ret = false;
-	temp = ft_itoa(ft_atoi(color));
-	if (ft_strcmp(color, temp) == 0 && ft_atoi(color) >= 0
+	temp = ft_strtrim(color, " \t");
+	temp2 = ft_itoa(ft_atoi(temp));
+	if (ft_strcmp(temp, temp2) == 0 && ft_atoi(temp) >= 0
 		&& ft_atoi(color) <= 255)
 		ret = true;
 	else
-		color_badargument(color);
+		color_badargument(type);
 	free(temp);
+	free(temp2);
 	return (ret);
 }

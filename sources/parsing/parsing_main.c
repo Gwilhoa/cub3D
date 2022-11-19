@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 22:29:26 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/20 00:03:28 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ int	search_player(t_cub *cub)
 			if (is_direction(cub->map.map[i][j]) && cub->perso.pos.x == -1)
 			{
 				cub->perso.direction = cub->map.map[i][j];
-				cub->perso.pos.y = i;
-				cub->perso.pos.x = j;
+				cub->perso.pos.y = i + 0.5;
+				cub->perso.pos.x = j + 0.5;
 			}
 			else if (is_direction(cub->map.map[i][j]) || (cub->map.map[i][j]
 			!= '0' && cub->map.map[i][j] != '1' && cub->map.map[i][j] != ' '))

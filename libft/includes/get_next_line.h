@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 16:47:33 by gchatain          #+#    #+#             */
-/*   Updated: 2021/11/18 16:47:33 by gchatain         ###   ########lyon.fr   */
+/*   Updated: 2022/11/19 23:29:16 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include "libft.h"
-# define BUFFER_SIZE 30
+# define BUFFER_SIZE 200
 
 int		ft_search(char *str, int charset);
 char	*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 22:20:05 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:41:34 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ typedef struct s_cub
 	t_texture	texture;
 }	t_cub;
 
+int		color_badargument(char type);
 int		size_map(char **map);
 int		is_textured(t_cub *cub);
 int		is_orientedline(char *line);
@@ -163,7 +164,7 @@ int		parse_nameformat(void);
 int		parse_nameformat(void);
 int		fd_unvailable(char	*filename);
 int		map_isopen(void);
-int		color_badargument(char *type);
+int		isvalid_color(char *color, char type);
 int		color_numberformat(char c);
 int		color_unexpectedline(char *line);
 int		empty_map(void);
@@ -187,7 +188,6 @@ int		keypad_release(int keycode, t_cub *cub);
 int		ft_move(t_cub *cub);
 int		find_wall_pos(t_cub *cub);
 int		get_textural_x(int wallx, t_img img, t_cub *cub);
-int		isvalid_color(char *color);
 int		my_close(t_cub *cub);
 int		get_pixel(t_data *data, int x, int y);
 int		loop(t_cub *s_cub);

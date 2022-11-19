@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:10:09 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 22:25:26 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:44:04 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ int	map_isopen(void)
 	return (false);
 }
 
-int	color_badargument(char *type)
+int	color_badargument(char type)
 {
 	ft_putstr_fd("error parsing color on ", 2);
-	ft_putstr_fd(type, 2);
+	ft_putchar_fd(type, 2);
 	ft_putchar_fd('\n', 2);
+	exit(1);
 	return (false);
 }
