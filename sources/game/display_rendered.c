@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 00:57:36 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 17:26:12 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/21 18:21:50 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_img	getside_img(t_cub *cub)
 	else if (cub->ray.side == 0 && (cub->ray.mapx > cub->ray.posx))
 		return (cub->texture.so_texture);
 	else if (cub->ray.side == 1 && (cub->ray.mapy < cub->ray.posy))
-		return (cub->texture.ea_texture);
-	else
 		return (cub->texture.we_texture);
+	else
+		return (cub->texture.ea_texture);
 }
 
 double	get_wallx(t_cub *cub)

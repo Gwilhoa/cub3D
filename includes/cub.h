@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 23:41:34 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/20 00:55:26 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include <math.h>
-# define W_H 650
-# define W_W 1000
+# define W_H 800
+# define W_W 1200
 # define MM_START_X 0 
 # define MM_START_Y 0
 # define MM_END_X 1000

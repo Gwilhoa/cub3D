@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/19 18:52:38 by gchatain         ###   ########.fr        #
+#    Updated: 2022/11/21 18:28:34 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ OBJS = $(addprefix .objects/,$(LST_OBJS))
 INCLUDES    = mlx/mlx.h includes/ libft/includes/
 DIR_INCLUDES = $(sort $(addprefix -I, $(dir $(INCLUDES))))
 CC          = gcc
-CFLAGS      = -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS      = -Wall -Wextra -Werror
+CDEBUG		= -g3 -fsanitize=address
 NAME        = cub3d
 RM          = rm -f
 LIBX        = -I /usr/X11/include -g -L ./mlx -l mlx -framework OpenGL -framework AppKit
@@ -57,11 +58,6 @@ all:        compilation
 ${NAME}:	${OBJS} ${INCLUDES} Makefile
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBRARY} ${LIBX} $(DIR_INCLUDES)
 			echo $(NORM_RET)
-			
-debug:	${OBJS} ${INCLUDES} Makefile
-			echo DEBUG
-			${CC} ${CFLAGS} -o Dcub ${OBJS} ${LIBRARY} ${LIBX} $(DIR_INCLUDES) -g -fdiagnostics-color=always
-			echo $(NORM_RET)
 
 clean:
 			rm -rf .objects
@@ -81,10 +77,14 @@ compilation :
 	make -s -C mlx
 	make -s -C libft
 
+debug:
+	all
+
 .objects:
 			mkdir -p .objects
 			mkdir -p .objects/game
 			mkdir -p .objects/parsing
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re debug
 
 .SILENT:
+

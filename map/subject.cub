@@ -1,7 +1,7 @@
 NO ./sprites/segfault.xpm
 SO ./sprites/segfault.xpm
-WE ./sprites/l_stand1.xpm
-EA ./sprites/l_stand1.xpm
+WE ./sprites/segfault.xpm
+EA ./sprites/segfault.xpm
 
 F 220,100,250
 C 225,30,250
