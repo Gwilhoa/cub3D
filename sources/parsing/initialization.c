@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 22:15:40 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:12:48 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	init_map(t_cub *cub, int fd)
 		ft_push_back_matrix(&map, str);
 		free(str);
 		str = ft_strtrim2(get_next_line(fd), "\n");
+		if (str == 0)
+			return (false);
 	}
 	cub->map.map = map;
 	if (map == 0)

@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:22:16 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 23:55:22 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:11:32 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	parsing_color(t_cub *cub, char *actual_line, char type)
 	i = true;
 	r = 0;
 	split = ft_split(actual_line, ',');
-	if (ft_matrix_size((const char **)split) != 3)
+	if (split == 0 || ft_matrix_size((const char **)split) != 3)
 		i = color_badargument(type);
 	while (i != false && split[r] != 0)
 	{
@@ -56,6 +56,8 @@ int	isvalid_color(char *color, char type)
 
 	ret = false;
 	temp = ft_strtrim(color, " \t");
+	if (temp == 0)
+		return (false);
 	temp2 = ft_itoa(ft_atoi(temp));
 	if (ft_strcmp(temp, temp2) == 0 && ft_atoi(temp) >= 0
 		&& ft_atoi(color) <= 255)

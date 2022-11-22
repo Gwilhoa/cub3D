@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/21 18:28:34 by gchatain         ###   ########.fr        #
+#    Updated: 2022/11/22 19:55:08 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ OBJS = $(addprefix .objects/,$(LST_OBJS))
 INCLUDES    = mlx/mlx.h includes/ libft/includes/
 DIR_INCLUDES = $(sort $(addprefix -I, $(dir $(INCLUDES))))
 CC          = gcc
-CFLAGS      = -Wall -Wextra -Werror
-CDEBUG		= -g3 -fsanitize=address
+CDEBUG		= -glldb -fsanitize=address
+CFLAGS      = -Wall -Wextra -Werror ${CDEBUG}
 NAME        = cub3d
 RM          = rm -f
 LIBX        = -I /usr/X11/include -g -L ./mlx -l mlx -framework OpenGL -framework AppKit

@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 22:26:09 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:17:01 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	map_validation(t_cub *cub)
 		return (false);
 	ret = true;
 	map = ft_matrix_dup(cub->map.map);
-	if (square_verify(cub->perso.pos.y, cub->perso.pos.x, map) > 0)
+	if (map == NULL
+		|| square_verify(cub->perso.pos.y, cub->perso.pos.x, map) > 0)
 		ret = false;
 	cub->map.map[(int)cub->perso.pos.y][(int)cub->perso.pos.x] = '0';
 	ft_free_matrix(map);

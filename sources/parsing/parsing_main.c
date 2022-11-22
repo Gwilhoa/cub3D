@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/20 00:03:28 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:08:08 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	parsing_texture(t_cub *cub)
 	while (is_textured(cub))
 	{
 		al = ft_strtrim(cub->map.map[0], " \n\t\v\r\f");
+		if (!al)
+			return (false);
 		if (is_orientedline(al))
 			i = parsing_oriented(al + 2, ft_substr(al, 0, 2), cub);
 		else if (ft_strncmp(al, "F", 1) == 0 || ft_strncmp(al, "C", 1) == 0)
@@ -52,8 +54,6 @@ int	parsing_texture(t_cub *cub)
 		free(al);
 		free(cub->map.map[0]);
 		cub->map.map = cub->map.map + 1;
-		if (cub->map.map[0] == 0 || i == 0 || size_map(cub->map.map) == 0)
-			return (false);
 	}
 	while (cub->map.map[0] != 0 && ft_strlen(cub->map.map[0]) <= 1)
 	{
@@ -84,6 +84,8 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 
 	r = true;
 	path = ft_strtrim(line, " \n\t\v\r\f");
+	if (path == NULL)
+		return (false);
 	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.data.img == NULL)
 		r = create_textures(cub, &cub->texture.no_texture, path);
 	else if (ft_strcmp(type, "SO") == 0
