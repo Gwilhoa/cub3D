@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/22 20:37:05 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:41:39 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	my_close(t_cub *cub)
 {
-	(void) cub;
 	mlx_destroy_image(cub->link, cub->texture.ea_texture.data.img);
 	mlx_destroy_image(cub->link, cub->texture.we_texture.data.img);
 	mlx_destroy_image(cub->link, cub->texture.no_texture.data.img);
