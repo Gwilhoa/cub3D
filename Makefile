@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/22 19:55:08 by gchatain         ###   ########.fr        #
+#    Updated: 2022/11/22 23:25:24 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ INCLUDES    = mlx/mlx.h includes/ libft/includes/
 DIR_INCLUDES = $(sort $(addprefix -I, $(dir $(INCLUDES))))
 CC          = gcc
 CDEBUG		= -glldb -fsanitize=address
-CFLAGS      = -Wall -Wextra -Werror ${CDEBUG}
-NAME        = cub3d
+CFLAGS      = -Wall -Wextra -Werror #${CDEBUG}
+NAME        = cub3D
 RM          = rm -f
 LIBX        = -I /usr/X11/include -g -L ./mlx -l mlx -framework OpenGL -framework AppKit
 NORM        = $(shell norminette sources | grep -c 'Error!')
@@ -77,14 +77,12 @@ compilation :
 	make -s -C mlx
 	make -s -C libft
 
-debug:
-	all
 
 .objects:
 			mkdir -p .objects
 			mkdir -p .objects/game
 			mkdir -p .objects/parsing
-.PHONY:	all clean fclean re debug
+.PHONY:	all clean fclean re
 
 .SILENT:
 

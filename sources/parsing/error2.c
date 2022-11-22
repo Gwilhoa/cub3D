@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:32:19 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 22:20:05 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 23:26:10 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	corrupt_texture(char *path)
 	ft_putstr_fd("Error\nTexture File\n", 2);
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(" Corrupted or non-existent\n", 2);
+	exit(1);
 	return (false);
 }
 
