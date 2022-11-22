@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/20 00:55:26 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:00:54 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define EVENT_SHIFT 257
 # define EVENT_ROTR 124
 # define EVENT_ROTL 123
+# define EVENT_M 46
 
 typedef struct s_ray
 {
@@ -130,6 +131,7 @@ typedef struct s_key
 	int	rotl;
 	int	key_a;
 	int	key_d;
+	int	key_m;
 }	t_key;
 
 typedef struct s_cub

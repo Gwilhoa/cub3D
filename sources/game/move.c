@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:32:45 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/19 17:34:32 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:03:48 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	keypad_press(int keycode, t_cub *cub)
 		cub->key.rotr = 1;
 	else if (keycode == EVENT_ROTL)
 		cub->key.rotl = 1;
+	else if (keycode == EVENT_M)
+		cub->key.key_m = -cub->key.key_m + 1;
 	return (1);
 }
 

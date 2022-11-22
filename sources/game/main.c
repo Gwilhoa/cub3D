@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/19 17:44:34 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:56:29 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	loop(t_cub *cub)
 		ray_manager(cub);
 		cub->ray.x += 1;
 	}
-	putminimap(cub);
+	if (cub->key.key_m == 1)
+		putminimap(cub);
 	mlx_put_image_to_window(cub->link, cub->fen, cub->s_img.img, 0, 0);
 	return (0);
 }
