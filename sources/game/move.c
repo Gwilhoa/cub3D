@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:32:45 by guyar             #+#    #+#             */
-/*   Updated: 2022/11/22 18:03:48 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:55:22 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@ void	rotate_key(double tmpdirx, double tmpplnx, t_cub *cub)
 {
 	if (cub->key.rotr == 1 && cub->key.rotl == 0)
 	{
-		cub->perso.dirx = cub->perso.dirx * cos(-cub->ray.t_speed)
-			- cub->perso.diry * sin(-cub->ray.t_speed);
-		cub->perso.diry = tmpdirx * sin(-cub->ray.t_speed)
-			+ cub->perso.diry * cos(-cub->ray.t_speed);
-		cub->ray.planx = cub->ray.planx * cos(-cub->ray.t_speed)
-			- cub->ray.plany * sin(-cub->ray.t_speed);
-		cub->ray.plany = tmpplnx * sin(-cub->ray.t_speed)
-			+ cub->ray.plany * cos(-cub->ray.t_speed);
+		cub->perso.dirx = cub->perso.dirx * cos(-cub->ray.speed)
+			- cub->perso.diry * sin(-cub->ray.speed);
+		cub->perso.diry = tmpdirx * sin(-cub->ray.speed)
+			+ cub->perso.diry * cos(-cub->ray.speed);
+		cub->ray.planx = cub->ray.planx * cos(-cub->ray.speed)
+			- cub->ray.plany * sin(-cub->ray.speed);
+		cub->ray.plany = tmpplnx * sin(-cub->ray.speed)
+			+ cub->ray.plany * cos(-cub->ray.speed);
 	}
 	else if (cub->key.rotl == 1 && cub->key.rotr == 0)
 	{
-		cub->perso.dirx = cub->perso.dirx * cos(cub->ray.t_speed)
-			- cub->perso.diry * sin(cub->ray.t_speed);
-		cub->perso.diry = tmpdirx * sin(cub->ray.t_speed)
-			+ cub->perso.diry * cos(cub->ray.t_speed);
-		cub->ray.planx = cub->ray.planx * cos(cub->ray.t_speed)
-			- cub->ray.plany * sin(cub->ray.t_speed);
-		cub->ray.plany = tmpplnx * sin(cub->ray.t_speed)
-			+ cub->ray.plany * cos(cub->ray.t_speed);
+		cub->perso.dirx = cub->perso.dirx * cos(cub->ray.speed)
+			- cub->perso.diry * sin(cub->ray.speed);
+		cub->perso.diry = tmpdirx * sin(cub->ray.speed)
+			+ cub->perso.diry * cos(cub->ray.speed);
+		cub->ray.planx = cub->ray.planx * cos(cub->ray.speed)
+			- cub->ray.plany * sin(cub->ray.speed);
+		cub->ray.plany = tmpplnx * sin(cub->ray.speed)
+			+ cub->ray.plany * cos(cub->ray.speed);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/22 18:00:54 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:31:43 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,18 @@ typedef struct s_ray
 {
 	double	posx;
 	double	posy;
-	double	raydirx;
-	double	raydiry;
+	double	dirx;
+	double	diry;
 	double	planx;
 	double	plany;
 	double	camerax;
-	double	sidedistx;
-	double	sidedisty;
+	double	dirx_dist;
+	double	diry_dist;
 	double	deltadistx;
 	double	deltadisty;
 	double	time;
 	double	oldtime;
 	float	speed;
-	float	t_speed;
 	float	perpwalldist;
 	int		mapx;
 	int		mapy;
@@ -214,12 +213,11 @@ void	raytodraw(t_cub *s_cub);
 void	draw_line(t_cub *s_cub);
 void	setcub(t_cub *cub);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	print_sky_floor(t_cub *cub, t_data *s_img);
-void	ft_dda(t_cub *s_cub);
+void	ft_dda(t_cub *cub);
 void	start_game(t_cub *cub);
 void	init_mlx(t_cub *cub);
 void	ray_manager(t_cub *cub);
-void	draw_vline(t_cub *cub);
+void	draw_wall(t_cub *cub);
 void	movement_key(t_cub *cub);
 void	rotate_key(double tmpdirx, double tmpplnx, t_cub *cub);
 void	key_hook_w(t_cub *cub);

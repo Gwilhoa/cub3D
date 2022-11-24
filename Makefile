@@ -6,7 +6,7 @@
 #    By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 12:53:10 by gchatain          #+#    #+#              #
-#    Updated: 2022/11/22 23:25:24 by gchatain         ###   ########.fr        #
+#    Updated: 2022/11/23 20:38:03 by gchatain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LST_OBJS = ${LST_SRCS:.c=.o}
 LIBRARY = libft/libft.a mlx/libmlx.a
 SRCS = $(addprefix sources/,$(LST_SRCS))
 OBJS = $(addprefix .objects/,$(LST_OBJS))
-INCLUDES    = mlx/mlx.h includes/ libft/includes/
+INCLUDES    = mlx/mlx.h includes/cub.h libft/includes/libft.h libft/includes/get_next_line.h
 DIR_INCLUDES = $(sort $(addprefix -I, $(dir $(INCLUDES))))
 CC          = gcc
 CDEBUG		= -glldb -fsanitize=address

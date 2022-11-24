@@ -1,9 +1,9 @@
-NO ./sprites/segfault.xpm
-SO ./sprites/segfault.xpm
-WE ./sprites/segfault.xpm
-EA ./sprites/segfault.xpm
+NO ./sprites/test.xpm
+SO ./sprites/test.xpm
+WE ./sprites/test.xpm
+EA ./sprites/test.xpm
 
-F 220,100,250
+F 220,100,20
 C 225,30,250
 
 1111111111111111111111111

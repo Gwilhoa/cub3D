@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/22 20:39:49 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:55:22 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	init_ray(t_cub *cub)
 {
 	cub->ray.posx = 0;
 	cub->ray.posy = 0;
-	cub->ray.raydirx = 0;
-	cub->ray.raydiry = 0;
+	cub->ray.dirx = 0;
+	cub->ray.diry = 0;
 	cub->ray.camerax = 0;
 	cub->ray.mapx = 0;
 	cub->ray.mapy = 0;
-	cub->ray.sidedistx = 0;
-	cub->ray.sidedisty = 0;
+	cub->ray.dirx_dist = 0;
+	cub->ray.diry_dist = 0;
 	cub->ray.deltadistx = 0;
 	cub->ray.deltadisty = 0;
 	init_ray2(cub);
@@ -72,7 +72,7 @@ void	init_ray2(t_cub *cub)
 	cub->ray.drawend = 0;
 	cub->ray.x = 0;
 	cub->ray.speed = 0.08;
-	cub->ray.t_speed = 0.08;
+	cub->ray.speed = 0.08;
 	cub->ray.posx = (double)cub->map.pos_x;
 	cub->ray.posy = (double)cub->map.pos_y;
 	cub->ray.time = 0;
