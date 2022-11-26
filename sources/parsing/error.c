@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:10:09 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/26 16:23:05 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/26 19:45:50 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	fd_unvailable(char	*filename)
 int	map_isopen(void)
 {
 	ft_putstr_fd("Error\nUndefined map : map is open or player absent", 2);
+	exit(1);
 	return (false);
 }
 
