@@ -1,7 +1,7 @@
-NO ./sprites/test.xpm
-SO ./sprites/test.xpm
-WE ./sprites/test.xpm
-EA ./sprites/test.xpm
+NO ./sprites/emerald.xpm
+SO ./sprites/obsidian.xpm
+WE ./sprites/quartz.xpm
+EA ./sprites/endstone.xpm
 
 F 220,100,20
 C 225,30,250

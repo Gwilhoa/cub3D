@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:10:09 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/24 10:24:17 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:23:05 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	map_badargument(char c)
 int	parse_nameformat(void)
 {
 	ft_putstr_fd("Error\nWrong Fileformat, extension of file must be'.cub'", 2);
+	exit(1);
 	return (false);
 }
 
