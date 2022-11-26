@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/24 10:24:29 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:58:56 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ int	search_player(t_cub *cub)
 		}
 		i++;
 	}
-	if (map_validation(cub) == false)
-		return (map_isopen());
+	map_validation(cub);
 	return (true);
 }

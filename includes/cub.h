@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/24 19:31:43 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:48:50 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,8 @@ int		is_orientedline(char *line);
 int		is_direction(char c);
 int		parsing_main(char *filename, t_cub *cub);
 int		init_map(t_cub *cub, int fd);
-int		map_validation(t_cub *cub);
-int		square_verify(int x, int y, char **map);
+void	map_validation(t_cub *cub);
+void	square_verify(int x, int y, char **map);
 int		map_badargument(char c);
 int		parse_nameformat(void);
 int		parse_nameformat(void);

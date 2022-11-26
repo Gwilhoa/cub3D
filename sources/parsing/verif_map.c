@@ -6,47 +6,44 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/24 10:24:35 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/26 19:04:55 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	map_validation(t_cub *cub)
+void	map_validation(t_cub *cub)
 {
 	char	**map;
-	int		ret;
+	int		i;
+	int		j;
 
-	if (cub->perso.pos.x == -1)
-		return (false);
-	ret = true;
-	map = ft_matrix_dup(cub->map.map);
-	if (map == NULL
-		|| square_verify(cub->perso.pos.y, cub->perso.pos.x, map) > 0)
-		ret = false;
+	i = 0;
+	map = cub->map.map;
+	while (i < ft_matrix_size((const char **)map))
+	{
+		j = 0;
+		while (j < ft_strlen(map[i]))
+		{
+			if (map[i][j] == '0')
+			{
+				square_verify(i + 1, j, map);
+				square_verify(i - 1, j, map);
+				square_verify(i, j + 1, map);
+				square_verify(i, j - 1, map);
+			}
+			j++;
+		}
+		i++;
+	}
 	cub->map.map[(int)cub->perso.pos.y][(int)cub->perso.pos.x] = '0';
-	ft_free_matrix(map);
-	free(map);
-	return (ret);
 }
 
-int	square_verify(int x, int y, char **map)
+void	square_verify(int x, int y, char **map)
 {
 	if (x < 0 || y < 0 || map[x] == 0 || ft_strlen(map[x]) < y)
 	{
-		ft_free_matrix(map);
-		free(map);
 		map_isopen();
 		exit(1);
-		return (1);
 	}
-	if (map[x][y] == '1' || map[x][y] == '-')
-		return (0);
-	if (map[x][y] == '0' || is_direction(map[x][y]) == true)
-	{
-		map[x][y] = '-';
-		return (square_verify(x + 1, y, map) + square_verify(x - 1, y, map)
-			+ square_verify(x, y + 1, map) + square_verify(x, y - 1, map));
-	}
-	return (1);
 }
