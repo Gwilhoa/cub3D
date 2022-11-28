@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/26 21:25:36 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:34:06 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	map_validation(t_cub *cub)
 
 void	square_verify(int x, int y, char **map)
 {
-	if (x < 0 || y < 0 || map[x] == 0 || ft_strlen(map[x]) < y 
+	if (x < 0 || y < 0 || map[x] == 0 || ft_strlen(map[x]) < y
 		|| map[x][y] == ' ' || map[x][y] == 0)
 		map_isopen();
 }
