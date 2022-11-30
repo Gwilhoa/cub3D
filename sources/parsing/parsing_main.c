@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:50:24 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/28 23:24:56 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:03:38 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,13 @@ int	parsing_oriented(char *line, char *type, t_cub *cub)
 	path = ft_strtrim(line, " \n\t\v\r\f");
 	if (path == NULL)
 		return (false);
-	if (ft_strcmp(type, "NO") == 0 && cub->texture.no_texture.data.img == NULL)
+	if (ft_strcmp(type, "NO") == 0)
 		r = create_textures(cub, &cub->texture.no_texture, path);
-	else if (ft_strcmp(type, "SO") == 0
-		&& cub->texture.so_texture.data.img == NULL)
+	else if (ft_strcmp(type, "SO") == 0)
 		r = create_textures(cub, &cub->texture.so_texture, path);
-	else if (ft_strcmp(type, "WE") == 0
-		&& cub->texture.we_texture.data.img == NULL)
+	else if (ft_strcmp(type, "WE") == 0)
 		r = create_textures(cub, &cub->texture.we_texture, path);
-	else if (ft_strcmp(type, "EA") == 0
-		&& cub->texture.ea_texture.data.img == NULL)
+	else if (ft_strcmp(type, "EA") == 0)
 		r = create_textures(cub, &cub->texture.ea_texture, path);
 	else
 		r = false;
