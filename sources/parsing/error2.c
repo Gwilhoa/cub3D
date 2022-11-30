@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:32:19 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/24 10:24:20 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:53:54 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ int	color_numberformat(char c)
 	return (false);
 }
 
-int	color_unexpectedline(char *line)
+int	color_unexpectedline(char *line, char *al)
 {
 	ft_putstr_fd("Error\nunexpected line in the map : ", 2);
 	ft_putstr_fd(line, 2);
 	ft_putchar_fd('\n', 2);
+	free(al);
 	return (false);
 }
 

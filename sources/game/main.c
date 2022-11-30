@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:06:33 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/28 18:28:58 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:54:50 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char const *argv[])
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\ntoo few or not enough argument", 2);
+		ft_putstr_fd("Error\ntoo few or not enough argument\n ", 2);
 		exit(1);
 	}
 	file = ft_strdup(argv[1]);

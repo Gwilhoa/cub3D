@@ -1,15 +1,9 @@
-
 NO ./sprites/quartz.xpm
 SO ./sprites/emerald.xpm
 WE ./sprites/test.xpm
 EA ./sprites/obsidian.xpm
-
-
 C 255,155,255
 F 255,255,255
-
-
-
 111
 1W1
 111

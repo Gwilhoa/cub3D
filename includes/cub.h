@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:07:35 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/26 18:48:50 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:53:32 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int		fd_unvailable(char	*filename);
 int		map_isopen(void);
 int		isvalid_color(char *color, char type);
 int		color_numberformat(char c);
-int		color_unexpectedline(char *line);
+int		color_unexpectedline(char *line, char *al);
 int		empty_map(void);
 int		corrupt_texture(char *path);
 int		game(t_cub *cub);
