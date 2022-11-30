@@ -6,7 +6,7 @@
 /*   By: gchatain <gchatain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:41 by gchatain          #+#    #+#             */
-/*   Updated: 2022/11/28 15:34:06 by gchatain         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:22:28 by gchatain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	map_validation(t_cub *cub)
 		j = 0;
 		while (j < ft_strlen(map[i]))
 		{
-			if (map[i][j] == '0')
+			if (map[i][j] == '0' || is_direction(map[i][j]))
 			{
 				square_verify(i + 1, j, map);
 				square_verify(i - 1, j, map);
